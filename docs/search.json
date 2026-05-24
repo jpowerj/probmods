@@ -1,5 +1,55 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Home\nThis is a “port” of Goodman et al’s book Probabilistic Models of Cognition into Quarto, with a few changes to help us integrate the material better with DSAN 5650: Causal Inference for Computational Social Science (e.g., allowing us to cross-reference code and figures, include PDFs of the readings, and auto-grade the end-of-chapter exercises!)\nUse the sidebar to the left or the link at the bottom of this page to get started!",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "ch01/index.html",
+    "href": "ch01/index.html",
+    "title": "Chapter 1: Introduction",
+    "section": "",
+    "text": "How can we describe the intelligent inferences made in everyday human reasoning and learning? How can we engineer intelligent machines? The computational theory of mind aims to answer these questions starting from the hypothesis that the mind is a computer, mental representations are computer programs, and thinking is a computational process – running a computer program.",
+    "crumbs": [
+      "1. Introduction"
+    ]
+  },
+  {
+    "objectID": "ch01/index.html#what-is-thought",
+    "href": "ch01/index.html#what-is-thought",
+    "title": "Chapter 1: Introduction",
+    "section": "",
+    "text": "How can we describe the intelligent inferences made in everyday human reasoning and learning? How can we engineer intelligent machines? The computational theory of mind aims to answer these questions starting from the hypothesis that the mind is a computer, mental representations are computer programs, and thinking is a computational process – running a computer program.",
+    "crumbs": [
+      "1. Introduction"
+    ]
+  },
+  {
+    "objectID": "ch01/index.html#but-what-kind-of-program",
+    "href": "ch01/index.html#but-what-kind-of-program",
+    "title": "Chapter 1: Introduction",
+    "section": "1.2 But What Kind of Program?",
+    "text": "1.2 But What Kind of Program?\nA natural assumption is that these programs take the inputs – percepts from the senses, facts from memory, etc – and compute the outputs – the intelligent behaviors. Thus the mental representations that lead to thinking are functions from inputs to outputs. However, this input-output view suffers from a combinatorial explosion: we must posit an input-output program for each task in which humans draw intelligent inferences.\nA different approach is to assume that mental representations are more like theories in science: pieces of knowledge that can support many inferences in many different situations. For instance, Newton’s theory of motion makes predictions about infinitely many different configurations of objects and can be used to reason both forward in time and backward, from final state of a physical system to the initial state. The generative approach to cognition posits that some mental representations are more like theories in this way: they capture general descriptions of how the world works. A generative model describes a process, usually one by which observable data is generated, that represents knowledge about the causal structure of the world. These generative processes are simplified “working models” of a domain. Other mental computations operate over these generative models to draw inferences: many different questions can be answered by interrogating the mental model. This contrasts to a more procedural or mechanistic approach in which knowledge represents the input-output mapping for a particular question directly.\nIt is possible to use deterministic generative models to describe possible ways a process could unfold, but due to sparsity of observations or actual randomness there will often be many ways that our observations could have been generated. How can we choose amongst them? Probability theory provides a system for reasoning under exactly this kind of uncertainty. Probabilistic generative models describe processes which unfold with some amount of randomness, and probabilistic inference describes ways to ask questions of such processes. This book is concerned with the knowledge that can be represented by probabilistic generative models and the inferences that can be drawn from them.\nIn order to make the idea of generative models precise we want a formal language that is designed to express the kinds of knowledge individuals have about the world. This language should be universal in the sense that it should be able to express any (computable) process. We build on the representational power of programming languages because they describe computational processes and capture the idea that what is important is causal dependence—in particular programs do not focus on the sequence of time, but rather on which events influence which other events (the “flow of data”). We introduce randomness into this language to construct a probabilistic programming language (PPL), and describe conditional inferences in this language. By using a PPL we are able to parsimoniously describe rich generative model structures and explore the inference patterns that emerge from the interaction of model and data.",
+    "crumbs": [
+      "1. Introduction"
+    ]
+  },
+  {
+    "objectID": "ch01/index.html#reading-and-discussion",
+    "href": "ch01/index.html#reading-and-discussion",
+    "title": "Chapter 1: Introduction",
+    "section": "1.3 Reading and Discussion",
+    "text": "1.3 Reading and Discussion\nReading & Discussion: Readings",
+    "crumbs": [
+      "1. Introduction"
+    ]
+  },
+  {
     "objectID": "ch02/index.html",
     "href": "ch02/index.html",
     "title": "Chapter 2: Generative Models",
@@ -97,56 +147,6 @@
     "text": "2.9 Exercises\nPlease complete the exercises on this page and submit them in PDF form. You can (and should!!) write your code here and click “Run” to test out your answers. However, you will need to transfer your code to your own document in order to turn in your answers and get feedback. THESE CODE BOXES WILL NOT SAVE YOUR WORK. So copy your answers over to your own document frequently.\n\nExercise 1\n\na)\nShow mathematically that the marginal distribution on return values for these three programs is the same by directly computing the probability using the rules of probability (hint: write down each possible history of random choices for each program).\nflip() ? flip(.7) : flip(.1)\nflip(flip() ? .7 : .1)\nflip(.4)\n\n\nb)\nCheck your answers by sampling from the programs, 1000 times each, and plotting the results.\n\n\n\n\n\nc)\nWrite another new program with the same marginal distribution on return values that looks different from all of the above programs.\n\n\n\n\nExercise 2\n\na)\nExplain why (in terms of the evaluation process) these two programs give different answers (i.e. have different distributions on return values).\nvar foo = flip()\ndisplay([foo, foo, foo])\nvar foo = function() { return flip() }\ndisplay([foo(), foo(), foo()])\n\n\nb)\nModify the second program using mem so that it has the same distribution as the first program.\n\n\n\nc)\nChange the program in Part B so that the first two elements in the list are always the same as each other, but the third element can be different. Optional challenge: try to do this by adding only these 4 characters: x, 0, 0, and 1.\n\n\n\n\nExercise 3\n\na)\nWhich of these programs would be more likely to generate the following proportions for 100 values of C? Justify your response.\n\n\n\n// Program \"A\"\nvar A = flip()\nvar B = flip(0.9)\nvar C = flip() ? A && B : A || B\ndisplay([A, B, C])\n// Program \"B\"\nvar A = flip(0.9);\nvar B = A && flip(0.9)\nvar C = B && flip(0.9)\ndisplay([A, B, C])\n\n\nb)\nCould the program you did not choose in Part A have also generated those return values? Explain.\n\n\n\nExercise 4\nIn the simple medical diagnosis example, we imagined a generative process for diseases and symptoms of a single patient. In this exercise, we’ll write a version of that model that represents the diseases and symptoms of many patients.\n\na)\nLet’s look at just two common conditions (a cold and allergies) and just two symptoms (sneeze and fever), and let’s assume that symptoms are deterministic.\nvar allergies = flip(0.3)\nvar cold = flip(0.2)\n\nvar sneeze = cold || allergies\nvar fever = cold\n\ndisplay([sneeze, fever])\nUnder this model, what is the probability that the patient is sneezing? What is the probability that the patient is sneezing and has a fever?\n\n\nb)\nInspect the joint probability distributions of sneeze and fever using Infer.\nInfer({method: \"forward\", samples: 1000}, function() {\n  ...\n  return { ... }\n})\n\n\nc)\nIf we wanted to represent the diseases of many patients we might have tried to make each disease and symptom into a function from a person to whether they have that disease, like this:\nvar allergies = function(person) { return flip(.3) }\nvar cold = function(person) { return flip(.2) }\n\nvar sneeze = function(person) { return cold(person) || allergies(person) }\n\ndisplay([sneeze('bob'), sneeze('alice')])\nAdd fever to the program above, and use Infer to inspect the probability distribution over Bob’s symptoms. Is this the same probability distribution that you computed for the single patient in Part A? If not, what can you do to fix this program to capture our intuitions correctly?\n\n\n\nExercise 5\nWork through the evaluation process for the bend higher-order function in this example:\nvar makeCoin = function(weight) {\n  return function() {\n    return flip(weight) ? 'h' : 't'\n  }\n}\nvar bend = function(coin) {\n  return function() {\n    return coin() == 'h' ? makeCoin(.7)() : makeCoin(.1)()\n  }\n}\n\nvar fairCoin = makeCoin(.5)\nvar bentCoin = bend(fairCoin)\n\na)\nDirectly compute the probability distribution of the bent coin in the example.\n\n\nb)\nCheck your answer by using Infer.\n\n\n\n\nExercise 6\n\na)\nDirectly compute the probability that the geometric distribution defined by the following stochastic recursion returns the number 5. Hint: What is the default parameter for flip()?\nvar geometric = function() {\n  return flip() ? 0 : 1 + geometric()\n}\n\n\nb)\nCheck your answer by using Infer.\n\n\n\n\nExercise 7\n\na)\nConvert the following probability table to a compact WebPPL program:\n\n\n\nA\nB\nP(A,B)\n\n\n\n\nF\nF\n0.14\n\n\nF\nT\n0.06\n\n\nT\nF\n0.4\n\n\nT\nT\n0.4\n\n\n\nRequirement: fix the probability of A first and then define the probability of B to depend on whether A is true or not.\nvar a = ...\nvar b = ...\ndisplay([a, b])\n\n\nb)\nRun your WebPPL program and use Infer to check that you get the correct distribution.\n\n\n\n\nExercise 8\nBelow we’ve defined a higher-order function flipSequence that takes a coin flipping function (e.g. trickCoin, below) and flips that coin until it gets a sequence of two heads in a row (in which case it returns heads 'h') or two tails in a row (in which case it returns tails 't'). Try out different weights for the trickCoin.\nvar makeCoin = function(weight) {\n  return function() {\n    return flip(weight) ? 'h' : 't'\n  }\n}\nvar flipSequence = function(coin) {\n  return function() {\n    var flip1 = coin()\n    var flip2 = coin()\n    if (flip1 == flip2) {\n      return flip1\n    } else {\n      return flipSequence(coin)()\n    }\n  }\n}\n\nvar trickCoin = makeCoin(.6)\n\nvar n_samples = 10000;\nviz(Infer({method: \"forward\", samples: n_samples}, trickCoin))\nviz(Infer({method: \"forward\", samples: n_samples}, flipSequence(trickCoin)))\n\nPart (a)\nHow does flipSequence change the distribution over return values (qualitatively)? Explain why requiring two flips in a row to be the same has this effect.\n\n\nPart (b)\nWhat would happen if a fair coin (with weight 0.5) were input to flipSequence? Explain.\n\n\n\nExercise 9\nBox2D is a two dimensional simulation engine for simulating rigid bodies (those with constant shape). It allows for the construction of arbitray worlds and models important physical concepts including collisions, friction, gravity, momentum, and more.\nWe have provided a wrapper around Box2D that allows for the easy construction of worlds. A world consists of list of shapes. Shapes are created by JavaScript objects with the following properties:\n|shape |“circle” or “rect” | |dims |[width, height] for rect or [radius] for circle | |x |x_position_as_number (distance from left) | |y |y_position_as_number (distance from top) | |static |boolean (does the object move or stay still?) | |velocity |[x_velocity, y_velocity] |\nThe variables worldWidth and worldHeight are constants representing the visible size of the simulation window.\nHere’s an example with a ground and a single rectangle. Add another object to bowlingWorld and give it an initial velocity so that it knocks the original rectangle down.\nvar ground = {\n  shape: 'rect',\n  static: true,\n  dims: [worldWidth, 10],\n  x: worldWidth/2,\n  y: worldHeight\n}\n\nvar rect = {\n  shape: 'rect',\n  static: false,\n  dims: [10, 100],\n  x: worldWidth/2,\n  y: 390\n}\n\nvar bowlingWorld = [ground, rect]\nphysics.animate(1000, bowlingWorld)\n\n\nExercise 10\nIn Example: Intuitive physics we modeled instability of a tower as the probability that the tower falls when perturbed, and we modeled “falling” as getting shorter. It would be reasonable to instead measure how much shorter the tower gets.\n\na)\nBelow, modify the stability/instability model by writing a continuous measure, towerFallDegree. Let this measure take different values between 0 and 1. That way, your continuous measure will be numerically comparable to the discrete measure, doesTowerFall (defined here as either 0 or 1). Explain what your continuous measure represents and why it might be a good continuous measure of instability.\n///fold:\nvar listMin = function(xs) {\n  if (xs.length == 1) {\n    return xs[0]\n  } else {\n    return Math.min(xs[0], listMin(rest(xs)))\n  }\n}\n\nvar highestY = function (w) { listMin(map(function(obj) { return obj.y }, w)) }\nvar ground = {\n  shape: 'rect',\n  static: true,\n  dims: [worldWidth, 10],\n  x: worldWidth / 2,\n  y: worldHeight + 6\n}\n\nvar almostUnstableWorld = [\n  ground,\n  {shape: 'rect', static: false, dims: [24, 22], x: 175, y: 473},\n  {shape: 'rect', static: false, dims: [15, 38], x: 159.97995044874122, y: 413},\n  {shape: 'rect', static: false, dims: [11, 35], x: 166.91912737427202, y: 340},\n  {shape: 'rect', static: false, dims: [11, 29], x: 177.26195677111082, y: 276},\n  {shape: 'rect', static: false, dims: [11, 17], x: 168.51354470809122, y: 230}\n]\n\nvar noisify = function (world) {\n  var perturbX = function (obj) {\n    var noiseWidth = 10\n    if (obj.static) {\n      return obj\n    } else {\n      return _.extend({}, obj, {x: uniform(obj.x - noiseWidth, obj.x + noiseWidth)})\n    }\n  }\n  map(perturbX, world)\n}\n\n///\n\n// Returns height of tower\nvar getTowerHeight = function(world) {\n  return worldHeight - highestY(world)\n}\n\nvar doesTowerFall = function (initialW, finalW) {\n  var approxEqual = function (a, b) { Math.abs(a - b) &lt; 1.0 }\n  return 1 - approxEqual(highestY(initialW), highestY(finalW))\n}\n\nvar towerFallDegree = function(initialW, finalW) {\n  ...\n}\n\nvar visualizeInstabilityMeasure = function(measureFunction) {\n  var initialWorld = noisify(almostUnstableWorld)\n  var finalWorld = physics.run(1000, initialWorld)\n  var measureValue = measureFunction(initialWorld, finalWorld)\n  print(\"Instability measure: \" + measureValue)\n  print(\"Initial height: \" + getTowerHeight(initialWorld))\n  print(\"Final height: \" + getTowerHeight(finalWorld))\n  physics.animate(1000, initialWorld)\n}\n\n// Test binary doesTowerFall measure\n// visualizeInstabilityMeasure(doesTowerFall)\n\n// Test custom towerFallDegree measure\nvisualizeInstabilityMeasure(towerFallDegree)\n\n\nb)\nDescribe a tower with a very different doesTowerFall and towerFallDegree measures look like. Which measure captures the meaning of “unstable” better?",
     "crumbs": [
       "2. Generative Models"
-    ]
-  },
-  {
-    "objectID": "ch01/index.html",
-    "href": "ch01/index.html",
-    "title": "Chapter 1: Introduction",
-    "section": "",
-    "text": "How can we describe the intelligent inferences made in everyday human reasoning and learning? How can we engineer intelligent machines? The computational theory of mind aims to answer these questions starting from the hypothesis that the mind is a computer, mental representations are computer programs, and thinking is a computational process – running a computer program.",
-    "crumbs": [
-      "1. Introduction"
-    ]
-  },
-  {
-    "objectID": "ch01/index.html#what-is-thought",
-    "href": "ch01/index.html#what-is-thought",
-    "title": "Chapter 1: Introduction",
-    "section": "",
-    "text": "How can we describe the intelligent inferences made in everyday human reasoning and learning? How can we engineer intelligent machines? The computational theory of mind aims to answer these questions starting from the hypothesis that the mind is a computer, mental representations are computer programs, and thinking is a computational process – running a computer program.",
-    "crumbs": [
-      "1. Introduction"
-    ]
-  },
-  {
-    "objectID": "ch01/index.html#but-what-kind-of-program",
-    "href": "ch01/index.html#but-what-kind-of-program",
-    "title": "Chapter 1: Introduction",
-    "section": "1.2 But What Kind of Program?",
-    "text": "1.2 But What Kind of Program?\nA natural assumption is that these programs take the inputs – percepts from the senses, facts from memory, etc – and compute the outputs – the intelligent behaviors. Thus the mental representations that lead to thinking are functions from inputs to outputs. However, this input-output view suffers from a combinatorial explosion: we must posit an input-output program for each task in which humans draw intelligent inferences.\nA different approach is to assume that mental representations are more like theories in science: pieces of knowledge that can support many inferences in many different situations. For instance, Newton’s theory of motion makes predictions about infinitely many different configurations of objects and can be used to reason both forward in time and backward, from final state of a physical system to the initial state. The generative approach to cognition posits that some mental representations are more like theories in this way: they capture general descriptions of how the world works. A generative model describes a process, usually one by which observable data is generated, that represents knowledge about the causal structure of the world. These generative processes are simplified “working models” of a domain. Other mental computations operate over these generative models to draw inferences: many different questions can be answered by interrogating the mental model. This contrasts to a more procedural or mechanistic approach in which knowledge represents the input-output mapping for a particular question directly.\nIt is possible to use deterministic generative models to describe possible ways a process could unfold, but due to sparsity of observations or actual randomness there will often be many ways that our observations could have been generated. How can we choose amongst them? Probability theory provides a system for reasoning under exactly this kind of uncertainty. Probabilistic generative models describe processes which unfold with some amount of randomness, and probabilistic inference describes ways to ask questions of such processes. This book is concerned with the knowledge that can be represented by probabilistic generative models and the inferences that can be drawn from them.\nIn order to make the idea of generative models precise we want a formal language that is designed to express the kinds of knowledge individuals have about the world. This language should be universal in the sense that it should be able to express any (computable) process. We build on the representational power of programming languages because they describe computational processes and capture the idea that what is important is causal dependence—in particular programs do not focus on the sequence of time, but rather on which events influence which other events (the “flow of data”). We introduce randomness into this language to construct a probabilistic programming language (PPL), and describe conditional inferences in this language. By using a PPL we are able to parsimoniously describe rich generative model structures and explore the inference patterns that emerge from the interaction of model and data.",
-    "crumbs": [
-      "1. Introduction"
-    ]
-  },
-  {
-    "objectID": "ch01/index.html#reading-and-discussion",
-    "href": "ch01/index.html#reading-and-discussion",
-    "title": "Chapter 1: Introduction",
-    "section": "1.3 Reading and Discussion",
-    "text": "1.3 Reading and Discussion\nReading & Discussion: Readings",
-    "crumbs": [
-      "1. Introduction"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "Home\nThis is a “port” of Goodman et al’s book Probabilistic Models of Cognition into Quarto, with a few changes to help us integrate the material better with DSAN 5650: Causal Inference for Computational Social Science (e.g., allowing us to cross-reference code and figures, include PDFs of the readings, and auto-grade the end-of-chapter exercises!)\nUse the sidebar to the left or the link at the bottom of this page to get started!",
-    "crumbs": [
-      "Home"
     ]
   }
 ]

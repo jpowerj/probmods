@@ -22,5 +22,29 @@
   "ch02/index.qmd": {
     "index.html": "805f38ea",
     "index.tex": "4ac99abe"
+  },
+  "ch07/index.qmd": {
+    "index.html": "7c2ab627",
+    "index.tex": "b50c0144"
+  },
+  "ch08/index.qmd": {
+    "index.html": "27a82d8f",
+    "index.tex": "925f411c"
+  },
+  "ch06/index.qmd": {
+    "index.html": "0a635c01",
+    "index.tex": "ed6559b0"
+  },
+  "ch04/index.qmd": {
+    "index.html": "f72a9c9d",
+    "index.tex": "6c6d719b"
+  },
+  "ch03/index.qmd": {
+    "index.html": "cf8584cf",
+    "index.tex": "6de84024"
+  },
+  "ch05/index.qmd": {
+    "index.html": "a5ed0385",
+    "index.tex": "78a47431"
   }
 }

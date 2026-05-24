@@ -16,6 +16,18 @@ website:
         href: ch01/index.qmd
       - text: "2. Generative Models"
         href: ch02/index.qmd
+      - text: "3. Conditioning"
+        href: ch03/index.qmd
+      - text: "4. Causal and Statistical Dependence"
+        href: ch04/index.qmd
+      - text: "5. Conditional Dependence"
+        href: ch05/index.qmd
+      - text: "6. Social Cognition"
+        href: ch06/index.qmd
+      - text: "7. Interlude — Bayesian Data Analysis"
+        href: ch07/index.qmd
+      - text: "8. Interlude — Algorithms for Inference"
+        href: ch08/index.qmd
       - "---"
       - text: "<i class='bi bi-arrow-left'></i> DSAN 5650 Home"
         href: "https://jjacobs.me/dsan5650"
