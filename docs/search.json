@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "References",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Home\nThis is a “port” of Goodman et al’s book Probabilistic Models of Cognition into Quarto, with a few changes to help us integrate the material better with DSAN 5650: Causal Inference for Computational Social Science (e.g., allowing us to cross-reference code and figures, include PDFs of the readings, and auto-grade the end-of-chapter exercises!)\nUse the sidebar to the left or the link at the bottom of this page to get started!",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Introduction\nThis is a book created from markdown and executable code.\nSee (knuth84?) for additional discussion of literate programming.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "Summary\nIn summary, this book has no content whatsoever.",
+    "crumbs": [
+      "Summary"
+    ]
+  }
+]

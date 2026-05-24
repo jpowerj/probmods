@@ -1,0 +1,38 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Probabilistic Models of Cognition"
+  repo-url: "https://github.com/jpowerj/dsan5650"
+  repo-actions: [source]
+  repo-link-target: "_blank"
+  page-navigation: true
+  sidebar:
+    contents:
+      - href: index.qmd
+      - href: intro.qmd
+      - href: summary.qmd
+      - href: references.qmd
+      - "---"
+      - text: "DSAN 5650 Home <i class='bi bi-box-arrow-up-right' style='font-size: 80%;'></i>"
+        href: "https://jjacobs.me/dsan5650"
+
+bibliography: ProbMods.bib
+
+format:
+  html:
+    link-external-icon: true
+    link-external-newwindow: true
+    theme:
+      light: [default, "./dsan-globals/jjquarto.scss"]
+      dark: [darkly, "./dsan-globals/jjquarto.scss"]
+    include-in-header:
+      text: "<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous' referrerpolicy='no-referrer'></script><link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css'><script src='/sidebar.js'></script>"
+    include-after-body:
+      text: "<script src='/assets/webppl.min.js'></script>"
+  pdf:
+    documentclass: scrreprt
+
+
+
