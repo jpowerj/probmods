@@ -46,5 +46,41 @@
   "ch05/index.qmd": {
     "index.html": "a5ed0385",
     "index.tex": "78a47431"
+  },
+  "ch09/index.qmd": {
+    "index.html": "aa87f061",
+    "index.tex": "f28e5422"
+  },
+  "ch12/index.qmd": {
+    "index.html": "e5fb0504",
+    "index.tex": "d8212ec2"
+  },
+  "ch15/index.qmd": {
+    "index.html": "11ad0ff7",
+    "index.tex": "1f057c3f"
+  },
+  "ch14/index.qmd": {
+    "index.html": "b575c0ca",
+    "index.tex": "c72b7c6d"
+  },
+  "ch13/index.qmd": {
+    "index.html": "6ca14ca6",
+    "index.tex": "bdb3f853"
+  },
+  "ch16/index.qmd": {
+    "index.html": "459e875d",
+    "index.tex": "a111e352"
+  },
+  "ch11/index.qmd": {
+    "index.html": "53213939",
+    "index.tex": "22f04c3c"
+  },
+  "ch10/index.qmd": {
+    "index.html": "145e204b",
+    "index.tex": "db7d32af"
+  },
+  "ch17/index.qmd": {
+    "index.html": "cd263d28",
+    "index.tex": "f3d836ca"
   }
 }

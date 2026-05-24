@@ -24,15 +24,34 @@ website:
         href: ch05/index.qmd
       - text: "6. Social Cognition"
         href: ch06/index.qmd
-      - text: "7. Interlude — Bayesian Data Analysis"
+      - text: "7. Interlude – Bayesian Data Analysis"
         href: ch07/index.qmd
-      - text: "8. Interlude — Algorithms for Inference"
+      - text: "8. Interlude – Algorithms for Inference"
         href: ch08/index.qmd
+      - text: "9. Rational Process Models"
+        href: ch09/index.qmd
+      - text: "10. Learning as Conditional Inference"
+        href: ch10/index.qmd
+      - text: "11. Learning with a Language of Thought"
+        href: ch11/index.qmd
+      - text: "12. Hierarchical Models"
+        href: ch12/index.qmd
+      - text: "13. Occam's Razor"
+        href: ch13/index.qmd
+      - text: "14. Mixture Models"
+        href: ch14/index.qmd
+      - text: "15. Learning (Deep) Continuous Functions"
+        href: ch15/index.qmd
+      - text: "16. Appendix – JavaScript Basics"
+        href: ch16/index.qmd
+      - text: "17. Appendix – Useful Distributions"
+        href: ch17/index.qmd
       - "---"
       - text: "<i class='bi bi-arrow-left'></i> DSAN 5650 Home"
         href: "https://jjacobs.me/dsan5650"
 
 bibliography: ProbMods.bib
+csl: chicago-17-no-url.csl
 
 format:
   html:
