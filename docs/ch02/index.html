@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.3">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 2: Generative Models – Probabilistic Models of Cognition</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../ch01/index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fedc0afa5eed45b88079642ee2c6e752.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8d28ae19919d5c67af76f2443fb22f33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ch02/index.html">2. Generative Models</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Probabilistic Models of Cognition</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ch01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ch02/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2. Generative Models</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://jjacobs.me/dsan5650" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="bi bi-arrow-left"></i> DSAN 5650 Home</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#models-simulation-and-degrees-of-belief" id="toc-models-simulation-and-degrees-of-belief" class="nav-link active" data-scroll-target="#models-simulation-and-degrees-of-belief">2.1 Models, Simulation, and Degrees of Belief</a></li>
+  <li><a href="#building-generative-models" id="toc-building-generative-models" class="nav-link" data-scroll-target="#building-generative-models">2.2 Building Generative Models</a>
+  <ul class="collapse">
+  <li><a href="#example-flipping-coins" id="toc-example-flipping-coins" class="nav-link" data-scroll-target="#example-flipping-coins">2.2.1 Example: Flipping Coins</a></li>
+  <li><a href="#example-causal-models-in-medical-diagnosis" id="toc-example-causal-models-in-medical-diagnosis" class="nav-link" data-scroll-target="#example-causal-models-in-medical-diagnosis">2.2.2 Example: Causal Models in Medical Diagnosis</a></li>
+  </ul></li>
+  <li><a href="#prediction-simulation-and-probabilities" id="toc-prediction-simulation-and-probabilities" class="nav-link" data-scroll-target="#prediction-simulation-and-probabilities">2.3 Prediction, Simulation, and Probabilities</a>
+  <ul class="collapse">
+  <li><a href="#distributions-in-webppl" id="toc-distributions-in-webppl" class="nav-link" data-scroll-target="#distributions-in-webppl">2.3.1 Distributions in WebPPL</a></li>
+  <li><a href="#constructing-marginal-distributions-infer" id="toc-constructing-marginal-distributions-infer" class="nav-link" data-scroll-target="#constructing-marginal-distributions-infer">2.3.2 Constructing Marginal Distributions: <code>Infer</code></a></li>
+  </ul></li>
+  <li><a href="#the-rules-of-probability" id="toc-the-rules-of-probability" class="nav-link" data-scroll-target="#the-rules-of-probability">2.4 The Rules of Probability</a>
+  <ul class="collapse">
+  <li><a href="#product-rule" id="toc-product-rule" class="nav-link" data-scroll-target="#product-rule">2.4.1 Product Rule</a></li>
+  <li><a href="#sum-rule" id="toc-sum-rule" class="nav-link" data-scroll-target="#sum-rule">2.4.2 Sum Rule</a></li>
+  </ul></li>
+  <li><a href="#stochastic-recursion" id="toc-stochastic-recursion" class="nav-link" data-scroll-target="#stochastic-recursion">2.5 Stochastic Recursion</a></li>
+  <li><a href="#persistent-randomness-mem" id="toc-persistent-randomness-mem" class="nav-link" data-scroll-target="#persistent-randomness-mem">2.6 Persistent Randomness: <code>mem</code></a></li>
+  <li><a href="#example-intuitive-physics" id="toc-example-intuitive-physics" class="nav-link" data-scroll-target="#example-intuitive-physics">2.7 Example: Intuitive Physics</a></li>
+  <li><a href="#reading-and-discussion" id="toc-reading-and-discussion" class="nav-link" data-scroll-target="#reading-and-discussion">2.8 Reading and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#the-nature-and-scope-of-computational-models" id="toc-the-nature-and-scope-of-computational-models" class="nav-link" data-scroll-target="#the-nature-and-scope-of-computational-models">2.8.1 The Nature and Scope of Computational Models</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">2.9 Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
+  <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
+  <li><a href="#exercise-8" id="toc-exercise-8" class="nav-link" data-scroll-target="#exercise-8">Exercise 8</a></li>
+  <li><a href="#exercise-9" id="toc-exercise-9" class="nav-link" data-scroll-target="#exercise-9">Exercise 9</a></li>
+  <li><a href="#exercise-10" id="toc-exercise-10" class="nav-link" data-scroll-target="#exercise-10">Exercise 10</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch02/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 2: Generative Models</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!--
+robert_hawkins [11:49 AM]  
+a couple issues with the chapter:
+1. the heading structure is a bit confusing — the “Building Generative Models” section starts with some info on webppl, has a subsection “example: flipping coins”, and then pops out to the outer level for “example: medical diagnosis”. Maybe we could signpost that better, like create a subsection where we explicitly describe webppl, a subsection about sampling, and indent the medical diagnosis example one level?
+2. the “prediction, simulation, and probabilities” section uses both bayesian and frequentist notions of probability without labeling them or distinguishing them (e.g. “A probability is… a degree of belief”, but “We may define the probability … to be the fraction of times (in the long run) that this value is returned”). It’d be nice to say that these are alternate ways of formalizing probability?
+3. I like the new "constructing marginal distributions with `Infer`" section… Should we rewrite other models in future chapters that use `repeat` to use `forward` instead?
+-->
+<section id="models-simulation-and-degrees-of-belief" class="level2">
+<h2 class="anchored" data-anchor-id="models-simulation-and-degrees-of-belief">2.1 Models, Simulation, and Degrees of Belief</h2>
+<p>One view of knowledge is that the mind maintains working models of parts of the world. ‘Model’ in the sense that it captures some of the structure in the world, but not all (and what it captures need not be exactly what is in the world—just what is useful). ‘Working’ in the sense that it can be used to simulate this part of the world, imagining what will follow from different initial conditions. As an example take the Plinko machine in <a href="#fig-plinko" class="quarto-xref">Figure&nbsp;1</a>: a box with uniformly spaced pegs, with bins at the bottom. Into this box we can drop marbles:</p>
+<div id="fig-plinko" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plinko-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<center>
+<div id="plinko-wrapper" style="position: relative; width: 400px; height: 400px; background-color: #333333; color: white;">
+<div style="position: absolute; top: 50%; width: 100%; text-align: center">
+Loading…
+</div>
+</div>
+<canvas id="plinkocanvas" width="400" height="400" style="display: none; background-color:#333333;">
+</canvas>
+</center>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plinko-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Plinko visualization: Click anywhere in the visualization to drop a Plinko ball!
+</figcaption>
+</figure>
+</div>
+<p>The plinko machine is a ‘working model’ for many physical processes in which many small perturbations accumulate—for instance a leaf falling from a tree. It is an approximation to these systems because we use a discrete grid (the pegs) and discrete bins. Yet it is useful as a model: for instance, we can ask where we expect a marble to end up depending on where we drop it in, by running the machine several times—simulating the outcome.</p>
+<p>Imagine that someone has dropped a marble into the plinko machine; before looking at the outcome, you can probably report how much you believe that the ball has landed in each possible bin. Indeed, if you run the plinko machine many times, you will see a shape emerge in the bins. The number of balls in a bin gives you some idea how much you should expect a new marble to end up there. This ‘shape of expected outcomes’ can be formalized as a probability distribution (described below). Indeed, there is an intimate connection between simulation, expectation or belief, and probability, which we explore in the rest of this section.</p>
+<p>There is one more thing to note about our Plinko machine above: we are using a computer program to <em>simulate</em> the simulation. Computers can be seen as universal simulators. How can we, clearly and precisely, describe the simulation we want a computer to do?</p>
+</section>
+<section id="building-generative-models" class="level2">
+<h2 class="anchored" data-anchor-id="building-generative-models">2.2 Building Generative Models</h2>
+<p>We wish to describe in formal terms how to generate states of the world. That is, we wish to describe the causal process, or steps that unfold, leading to some potentially observable states. The key idea of this section is that these generative processes can be described as <em>computations</em>—computations that involve random choices to capture uncertainty about the process.</p>
+<p>Programming languages are formal systems for describing what (deterministic) computation a computer should do. Modern programming languages offer a wide variety of different ways to describe computation; each makes some processes simple to describe and others more complex. However, a key tenet of computer science is that all of these languages have the same fundamental power: any computation that can be described with one programming language can be described by another. (More technically this Church-Turing thesis posits that many specific computational systems capture the set of all effectively computable procedures. These are called <em>universal</em> systems.)</p>
+<!--
+As our formal model of computation we start with the $$\lambda$$-calculus, and its embodiment in the LISP family of programming languages.
+The $$\lambda$$-calculus is a formal system which was invented by Alonzo Church in 1936 as a way of formalizing the notion of an effectively computable function [@Church1936].
+The $$\lambda$$-calculus has only two basic operations for computing: creating and applying functions.
+Despite this simplicity, it is a *universal* model of computation---it is (conjectured to be) equivalent to all other notions of classical computation.
+(The $$\lambda$$-calculus was shown to have the same computational power as the Turing machine, and vice versa, by Alan Turing in his famous paper which introduced the Turing machine [@Turing1937]).
+-->
+<!--
+In 1958 John McCarthy introduced LISP (**LIS**t **P**rocessing), a programming language based on the $$\lambda$$-calculus.
+Scheme is a variant of LISP developed by Guy L.
+Steele and Gerald Jay Sussman with particularly simple syntax and semantics.
+We will use Scheme-style notation for the $$\lambda$$-calculus in this tutorial.
+For a quick introduction to programming in Scheme see [the appendix on Scheme basics](appendix-scheme.html).
+The Church programming language [@Goodman2008], named in honor of Alonzo Church, is a generalization of Scheme which introduces the notion of probabilistic computation to the language.
+This addition results in a powerful language for describing generative models.
+-->
+<p>In this book we will build on the JavaScript language, which is a portable and flexible modern programming language. The <a href="http://webppl.org">WebPPL language</a> takes a subset of JavaScript and extends it with pieces needed to describe <em>probabilistic</em> computation. The key idea is that we have primitive operations that describe not only deterministic functions (like <code>and</code>) but stochastic operations.</p>
+<!--
+In WebPPL, in addition to deterministic functions, we have a set of random functions implementing *random choices.*  These random primitive functions are called *Exchangeable Random Primitives* (XRPs).
+Application of an XRP results in a *sample* from the probability distribution defined by that XRP.
+-->
+<p>For example, the <code>flip</code> function can be thought of as simulating a (possibly biased) coin toss (technically <code>flip</code> samples from a Bernoulli distribution, which we’ll return to shortly):</p>
+<pre><code>flip()</code></pre>
+<p>Run this program a few times. You will get back a different sample on each execution. Also, notice the parentheses after <code>flip</code>. These are meaningful; they tell WebPPL that you are calling the <code>flip</code> function—resulting in a sample. Without parentheses <code>flip</code> is a <em>function</em> object—a representation of the simulator itself, which can be used to get samples.</p>
+<p>In WebPPL, each time you run a program you get a <em>sample</em> by simulating the computations and random choices that the program specifies. If you run the program many times, and collect the values in a histogram, you can see what a typical sample looks like:</p>
+<pre><code>viz(repeat(1000, flip))</code></pre>
+<p>Here we have used the <code>repeat</code> procedure which takes a number of repetitions, <span class="math display">\[K\]</span>, and a function (in this case <code>flip</code>, note not <code>flip()</code>) and returns a list of <span class="math display">\[K\]</span> samples from that function. We have used the <code>viz</code> function to visualize the results of calling the <code>flip</code> function 1000 times. As you can see, the result is an approximately uniform distribution over <code>true</code> and <code>false</code>.</p>
+<p>Using <code>flip</code> we can construct more complex expressions that describe more complicated sampling processes. For instance here we describe a process that samples a number adding up several flips (note that in JavaScript a boolean will be turned into a number, <span class="math display">\[0\]</span> or <span class="math display">\[1\]</span>, by the plus operator <code>+</code>):</p>
+<pre><code>flip() + flip() + flip()</code></pre>
+<p>What if we want to invoke this sampling process multiple times? We would like to construct a stochastic function that adds three random numbers each time it is called. We can use <code>function</code> to construct such complex stochastic functions from the primitive ones.</p>
+<pre><code>var sumFlips = function() {
+  return flip() + flip() + flip()
+}
+viz(repeat(100, sumFlips))</code></pre>
+<p>A function expression with an empty argument list, <code>function() {...}</code>, is called a <em>thunk</em>: this is a function that takes no input arguments. If we apply a thunk (to no arguments!) we get a return value back, for example <code>flip()</code>. <!--A thunk is an object that represents a whole *probability distribution*.--> Complex functions can also have arguments. Here is a stochastic function that will only sometimes double its input:</p>
+<pre><code>var noisyDouble = function (x) { return flip() ? x+x : x }
+noisyDouble(3);</code></pre>
+<p>By using higher-order functions we can construct and manipulate complex sampling processes. We use the ternary operator <code>condition ? if-true : if-false</code> to induce hierarchy. A good example comes from coin flipping…</p>
+<section id="example-flipping-coins" class="level3">
+<h3 class="anchored" data-anchor-id="example-flipping-coins">2.2.1 Example: Flipping Coins</h3>
+<p>The following program defines a fair coin, and flips it 20 times:</p>
+<pre><code>var fairCoin = function() { return flip(0.5) ? 'h' : 't' }
+viz(repeat(20, fairCoin))</code></pre>
+<p>This program defines a “trick” coin that comes up heads most of the time (95%), and flips it 20 times:</p>
+<pre><code>var trickCoin = function() { return flip(0.95) ? 'h' : 't' }
+viz(repeat(20, trickCoin))</code></pre>
+<p>The higher-order function <code>make-coin</code> takes in a weight and outputs a function (a thunk) describing a coin with that weight. Then we can use <code>make-coin</code> to make the coins above, or others.</p>
+<pre><code>var makeCoin = function (weight) {
+  return function() { return flip(weight) ? 'h' : 't' }
+}
+
+var fairCoin = makeCoin(0.5)
+var trickCoin = makeCoin(0.95)
+var bentCoin = makeCoin(0.25)
+
+viz(repeat(20, fairCoin))
+viz(repeat(20, trickCoin))
+viz(repeat(20, bentCoin))</code></pre>
+<p>We can also define a higher-order function that takes a “coin” and “bends it”:</p>
+<pre><code>var makeCoin = function (weight) {
+  return function() { return flip(weight) ? 'h' : 't' }
+}
+
+var bend = function (coin) {
+  return function() {
+    return coin() == 'h' ? makeCoin(0.7)() : makeCoin(0.1)()
+  }
+}
+
+var fairCoin = makeCoin(0.5)
+var bentCoin = bend(fairCoin)
+viz(repeat(100, bentCoin))</code></pre>
+<p>Make sure you understand how the <code>bend</code> function works! Why are there an “extra” pair of parentheses after each <code>make-coin</code> statement?</p>
+<p>Higher-order functions like <code>repeat</code>, <code>map</code>, and <code>apply</code> can be quite useful. Here we use them to visualize the number of heads we expect to see if we flip a weighted coin (weight = 0.8) 10 times. We’ll repeat this experiment 1000 times and then use <code>viz</code> to visualize the results. Try varying the coin weight or the number of repetitions to see how the expected distribution changes.</p>
+<pre><code>var makeCoin = function (weight) {
+  return function() { return flip(weight) }
+}
+
+var coin = makeCoin(0.8)
+var data = repeat(1000, function() { return sum(repeat(10, coin)) })
+viz(data, {xLabel: '# heads'})</code></pre>
+</section>
+<section id="example-causal-models-in-medical-diagnosis" class="level3">
+<h3 class="anchored" data-anchor-id="example-causal-models-in-medical-diagnosis">2.2.2 Example: Causal Models in Medical Diagnosis</h3>
+<p>Generative knowledge is often <em>causal</em> knowledge that describes how events or states of the world are related to each other. As an example of how causal knowledge can be encoded in WebPPL expressions, consider a simplified medical scenario:</p>
+<pre><code>var lungCancer = flip(0.01)
+var cold = flip(0.2)
+var cough = cold || lungCancer
+
+cough</code></pre>
+<p>This program models the diseases and symptoms of a patient in a doctor’s office. It first specifies the base rates of two diseases the patient could have: lung cancer is rare while a cold is common, and there is an independent chance of having each disease. The program then specifies a process for generating a common symptom of these diseases – an effect with two possible causes: The patient coughs if they have a cold or lung cancer (or both).</p>
+<p>Here is a more complex version of this causal model:</p>
+<pre><code>var lungCancer = flip(0.01)
+var TB = flip(0.005)
+var stomachFlu = flip(0.1)
+var cold = flip(0.2)
+var other = flip(0.1)
+
+var cough = 
+    (cold &amp;&amp; flip(0.5)) ||
+    (lungCancer &amp;&amp; flip(0.3)) ||
+    (TB &amp;&amp; flip(0.7)) ||
+    (other &amp;&amp; flip(0.01))
+
+var fever = 
+    (cold &amp;&amp; flip(0.3)) ||
+    (stomachFlu &amp;&amp; flip(0.5)) ||
+    (TB &amp;&amp; flip(0.1)) ||
+    (other &amp;&amp; flip(0.01))
+
+var chestPain = 
+    (lungCancer &amp;&amp; flip(0.5)) ||
+    (TB &amp;&amp; flip(0.5)) ||
+    (other &amp;&amp; flip(0.01))
+
+var shortnessOfBreath = 
+    (lungCancer &amp;&amp; flip(0.5)) ||
+    (TB &amp;&amp; flip(0.2)) ||
+    (other &amp;&amp; flip(0.01))
+
+var symptoms = {
+  cough: cough,
+  fever: fever,
+  chestPain: chestPain,
+  shortnessOfBreath: shortnessOfBreath
+}
+
+symptoms</code></pre>
+<p>Now there are four possible diseases and four symptoms. Each disease causes a different pattern of symptoms. The causal relations are now probabilistic: Only some patients with a cold have a cough (50%), or a fever (30%). There is also a catch-all disease category “other”, which has a low probability of causing any symptom. <em>Noisy logical</em> functions—functions built from <strong>and</strong> (<code>&amp;&amp;</code>), <strong>or</strong> (<code>||</code>), and <code>flip</code>—provide a simple but expressive way to describe probabilistic causal dependencies between Boolean (true-false valued) variables.</p>
+<p>When you run the above code, the program generates a list of symptoms for a hypothetical patient. Most likely all the symptoms will be false, as (thankfully) each of these diseases is rare. Experiment with running the program multiple times. Now try modifying the <code>var</code> statement for one of the diseases, setting it to be true, to simulate only patients known to have that disease. For example, replace <code>var lungCancer = flip(0.01)</code> with <code>var lungCancer = true</code>. Run the program several times to observe the characteristic patterns of symptoms for that disease.</p>
+</section>
+</section>
+<section id="prediction-simulation-and-probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-simulation-and-probabilities">2.3 Prediction, Simulation, and Probabilities</h2>
+<p>Suppose that we flip two fair coins, and return the list of their values:</p>
+<pre><code>[flip(), flip()]</code></pre>
+<p>How can we predict the return value of this program? For instance, how likely is it that we will see <code>[true, false]</code>? A <strong>probability</strong> is a number between 0 and 1 that expresses the answer to such a question: it is a degree of belief that we will see a given outcome, such as <code>[true, false]</code>. The probability of an event <span class="math display">\[A\]</span> (such as the above program returning <code>[true, false]</code>) is usually written as: <span class="math display">\[P(A)\]</span>.</p>
+<p>A <strong>probability distribution</strong> is the probability of each possible outcome of an event. For instance, we can examine the probability distribution on values that can be returned by the above program by sampling many times and examining the histogram of return values:</p>
+<pre><code>var randomPair = function() { return [flip(), flip()] }
+viz.hist(repeat(1000, randomPair), 'return values')</code></pre>
+<p>We see by examining this histogram that <code>[true, false]</code> comes out about 25% of the time. We may define the probability of a return value to be the fraction of times (in the long run) that this value is returned from evaluating the program – then the probability of <code>[true, false]</code> from the above program is 0.25.</p>
+<section id="distributions-in-webppl" class="level3">
+<h3 class="anchored" data-anchor-id="distributions-in-webppl">2.3.1 Distributions in WebPPL</h3>
+<p>An important idea is that <code>flip</code> can be thought of in two different ways. From one perspective, <code>flip</code> is a procedure which returns a sample from a fair coin. That is, it’s a <em>sampler</em> or <em>simulator</em>. As we saw above we can build more complex samplers by building more complex functions. From another perspective, <code>flip</code> is <em>itself</em> a characterization of the probability distribution over <code>true</code> and <code>false</code>. In order to make this view explicit, WebPPL has a special type of <strong>distribution</strong> objects. These are objects that can be sampled from using the <code>sample</code> operator, and that can explicitly return the probability of a return value using the <code>score</code> method. Distributions are made by a family of distribution constructors:</p>
+<pre><code>//make a distribution using the Bernoulli constructor:
+var b = Bernoulli({p: 0.5})
+
+//sample from it with the sample operator:
+print( sample(b) )
+
+//compute the log-probability of sampling true:
+print( b.score(true) )
+
+//visualize the distribution:
+viz(b)</code></pre>
+<p>In fact <code>flip(x)</code> is just a helper function that constructs a Bernoulli distribution and samples from it. The function <code>bernoulli(x)</code> is an alias for <code>flip</code>. There are many other distribution constructors built into WebPPL listed <a href="http://docs.webppl.org/en/master/distributions.html">here</a> (and each has a sampling helper, named in lower case). For instance the Gaussian (also called Normal) distribution is a very common distribution over real numbers:</p>
+<pre><code>//create a gaussian distribution:
+var g = Gaussian({mu: 0, sigma: 1})
+
+//sample from it:
+print( sample(g) )
+
+//can also use the sampling helper (note lower-case name):
+print( gaussian(0,1) )
+
+//and build more complex processes!
+var foo = function() { return gaussian(0,1) * gaussian(0,1) }
+
+foo()</code></pre>
+<!-- describe Distribution generators, distirbutions, and sample here. -->
+</section>
+<section id="constructing-marginal-distributions-infer" class="level3">
+<h3 class="anchored" data-anchor-id="constructing-marginal-distributions-infer">2.3.2 Constructing Marginal Distributions: <code>Infer</code></h3>
+<p>Above we described how complex sampling processes can be built as complex functions, and how these sampling processes implicitly specify a distribution on return values (which we examined by sampling many times and building a histogram). This distribution on return values is called the <strong>marginal distribution</strong>, and the WebPPL <code>Infer</code> operator gives us a way to make this implicit distribution into an explicit distribution object:</p>
+<pre><code>//a complex function, that specifies a complex sampling process:
+var foo = function() { return gaussian(0, 1) * gaussian(0, 1) }
+
+//make the marginal distributions on return values explicit:
+var d = Infer({method: 'forward', samples: 1000}, foo)
+
+//now we can use d as we would any other distribution:
+print( sample(d) )
+viz(d)</code></pre>
+<p>Note that <code>Infer</code> took an object describing <em>how</em> to construct the marginal distribution (which we will describe more later) and a thunk describing the sampling process, or <em>model</em>, of interest. For more details see the <a href="http://docs.webppl.org/en/master/inference/index.html">Infer documentation</a>.</p>
+<p>Thus <code>sample</code> lets us sample from a distribution, and build complex sampling processes by using sampling in a program; conversely, <code>Infer</code> lets us reify the distribution implicitly described by a sampling process.</p>
+<p>When we think about probabilistic programs we will often move back and forth between these two views, emphasizing either the sampling perspective or the distributional perspective. With suitable restrictions this duality is complete: any WebPPL program implicitly represents a distribution and any distribution can be represented by a WebPPL program; see e.g., <span class="citation" data-cites="Ackerman2011">(<a href="#ref-Ackerman2011" role="doc-biblioref"><strong>Ackerman2011?</strong></a>)</span> for more details on this duality.</p>
+</section>
+</section>
+<section id="the-rules-of-probability" class="level2">
+<h2 class="anchored" data-anchor-id="the-rules-of-probability">2.4 The Rules of Probability</h2>
+<p>While <code>Infer</code> lets us build the marginal distribution for even very complicated programs, we can also derive these marginal distributions with the “rules of probability”. This is intractable for complex processes, but can help us build intuition for how distributions work.</p>
+<section id="product-rule" class="level3">
+<h3 class="anchored" data-anchor-id="product-rule">2.4.1 Product Rule</h3>
+<p>In the above example we take three steps to compute the output value: we sample from the first <code>flip()</code>, then from the second, then we make a list from these values. To make this more clear let us re-write the program as:</p>
+<pre><code>var A = flip()
+var B = flip()
+var C = [A, B]
+C</code></pre>
+<p>We can directly observe (as we did above) that the probability of <code>true</code> for <code>A</code> is 0.5, and the probability of <code>false</code> from <code>B</code> is 0.5. Can we use these two probabilities to arrive at the probability of 0.25 for the overall outcome <code>C</code> = <code>[true, false]</code>? Yes, using the <em>product rule</em> of probabilities: The probability of two random choices is the product of their individual probabilities. The probability of several random choices together is often called the <em>joint probability</em> and written as <span class="math display">\[P(A,B)\]</span>. Since the first and second random choices must each have their specified values in order to get <code>[true, false]</code> in the example, the joint probability is their product: 0.25.</p>
+<p>We must be careful when applying this rule, since the probability of a choice can depend on the probabilities of previous choices. For instance, we can visualize the the exact probability of <code>[true, false]</code> resulting from this program using <code>Infer</code>:</p>
+<pre><code>var A = flip()
+var B = flip(A ? 0.3 : 0.7)
+
+Infer({method: 'forward', samples: 1000}, function() {
+  var A = flip()
+  var B = flip(A ? 0.3 : 0.7)
+  
+  return {'B': B, 'A': A}
+})</code></pre>
+<p>In general, the joint probability of two random choices <span class="math display">\[A\]</span> and <span class="math display">\[B\]</span> made sequentially, in that order, can be written as <span class="math display">\[P(A,B) = P(A) P(B \vert A)\]</span>. This is read as the product of the probability of <span class="math display">\[A\]</span> and the probability of “<span class="math display">\[B\]</span> given <span class="math display">\[A\]</span>”, or “<span class="math display">\[B\]</span> conditioned on <span class="math display">\[A\]</span>”. That is, the probability of making choice <span class="math display">\[B\]</span> given that choice <span class="math display">\[A\]</span> has been made in a certain way. Only when the second choice does not depend on (or “look at”) the first choice does this expression reduce to a simple product of the probabilities of each choice individually: <span class="math display">\[P(A,B) = P(A) P(B)\]</span>.</p>
+<p>What is the relation between <span class="math display">\[P(A,B)\]</span> and <span class="math display">\[P(B,A)\]</span>, the joint probability of the same choices written in the opposite order? The only logically consistent definitions of probability require that these two probabilities be equal, so <span class="math display">\[P(A) P(B \vert A) = P(B) P(A \vert B)\]</span>. This is the basis of <em>Bayes’ theorem</em>, which we will encounter later.</p>
+</section>
+<section id="sum-rule" class="level3">
+<h3 class="anchored" data-anchor-id="sum-rule">2.4.2 Sum Rule</h3>
+<p>Now let’s consider an example where we can’t determine from the overall return value the sequence of random choices that were made:</p>
+<pre><code>flip() || flip()</code></pre>
+<p>We can sample from this program and determine that the probability of returning <code>true</code> is about 0.75.</p>
+<p>We cannot simply use the product rule to determine this probability because we don’t know the sequence of random choices that led to this return value. However we can notice that the program will return true if the two component choices are <code>[true, true]</code>, or <code>[true, false]</code>, or <code>[false, true]</code>. To combine these possibilities we use another rule for probabilities: If there are two alternative sequences of choices that lead to the same return value, the probability of this return value is the sum of the probabilities of the sequences. We can write this using probability notation as: <span class="math display">\[P(A) = \sum_{B} P(A,B)\]</span>, where we view <span class="math display">\[A\]</span> as the final value and <span class="math display">\[B\]</span> as a random choice on the way to that value. Using the product rule we can determine that the probability in the example above is 0.25 for each sequence that leads to return value <code>true</code>, then, by the sum rule, the probability of <code>true</code> is 0.25+0.25+0.25=0.75.</p>
+<p>Using the sum rule to compute the probability of a final value is called is sometimes called <em>marginalization</em>, because the final distribution is the marginal distribution on final values. From the point of view of sampling processes marginalization is simply ignoring (or not looking at) intermediate random values that are created on the way to a final return value. From the point of view of directly computing probabilities, marginalization is summing over all the possible “histories” that could lead to a return value. Putting the product and sum rules together, the marginal probability of return values from a program that we have explored above is the sum over sampling histories of the product over choice probabilities—a computation that can quickly grow unmanageable, but can be approximated by <code>Infer</code>.</p>
+</section>
+</section>
+<section id="stochastic-recursion" class="level2">
+<h2 class="anchored" data-anchor-id="stochastic-recursion">2.5 Stochastic Recursion</h2>
+<p><a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)">Recursive functions</a> are a powerful way to structure computation in deterministic systems. In WebPPL it is possible to have a <em>stochastic</em> recursion that randomly decides whether to stop. For example, the <em>geometric distribution</em> is a probability distribution over the non-negative integers. We imagine flipping a (weighted) coin, returning <span class="math display">\[N-1\]</span> if the first <code>true</code> is on the Nth flip (that is, we return the number of times we get <code>false</code> before our first <code>true</code>):</p>
+<pre><code>var geometric = function (p) {
+  return flip(p) ? 0 : 1 + geometric(p)
+}
+
+var g = Infer({method: 'forward', samples: 1000},
+               function() { return geometric(0.6) })
+viz(g)</code></pre>
+<p>There is no upper bound on how long the computation can go on, although the probability of reaching some number declines quickly as we go. Indeed, stochastic recursions must be constructed to halt eventually (with probability 1).</p>
+</section>
+<section id="persistent-randomness-mem" class="level2">
+<h2 class="anchored" data-anchor-id="persistent-randomness-mem">2.6 Persistent Randomness: <code>mem</code></h2>
+<p>It is often useful to model a set of objects that each have a randomly chosen property. For instance, describing the eye colors of a set of people:</p>
+<pre><code>var eyeColor = function (person) {
+  return uniformDraw(['blue', 'green', 'brown'])
+};
+
+[eyeColor('bob'), eyeColor('alice'), eyeColor('bob')]</code></pre>
+<p>The results of this generative process are clearly wrong: Bob’s eye color can change each time we ask about it! What we want is a model in which eye color is random, but <em>persistent</em>. We can do this using a WebPPL built-in: <code>mem</code>. <code>mem</code> is a higher order function that takes a procedure and produces a <em>memoized</em> version of the procedure. When a stochastic procedure is memoized, it will sample a random value the <em>first</em> time it is used with some arguments, but return that same value when called with those arguments thereafter. The resulting memoized procedure has a persistent value within each “run” of the generative model (or simulated world). For instance consider the equality of two flips, and the equality of two memoized flips:</p>
+<pre><code>flip() == flip()</code></pre>
+<pre><code>var memFlip = mem(flip)
+memFlip() == memFlip()</code></pre>
+<p>Now returning to the eye color example, we can represent the notion that eye color is random, but each person has a fixed eye color.</p>
+<pre><code>var eyeColor = mem(function (person) {
+  return uniformDraw(['blue', 'green', 'brown'])
+});
+
+[eyeColor('bob'), eyeColor('alice'), eyeColor('bob')]</code></pre>
+<p>This type of modeling is called <em>random world</em> style <span class="citation" data-cites="Mcallester2008">(<a href="#ref-Mcallester2008" role="doc-biblioref"><strong>Mcallester2008?</strong></a>)</span>. Note that we don’t have to specify ahead of time the people whose eye color we will ask about: the distribution on eye colors is implicitly defined over the infinite set of possible people, but only constructed “lazily” when needed. Memoizing stochastic functions thus provides a powerful toolkit to represent and reason about an unbounded set of properties of an unbounded set of objects. For instance, here we define a function <code>flipAlot</code> that maps from an integer (or any other value) to a coin flip. We could use it to implicitly represent the <span class="math display">\[n\]</span>th flip of a particular coin, without having to actually flip the coin <span class="math display">\[n\]</span> times.</p>
+<pre><code>var flipAlot = mem(function (n) {
+  return flip()
+});
+
+[[flipAlot(1), flipAlot(12), flipAlot(47), flipAlot(1548)],
+ [flipAlot(1), flipAlot(12), flipAlot(47), flipAlot(1548)]]</code></pre>
+<p>There are a countably infinite number of such flips, each independent of all the others. The outcome of each, once determined, will always have the same value.</p>
+<p>In computer science memoization is an important technique for optimizing programs by avoiding repeated work. In the probabilistic setting, such as in WebPPL, memoization actually affects the meaning of the memoized function.</p>
+</section>
+<section id="example-intuitive-physics" class="level2">
+<h2 class="anchored" data-anchor-id="example-intuitive-physics">2.7 Example: Intuitive Physics</h2>
+<p>Humans have a deep intuitive understanding of everyday physics—this allows us to make furniture, appreciate sculpture, and play baseball. How can we describe this intuitive physics? One approach is to posit that humans have a generative model that captures key aspects of real physics, though perhaps with approximations and noise. This mental physics simulator could for instance approximate Newtonian mechanics, allowing us to imagine the future state of a collection of (rigid) bodies. We have included such a 2-dimensional physics simulator, the function <code>runPhysics</code>, that takes a collection of physical objects and runs physics ‘forward’ by some amount of time. (We also have <code>animatePhysics</code>, which does the same, but gives us an animation to see what is happening.) We can use this to imagine the outcome of various initial states, as in the Plinko machine example above:</p>
+<pre><code>var dim = function() { return uniform(5, 20) }
+var staticDim = function() { return uniform(10, 50) }
+var shape = function() { return flip() ? 'circle' : 'rect' }
+var xpos = function() { return uniform(100, worldWidth - 100) }
+var ypos = function() { return uniform(100, worldHeight - 100) }
+
+var ground = {shape: 'rect',
+              static: true,
+              dims: [worldWidth, 10],
+              x: worldWidth/2,
+              y: worldHeight}
+
+var falling = function() {
+  return {
+    shape: shape(),
+    static: false,
+    dims: [dim(), dim()],
+    x: xpos(),
+    y: 0}
+};
+
+var fixed = function() {
+  return {
+    shape: shape(),
+    static: true,
+    dims: [staticDim(), staticDim()],
+    x: xpos(),
+    y: ypos()}
+}
+
+var fallingWorld = [ground, falling(), falling(), falling(), fixed(), fixed()]
+physics.animate(1000, fallingWorld);</code></pre>
+<p>There are many judgments that you could imagine making with such a physics simulator. <span class="citation" data-cites="Hamrick2011">(<a href="#ref-Hamrick2011" role="doc-biblioref"><strong>Hamrick2011?</strong></a>)</span> have explored human intuitions about the stability of block towers. Look at several different random block towers; first judge whether you think the tower is stable, then simulate to find out if it is:</p>
+<pre><code>var xCenter = worldWidth / 2
+var ground = {
+  shape: 'rect',
+  static: true,
+  dims: [worldWidth, 10],
+  x: worldWidth/2,
+  y: worldHeight
+}
+var dim = function() { return uniform(10, 50) }
+var xpos = function (prevBlock) {
+  var prevW = prevBlock.dims[0]
+  var prevX = prevBlock.x
+  return uniform(prevX - prevW, prevX + prevW)
+}
+
+var ypos = function (prevBlock, h) {
+  var prevY = prevBlock.y
+  var prevH = prevBlock.dims[1]
+  return prevY - (prevH + h)
+}
+
+var addBlock = function (prevBlock, isFirst) {
+  var w = dim()
+  var h = dim()
+  return {
+    shape: 'rect',
+    static: false,
+    dims: [w, h],
+    x: isFirst ? xCenter : xpos(prevBlock),
+    y: ypos(prevBlock, h)
+  }
+}
+
+var makeTowerWorld = function() {
+  var block1 = addBlock(ground, true)
+  var block2 = addBlock(block1, false)
+  var block3 = addBlock(block2, false)
+  var block4 = addBlock(block3, false)
+  var block5 = addBlock(block4, false)
+  return [ground, block1, block2, block3, block4, block5]
+};
+
+physics.animate(1000, makeTowerWorld())</code></pre>
+<p>Were you often right? Were there some cases of ‘surprisingly stable’ towers? <span class="citation" data-cites="Hamrick2011">(<a href="#ref-Hamrick2011" role="doc-biblioref"><strong>Hamrick2011?</strong></a>)</span> account for these cases by positing that people are not entirely sure where the blocks are initially (perhaps due to noise in visual perception). Thus our intuitions of stability are really stability given noise (or the expected stability marginalizing over slightly different initial configurations). We can realize this measure of stability as:</p>
+<pre><code>var listMin = function (xs) {
+  if (xs.length == 1) {
+    return xs[0]
+  } else {
+    return Math.min(xs[0], listMin(rest(xs)))
+  }
+}
+
+var ground = {
+  shape: 'rect',
+  static: true,
+  dims: [worldWidth, 10],
+  x: worldWidth/2,
+  y: worldHeight+6
+}
+
+var stableWorld = [
+  ground,
+  {shape: 'rect', static: false, dims: [60, 22], x: 175, y: 473},
+  {shape: 'rect', static: false, dims: [50, 38], x: 159.97995044874122, y: 413},
+  {shape: 'rect', static: false, dims: [40, 35], x: 166.91912737427202, y: 340},
+  {shape: 'rect', static: false, dims: [30, 29], x: 177.26195677111082, y: 276},
+  {shape: 'rect', static: false, dims: [11, 17], x: 168.51354470809122, y: 230}
+]
+
+var almostUnstableWorld = [
+  ground,
+  {shape: 'rect', static: false, dims: [24, 22], x: 175, y: 473},
+  {shape: 'rect', static: false, dims: [15, 38], x: 159.97995044874122, y: 413},
+  {shape: 'rect', static: false, dims: [11, 35], x: 166.91912737427202, y: 340},
+  {shape: 'rect', static: false, dims: [11, 29], x: 177.26195677111082, y: 276},
+  {shape: 'rect', static: false, dims: [11, 17], x: 168.51354470809122, y: 230}
+]
+
+var unstableWorld = [
+  ground,
+  {shape: 'rect', static: false, dims: [60, 22], x: 175, y: 473},
+  {shape: 'rect', static: false, dims: [50, 38], x: 90, y: 413},
+  {shape: 'rect', static: false, dims: [40, 35], x: 140, y: 340},
+  {shape: 'rect', static: false, dims: [10, 29], x: 177.26195677111082, y: 276},
+  {shape: 'rect', static: false, dims: [50, 17], x: 140, y: 230}
+]
+
+var doesTowerFall = function (initialW, finalW) {
+  var highestY = function (w) {
+    return listMin(map(function (obj) { obj.y }, w))
+  }
+  var approxEqual = function (a, b) {
+    return Math.abs(a - b) &lt; 1.0
+  }
+  return !approxEqual(highestY(initialW), highestY(finalW))
+}
+
+var noisify = function (world) {
+  var perturbX = function (obj) {
+    var noiseWidth = 10
+    
+    if (obj.static) {
+      return obj
+    } else {
+      return _.extend({}, obj, {x: uniform(obj.x - noiseWidth, obj.x + noiseWidth) })
+    }
+  }
+  return map(perturbX, world)
+}
+
+var run = function (world) {
+  var initialWorld = noisify(world)
+  var finalWorld = physics.run(1000, initialWorld)
+  return doesTowerFall(initialWorld, finalWorld)
+}
+
+viz(Infer({method: 'forward', samples: 100},
+           function() { return run(stableWorld) }))
+viz(Infer({method: 'forward', samples: 100},
+           function() { return run(almostUnstableWorld) }))
+viz(Infer({method: 'forward', samples: 100},
+           function() { return run(unstableWorld) }))
+
+// uncomment any of these that you'd like to see for yourself
+// physics.animate(1000, stableWorld)
+// physics.animate(1000, almostUnstableWorld)
+// physics.animate(1000, unstableWorld)</code></pre>
+</section>
+<section id="reading-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="reading-and-discussion">2.8 Reading and Discussion</h2>
+<section id="the-nature-and-scope-of-computational-models" class="level3">
+<h3 class="anchored" data-anchor-id="the-nature-and-scope-of-computational-models">2.8.1 The Nature and Scope of Computational Models</h3>
+<p>Read Sec. 1.2 of Marr’s classic book <em>Vision</em> <span class="citation" data-cites="marr_vision_1982">(<a href="#ref-marr_vision_1982" role="doc-biblioref">Marr 1982</a>)</span>. Marr points out that when we ask a question about the mind (e.g., “How does language work?”), there are at least three different interrelated levels we can answer that question. Marr’s three levels of analysis have become one of the key insights in the meta-science of the mind (that is, the science of conducting cognitive science), and we will be returning to them throughout the course.</p>
+<p><strong>Reading Questions:</strong></p>
+<ol type="1">
+<li><p>Many neuroscientists argue that learning involves changing the structure of the synapses of neurons. <a href="http://psych.rutgers.edu/faculty-profiles-a-contacts/96-charles-randy-gallistel">Randy Gallistel</a> has argued that other mechanisms may be involved as well. At which of Marr’s levels is this discussion happening?</p></li>
+<li><p>Psychologists and artificial intelligence researchers both study the nature of intelligence. At which of Marr’s levels are their interests most likely to interact?</p></li>
+</ol>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">2.9 Exercises</h2>
+<p>Please complete the exercises on this page and submit them in PDF form. You can (and should!!) write your code here and click “Run” to test out your answers. However, you will need to transfer your code to your own document in order to turn in your answers and get feedback. THESE CODE BOXES WILL NOT SAVE YOUR WORK. So copy your answers over to your own document frequently.</p>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">a)</h4>
+<p>Show mathematically that the marginal distribution on return values for these three programs is the same by directly computing the probability using the rules of probability (hint: write down each possible history of random choices for each program).</p>
+<pre><code>flip() ? flip(.7) : flip(.1)</code></pre>
+<pre><code>flip(flip() ? .7 : .1)</code></pre>
+<pre><code>flip(.4)</code></pre>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">b)</h4>
+<p>Check your answers by sampling from the programs, 1000 times each, and plotting the results.</p>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
+</section>
+<section id="c" class="level4">
+<h4 class="anchored" data-anchor-id="c">c)</h4>
+<p>Write another new program with the same marginal distribution on return values that looks different from all of the above programs.</p>
+<pre><code></code></pre>
+</section>
+</section>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">a)</h4>
+<p>Explain why (in terms of the evaluation process) these two programs give different answers (i.e.&nbsp;have different distributions on return values).</p>
+<pre><code>var foo = flip()
+display([foo, foo, foo])</code></pre>
+<pre><code>var foo = function() { return flip() }
+display([foo(), foo(), foo()])</code></pre>
+</section>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">b)</h4>
+<p>Modify the second program using <code>mem</code> so that it has the same distribution as the first program.</p>
+<pre><code></code></pre>
+</section>
+<section id="c-1" class="level4">
+<h4 class="anchored" data-anchor-id="c-1">c)</h4>
+<p>Change the program in Part B so that the first two elements in the list are always the same as each other, but the third element can be different. <em>Optional challenge:</em> try to do this by adding only these 4 characters: <code>x</code>, <code>0</code>, <code>0</code>, and <code>1</code>.</p>
+<pre><code></code></pre>
+</section>
+</section>
+<section id="exercise-3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<section id="a-2" class="level4">
+<h4 class="anchored" data-anchor-id="a-2">a)</h4>
+<p>Which of these programs would be more likely to generate the following proportions for 100 values of C? Justify your response.</p>
+<center>
+<img src="../assets/img/flip0.7.svg">
+</center>
+<pre><code>// Program "A"
+var A = flip()
+var B = flip(0.9)
+var C = flip() ? A &amp;&amp; B : A || B
+display([A, B, C])</code></pre>
+<pre><code>// Program "B"
+var A = flip(0.9);
+var B = A &amp;&amp; flip(0.9)
+var C = B &amp;&amp; flip(0.9)
+display([A, B, C])</code></pre>
+</section>
+<section id="b-2" class="level4">
+<h4 class="anchored" data-anchor-id="b-2">b)</h4>
+<p>Could the program you did <em>not</em> choose in Part A have <em>also</em> generated those return values? Explain.</p>
+</section>
+</section>
+<section id="exercise-4" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
+<p>In the simple medical diagnosis example, we imagined a generative process for diseases and symptoms of a single patient. In this exercise, we’ll write a version of that model that represents the diseases and symptoms of many patients.</p>
+<section id="a-3" class="level4">
+<h4 class="anchored" data-anchor-id="a-3">a)</h4>
+<p>Let’s look at just two common conditions (a cold and allergies) and just two symptoms (sneeze and fever), and let’s assume that symptoms are deterministic.</p>
+<pre><code>var allergies = flip(0.3)
+var cold = flip(0.2)
+
+var sneeze = cold || allergies
+var fever = cold
+
+display([sneeze, fever])</code></pre>
+<p>Under this model, what is the probability that the patient is sneezing? What is the probability that the patient is sneezing <em>and</em> has a fever?</p>
+</section>
+<section id="b-3" class="level4">
+<h4 class="anchored" data-anchor-id="b-3">b)</h4>
+<p>Inspect the joint probability distributions of <code>sneeze</code> and <code>fever</code> using <code>Infer</code>.</p>
+<pre><code>Infer({method: "forward", samples: 1000}, function() {
+  ...
+  return { ... }
+})</code></pre>
+</section>
+<section id="c-2" class="level4">
+<h4 class="anchored" data-anchor-id="c-2">c)</h4>
+<p>If we wanted to represent the diseases of many patients we might have tried to make each disease and symptom into a function from a person to whether they have that disease, like this:</p>
+<pre><code>var allergies = function(person) { return flip(.3) }
+var cold = function(person) { return flip(.2) }
+
+var sneeze = function(person) { return cold(person) || allergies(person) }
+
+display([sneeze('bob'), sneeze('alice')])</code></pre>
+<p>Add <code>fever</code> to the program above, and use <code>Infer</code> to inspect the probability distribution over Bob’s symptoms. Is this the same probability distribution that you computed for the single patient in Part A? If not, what can you do to fix this program to capture our intuitions correctly?</p>
+</section>
+</section>
+<section id="exercise-5" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5">Exercise 5</h3>
+<p>Work through the evaluation process for the <code>bend</code> higher-order function in this example:</p>
+<pre><code>var makeCoin = function(weight) {
+  return function() {
+    return flip(weight) ? 'h' : 't'
+  }
+}
+var bend = function(coin) {
+  return function() {
+    return coin() == 'h' ? makeCoin(.7)() : makeCoin(.1)()
+  }
+}
+
+var fairCoin = makeCoin(.5)
+var bentCoin = bend(fairCoin)</code></pre>
+<section id="a-4" class="level4">
+<h4 class="anchored" data-anchor-id="a-4">a)</h4>
+<p>Directly compute the probability distribution of the bent coin in the example.</p>
+</section>
+<section id="b-4" class="level4">
+<h4 class="anchored" data-anchor-id="b-4">b)</h4>
+<p>Check your answer by using <code>Infer</code>.</p>
+<pre><code></code></pre>
+</section>
+</section>
+<section id="exercise-6" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6">Exercise 6</h3>
+<section id="a-5" class="level4">
+<h4 class="anchored" data-anchor-id="a-5">a)</h4>
+<p>Directly compute the probability that the geometric distribution defined by the following stochastic recursion returns the number 5. <em>Hint:</em> What is the default parameter for <code>flip()</code>?</p>
+<pre><code>var geometric = function() {
+  return flip() ? 0 : 1 + geometric()
+}</code></pre>
+</section>
+<section id="b-5" class="level4">
+<h4 class="anchored" data-anchor-id="b-5">b)</h4>
+<p>Check your answer by using <code>Infer</code>.</p>
+<pre><code></code></pre>
+</section>
+</section>
+<section id="exercise-7" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-7">Exercise 7</h3>
+<section id="a-6" class="level4">
+<h4 class="anchored" data-anchor-id="a-6">a)</h4>
+<p>Convert the following probability table to a compact WebPPL program:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>P(A,B)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td>0.14</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td>0.06</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td>0.4</td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td>0.4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Requirement:</strong> fix the probability of A first and then define the probability of B to <em>depend</em> on whether A is true or not.</p>
+<pre><code>var a = ...
+var b = ...
+display([a, b])</code></pre>
+</section>
+<section id="b-6" class="level4">
+<h4 class="anchored" data-anchor-id="b-6">b)</h4>
+<p>Run your WebPPL program and use <code>Infer</code> to check that you get the correct distribution.</p>
+<pre><code></code></pre>
+</section>
+</section>
+<section id="exercise-8" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8">Exercise 8</h3>
+<p>Below we’ve defined a higher-order function <code>flipSequence</code> that takes a coin flipping function (e.g.&nbsp;<code>trickCoin</code>, below) and flips that coin until it gets a <em>sequence</em> of two heads in a row (in which case it returns heads <code>'h'</code>) or two tails in a row (in which case it returns tails <code>'t'</code>). Try out different weights for the <code>trickCoin</code>.</p>
+<pre><code>var makeCoin = function(weight) {
+  return function() {
+    return flip(weight) ? 'h' : 't'
+  }
+}
+var flipSequence = function(coin) {
+  return function() {
+    var flip1 = coin()
+    var flip2 = coin()
+    if (flip1 == flip2) {
+      return flip1
+    } else {
+      return flipSequence(coin)()
+    }
+  }
+}
+
+var trickCoin = makeCoin(.6)
+
+var n_samples = 10000;
+viz(Infer({method: "forward", samples: n_samples}, trickCoin))
+viz(Infer({method: "forward", samples: n_samples}, flipSequence(trickCoin)))</code></pre>
+<section id="part-a" class="level4">
+<h4 class="anchored" data-anchor-id="part-a">Part (a)</h4>
+<p>How does <code>flipSequence</code> change the distribution over return values (qualitatively)? Explain why requiring two flips in a row to be the same has this effect.</p>
+</section>
+<section id="part-b" class="level4">
+<h4 class="anchored" data-anchor-id="part-b">Part (b)</h4>
+<p>What would happen if a fair coin (with weight 0.5) were input to <code>flipSequence</code>? Explain.</p>
+</section>
+</section>
+<section id="exercise-9" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-9">Exercise 9</h3>
+<p>Box2D is a two dimensional simulation engine for simulating rigid bodies (those with constant shape). It allows for the construction of arbitray worlds and models important physical concepts including collisions, friction, gravity, momentum, and more.</p>
+<p>We have provided a wrapper around Box2D that allows for the easy construction of worlds. A world consists of list of shapes. Shapes are created by JavaScript objects with the following properties:</p>
+<p>|<code>shape</code> |“circle” or “rect” | |<code>dims</code> |[width, height] for rect or [radius] for circle | |<code>x</code> |x_position_as_number (distance from left) | |<code>y</code> |y_position_as_number (distance from top) | |<code>static</code> |boolean (does the object move or stay still?) | |<code>velocity</code> |[x_velocity, y_velocity] |</p>
+<p>The variables <code>worldWidth</code> and <code>worldHeight</code> are constants representing the visible size of the simulation window.</p>
+<p>Here’s an example with a ground and a single rectangle. Add another object to <code>bowlingWorld</code> and give it an initial velocity so that it knocks the original rectangle down.</p>
+<pre><code>var ground = {
+  shape: 'rect',
+  static: true,
+  dims: [worldWidth, 10],
+  x: worldWidth/2,
+  y: worldHeight
+}
+
+var rect = {
+  shape: 'rect',
+  static: false,
+  dims: [10, 100],
+  x: worldWidth/2,
+  y: 390
+}
+
+var bowlingWorld = [ground, rect]
+physics.animate(1000, bowlingWorld)</code></pre>
+</section>
+<section id="exercise-10" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-10">Exercise 10</h3>
+<p>In <strong>Example: Intuitive physics</strong> we modeled instability of a tower as the probability that the tower falls when perturbed, and we modeled “falling” as getting shorter. It would be reasonable to instead measure <em>how much shorter</em> the tower gets.</p>
+<section id="a-7" class="level4">
+<h4 class="anchored" data-anchor-id="a-7">a)</h4>
+<p>Below, modify the stability/instability model by writing a continuous measure, <code>towerFallDegree</code>. Let this measure take different values between 0 and 1. That way, your continuous measure will be numerically comparable to the discrete measure, <code>doesTowerFall</code> (defined here as either 0 or 1). Explain what your continuous measure represents and why it might be a good continuous measure of instability.</p>
+<pre><code>///fold:
+var listMin = function(xs) {
+  if (xs.length == 1) {
+    return xs[0]
+  } else {
+    return Math.min(xs[0], listMin(rest(xs)))
+  }
+}
+
+var highestY = function (w) { listMin(map(function(obj) { return obj.y }, w)) }
+var ground = {
+  shape: 'rect',
+  static: true,
+  dims: [worldWidth, 10],
+  x: worldWidth / 2,
+  y: worldHeight + 6
+}
+
+var almostUnstableWorld = [
+  ground,
+  {shape: 'rect', static: false, dims: [24, 22], x: 175, y: 473},
+  {shape: 'rect', static: false, dims: [15, 38], x: 159.97995044874122, y: 413},
+  {shape: 'rect', static: false, dims: [11, 35], x: 166.91912737427202, y: 340},
+  {shape: 'rect', static: false, dims: [11, 29], x: 177.26195677111082, y: 276},
+  {shape: 'rect', static: false, dims: [11, 17], x: 168.51354470809122, y: 230}
+]
+
+var noisify = function (world) {
+  var perturbX = function (obj) {
+    var noiseWidth = 10
+    if (obj.static) {
+      return obj
+    } else {
+      return _.extend({}, obj, {x: uniform(obj.x - noiseWidth, obj.x + noiseWidth)})
+    }
+  }
+  map(perturbX, world)
+}
+
+///
+
+// Returns height of tower
+var getTowerHeight = function(world) {
+  return worldHeight - highestY(world)
+}
+
+var doesTowerFall = function (initialW, finalW) {
+  var approxEqual = function (a, b) { Math.abs(a - b) &lt; 1.0 }
+  return 1 - approxEqual(highestY(initialW), highestY(finalW))
+}
+
+var towerFallDegree = function(initialW, finalW) {
+  ...
+}
+
+var visualizeInstabilityMeasure = function(measureFunction) {
+  var initialWorld = noisify(almostUnstableWorld)
+  var finalWorld = physics.run(1000, initialWorld)
+  var measureValue = measureFunction(initialWorld, finalWorld)
+  print("Instability measure: " + measureValue)
+  print("Initial height: " + getTowerHeight(initialWorld))
+  print("Final height: " + getTowerHeight(finalWorld))
+  physics.animate(1000, initialWorld)
+}
+
+// Test binary doesTowerFall measure
+// visualizeInstabilityMeasure(doesTowerFall)
+
+// Test custom towerFallDegree measure
+visualizeInstabilityMeasure(towerFallDegree)</code></pre>
+</section>
+<section id="b-7" class="level4">
+<h4 class="anchored" data-anchor-id="b-7">b)</h4>
+<p>Describe a tower with a very different doesTowerFall and towerFallDegree measures look like. Which measure captures the meaning of “unstable” better?</p>
+
+
+
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-marr_vision_1982" class="csl-entry" role="listitem">
+Marr, David. 1982. <em>Vision: <span>A Computational Investigation</span> into the <span>Human Representation</span> and <span>Processing</span> of <span>Visual Information</span></em>. MIT Press. <a href="https://www.dropbox.com/scl/fi/pyy2de8c8nyjmxiakclmi/David-Marr-Vision_-A-Computational-Investigation.pdf?rlkey=o42tpwng7c6rr22lkp3asgbiu&amp;dl=1">https://www.dropbox.com/scl/fi/pyy2de8c8nyjmxiakclmi/David-Marr-Vision_-A-Computational-Investigation.pdf?rlkey=o42tpwng7c6rr22lkp3asgbiu&amp;dl=1</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../ch01/index.html" class="pagination-link" aria-label="1. Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1. Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch02/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer><script src="../assets/js/box2d.js"></script><script src="../assets/js/physics.js"></script><script src="../assets/js/plinko.js"></script>
+
+
+
+
+</body></html>

@@ -14,5 +14,13 @@
   "references.qmd": {
     "references.html": "948abd81",
     "references.tex": "bf42d1bd"
+  },
+  "ch01/index.qmd": {
+    "index.html": "25c45f14",
+    "index.tex": "de0d3b58"
+  },
+  "ch02/index.qmd": {
+    "index.html": "805f38ea",
+    "index.tex": "4ac99abe"
   }
 }
