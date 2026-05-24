@@ -8,6 +8,7 @@ website:
   repo-actions: [source]
   repo-link-target: "_blank"
   page-navigation: true
+  favicon: favicon.png
   sidebar:
     contents:
       - href: index.qmd
