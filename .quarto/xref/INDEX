@@ -82,5 +82,32 @@
   "ch17/index.qmd": {
     "index.html": "cd263d28",
     "index.tex": "f3d836ca"
+  },
+  "ch02/exercises.qmd": {
+    "exercises.html": "485744cf",
+    "exercises.tex": "75e977ca"
+  },
+  "ch03/exercises.qmd": {
+    "exercises.html": "f9f930da",
+    "exercises.tex": "66d768a0"
+  },
+  "ch07/exercises.qmd": {
+    "exercises.html": "47f8fa29",
+    "exercises.tex": "d215f4e0"
+  },
+  "ch06/exercises.qmd": {
+    "exercises.html": "2e241a06",
+    "exercises.tex": "9d7fae80"
+  },
+  "ch04/exercises.qmd": {
+    "exercises.html": "18e97f0f",
+    "exercises.tex": "0c0f7293"
+  },
+  "ch05/exercises.qmd": {
+    "exercises.html": "8468a559",
+    "exercises.tex": "2f975a6f"
+  },
+  "ch03/index-v0.qmd": {
+    "index-v0.html": "6be118cb"
   }
 }

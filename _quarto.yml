@@ -10,23 +10,42 @@ website:
   page-navigation: true
   favicon: favicon.png
   sidebar:
+    collapse-level: 1
     contents:
       - href: index.qmd
       - text: "1. Introduction"
         href: ch01/index.qmd
-      - text: "2. Generative Models"
+      - section: "2. Generative Models"
         href: ch02/index.qmd
-      - text: "3. Conditioning"
+        contents:
+          - text: "Exercises"
+            href: ch02/exercises.qmd
+      - section: "3. Conditioning"
         href: ch03/index.qmd
-      - text: "4. Causal and Statistical Dependence"
+        contents:
+          - text: "Exercises"
+            href: ch03/exercises.qmd
+      - section: "4. Causal and Statistical Dependence"
         href: ch04/index.qmd
-      - text: "5. Conditional Dependence"
+        contents:
+          - text: "Exercises"
+            href: ch04/exercises.qmd
+      - section: "5. Conditional Dependence"
         href: ch05/index.qmd
-      - text: "6. Social Cognition"
+        contents:
+          - text: "Exercises"
+            href: ch05/exercises.qmd
+      - section: "6. Social Cognition"
         href: ch06/index.qmd
-      - text: "7. Interlude – Bayesian Data Analysis"
+        contents:
+          - text: "Exercises"
+            href: ch06/exercises.qmd
+      - section: "7. Interlude: Bayesian Data Analysis"
         href: ch07/index.qmd
-      - text: "8. Interlude – Algorithms for Inference"
+        contents:
+          - text: "Exercises"
+            href: ch07/exercises.qmd
+      - text: "8. Interlude: Algorithms for Inference"
         href: ch08/index.qmd
       - text: "9. Rational Process Models"
         href: ch09/index.qmd
@@ -63,9 +82,7 @@ format:
       dark: [darkly, "./dsan-globals/jjquarto.scss"]
     respect-user-color-scheme: true
     include-in-header:
-      text: "<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous' referrerpolicy='no-referrer'></script><link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css'><script src='/sidebar.js'></script>"
-    include-after-body:
-      text: "<script src='/assets/js/webppl.min.js'></script><script src='/assets/js/webppl-viz.min.js'></script><script src='/assets/js/webppl-editor.min.js'></script><script src='/assets/js/paper-full.js'></script>"
+      text: "<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous' referrerpolicy='no-referrer'></script><link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css'><script src='/sidebar.js'></script><link rel='stylesheet' href='/assets/css/webppl-editor.css'><link rel='stylesheet' href='/assets/css/webppl-viz.css'><script src='/assets/js/webppl.min.js'></script><script src='/assets/js/webppl-viz.min.js'></script><script src='/assets/js/webppl-editor.min.js' defer></script><script src='/assets/js/paper-full.js'></script>"
   pdf:
     documentclass: scrreprt
 

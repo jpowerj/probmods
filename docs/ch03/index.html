@@ -23,7 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -33,8 +88,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../ch04/index.html" rel="next">
-<link href="../ch02/index.html" rel="prev">
+<link href="../ch03/exercises.html" rel="next">
+<link href="../ch02/exercises.html" rel="prev">
 <link href="../favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -77,8 +132,37 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script><link rel="stylesheet" href="../assets/css/webppl-editor.css"><link rel="stylesheet" href="../assets/css/webppl-viz.css"><script src="../assets/js/webppl.min.js"></script><script src="../assets/js/webppl-viz.min.js"></script><script src="../assets/js/webppl-editor.min.js" defer=""></script><script src="../assets/js/paper-full.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -302,46 +386,112 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">1. Introduction</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ch02/index.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ch02/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2. Generative Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ch02/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ch03/index.html" class="sidebar-item-text sidebar-link active">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ch03/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">3. Conditioning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ch03/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ch04/index.html" class="sidebar-item-text sidebar-link">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ch04/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4. Causal and Statistical Dependence</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ch04/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ch05/index.html" class="sidebar-item-text sidebar-link">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ch05/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5. Conditional Dependence</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ch05/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ch06/index.html" class="sidebar-item-text sidebar-link">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ch06/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6. Social Cognition</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ch07/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7. Interlude – Bayesian Data Analysis</span></a>
+  <a href="../ch06/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ch07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Interlude: Bayesian Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ch07/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ch08/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8. Interlude – Algorithms for Inference</span></a>
+ <span class="menu-text">8. Interlude: Algorithms for Inference</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -411,8 +561,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cognition-and-conditioning" id="toc-cognition-and-conditioning" class="nav-link active" data-scroll-target="#cognition-and-conditioning">3.1 Cognition and Conditioning</a></li>
+  <li><a href="#hypothetical-reasoning-with-infer" id="toc-hypothetical-reasoning-with-infer" class="nav-link" data-scroll-target="#hypothetical-reasoning-with-infer">3.2 Hypothetical Reasoning with <code>Infer</code></a>
+  <ul class="collapse">
+  <li><a href="#rejection-sampling" id="toc-rejection-sampling" class="nav-link" data-scroll-target="#rejection-sampling">3.2.1 Rejection Sampling</a></li>
+  <li><a href="#conditional-distributions" id="toc-conditional-distributions" class="nav-link" data-scroll-target="#conditional-distributions">3.2.2 Conditional Distributions</a></li>
+  <li><a href="#other-implementations-of-infer" id="toc-other-implementations-of-infer" class="nav-link" data-scroll-target="#other-implementations-of-infer">3.2.3 Other implementations of <code>Infer</code></a></li>
+  </ul></li>
+  <li><a href="#conditions-and-observations" id="toc-conditions-and-observations" class="nav-link" data-scroll-target="#conditions-and-observations">3.3 Conditions and Observations</a></li>
+  <li><a href="#factors" id="toc-factors" class="nav-link" data-scroll-target="#factors">3.4 Factors</a></li>
+  <li><a href="#example-reasoning-about-tug-of-war" id="toc-example-reasoning-about-tug-of-war" class="nav-link" data-scroll-target="#example-reasoning-about-tug-of-war">3.5 Example: Reasoning About Tug of War</a></li>
+  <li><a href="#example-inverse-intuitive-physics" id="toc-example-inverse-intuitive-physics" class="nav-link" data-scroll-target="#example-inverse-intuitive-physics">3.6 Example: Inverse Intuitive Physics</a></li>
+  <li><a href="#example-causal-inference-in-medical-diagnosis" id="toc-example-causal-inference-in-medical-diagnosis" class="nav-link" data-scroll-target="#example-causal-inference-in-medical-diagnosis">3.7 Example: Causal Inference in Medical Diagnosis</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch03/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -436,10 +603,746 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="cognition-and-conditioning" class="level2">
+<h2 class="anchored" data-anchor-id="cognition-and-conditioning">3.1 Cognition and Conditioning</h2>
+<p>We have built up a tool set for constructing probabilistic generative models. These can represent knowledge about causal processes in the world: running one of these programs generates a particular outcome by sampling a “history” for that outcome. However, the power of a causal model lies in the flexible ways it can be used to reason about the world. In the <a href="../ch02/">last chapter</a> we ran generative models <em>forward</em> to reason about outcomes from initial conditions. Generative models also enable reasoning in other ways.</p>
+<p>For instance, if we have a generative model in which <code>X</code> is the output of a process that depends on <code>Y</code> (say <code>var X = coolFunction(Y)</code>) we may ask: “assuming I have observed a certain <code>X</code>, what must <code>Y</code> have been?” That is we can reason <em>backward</em> from outcomes to initial conditions.</p>
+<p>More generally, we can make hypothetical assumptions and reason about the generative history: “assuming <em>something</em>, how did the generative model run?”</p>
+<p>In this section we describe how a wide variety of such hypothetical inferences can be made from a single generative model by <em>conditioning</em> the model on an assumed or observed fact.</p>
+<p>Much of cognition can be understood in terms of conditional inference. In its most basic form, <em>causal attribution</em> is conditional inference: given some observed effects, what were the likely causes? <em>Predictions</em> are conditional inferences in the opposite direction: given that I have observed some cause, what are its likely effects? These inferences can be described by conditioning a probabilistic program that expresses a causal model. The acquisition of that causal model, or <em>learning</em>, is also conditional inference at a higher level of abstraction: given our general knowledge of how causal relations operate in the world, and some observed events in which candidate causes and effects co-occur in various ways, what specific causal relations are likely to hold between these observed variables?</p>
+<p>To see how the same concepts apply in a domain that is not usually thought of as causal, consider language. The core questions of interest in the study of natural language are all at heart conditional inference problems. Given beliefs about the structure of my language, and an observed sentence, what should I believe about the syntactic structure of that sentence? This is the <em>parsing</em> problem. The complementary problem of <em>speech production</em> is related: given the structure of my language (and beliefs about others’ beliefs about that), and a particular thought I want to express, how should I encode the thought? Finally, the <em>acquisition</em> problem: given some data from a particular language, and perhaps general knowledge about universals of grammar, what should we believe about that language’s structure? This problem is simultaneously the problem facing the linguist and the child trying to learn a language.</p>
+<p>Parallel problems of conditional inference arise in visual perception, social cognition, and virtually every other domain of cognition. In visual perception, we observe an image or image sequence that is the result of rendering a three-dimensional physical scene onto our two-dimensional retinas. A probabilistic program can model both the physical processes at work in the world that produce natural scenes, and the imaging processes (the “graphics”) that generate images from scenes. <em>Perception</em> can then be seen as conditioning this program on some observed output image and inferring the scenes most likely to have given rise to it.</p>
+<p>When interacting with other people, we observe their actions, which result from a planning process, and often want to guess their desires, beliefs, emotions, or future actions. Planning can be modeled as a program that takes as input an agent’s mental states (beliefs, desires, etc.) and produces action sequences—for a rational agent, these will be actions that are likely to produce the agent’s desired states reliably and efficiently. A rational agent can <em>plan</em> their actions by conditional inference to infer what steps would be most likely to achieve their desired state. <em>Action understanding</em>, or interpreting an agent’s observed behavior, can be expressed as conditioning a planning program (a “theory of mind”) on observed actions to infer the mental states that most likely gave rise to those actions, and to predict how the agent is likely to act in the future.</p>
+</section>
+<section id="hypothetical-reasoning-with-infer" class="level2">
+<h2 class="anchored" data-anchor-id="hypothetical-reasoning-with-infer">3.2 Hypothetical Reasoning with <code>Infer</code></h2>
+<p>Suppose that we know some fixed fact, and we wish to consider hypotheses about how a generative model could have given rise to that fact. In the <a href="..ch02/">last chapter</a> we met the <code>Infer</code> operator for constructing the marginal distribution on return values of a function; with the help of the <code>condition</code> operator <code>Infer</code> is also able to describe marginal distributions <em>under some assumption</em> or condition.</p>
+<p>Consider the following simple generative model:</p>
+<pre><code>var model = function() {
+  var A = flip()
+  var B = flip()
+  var C = flip()
+  var D = A + B + C
+  return {'D': D}
+}
+var dist = Infer(model)
+viz(dist)</code></pre>
+<p>The process described in <code>model</code> samples three numbers and adds them (recall JavaScript converts booleans to <code>0</code> or <code>1</code> when they enter arithmetic). The value of the final expression here is 0, 1, 2 or 3. A priori, each of the variables <code>A</code>, <code>B</code>, <code>C</code> has .5 probability of being <code>1</code> or <code>0</code>. However, suppose that we know that the sum <code>D</code> is equal to 3. How does this change the space of possible values that variable <code>A</code> could have taken? <code>A</code> (and <code>B</code> and <code>C</code>) must be equal to 1 for this result to happen. We can see this in the following WebPPL inference, where we use <code>condition</code> to express the desired assumption:</p>
+<pre><code>var model = function () {
+  var A = flip()
+  var B = flip()
+  var C = flip()
+  var D = A + B + C
+  condition(D == 3)
+  return {'A': A}
+};
+var dist = Infer(model)
+viz(dist)</code></pre>
+<p>The output of <code>Infer</code> describes appropriate beliefs about the likely value of <code>A</code>, conditioned on <code>D</code> being equal to 3.</p>
+<p>Now suppose that we condition on <code>D</code> being greater than or equal to 2. Then <code>A</code> need not be 1, but it is more likely than not to be. (Why?) The corresponding plot shows the appropriate distribution of beliefs for <code>A</code> conditioned on this new fact:</p>
+<pre><code>var model = function () {
+  var A = flip()
+  var B = flip()
+  var C = flip()
+  var D = A + B + C
+  //add the desired assumption:
+  condition(D &gt;= 2)
+  return {'A': A}
+};
+var dist = Infer(model)
+viz(dist)</code></pre>
+<p>Going beyond the basic intuition of “hypothetical reasoning”, the <code>Infer</code> operation in the presence of <code>condition</code> can be understood in several, equivalent, ways. We focus on two: the process of <em>rejection sampling</em>, and the the mathematical formulation of a <em>conditional distribution</em>.</p>
+<section id="rejection-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="rejection-sampling">3.2.1 Rejection Sampling</h3>
+<p>How can we imagine answering a hypothetical such as those above? We have already seen how to get a sample from a generative model, without constraint, by simply running the evaluation process “forward” (i.e.&nbsp;simulating the process). We can get conditional samples by forward sampling the entire model, but only keeping the sample if the value passed to <code>condition</code> is <strong>true</strong>. For instance, to sample from the above model “<code>A</code> given that <code>D</code> is greater than 2” we could do the following:</p>
+<pre><code>var takeSample = function () {
+    var A = flip()
+    var B = flip()
+    var C = flip()
+    var D = A + B + C
+    return D &gt;= 2 ? A : takeSample()
+}
+viz(repeat(100, takeSample))</code></pre>
+<p>Notice that we have used a stochastic recursion to sample the model repeatedly until <code>D &gt;= 2</code> is <code>true</code>, and we then return <code>A</code>: we generate and test until the condition is satisfied.</p>
+<p>This process is known as <em>rejection sampling</em>; we can use this technique to make a more general function that implements <code>Infer</code>, which we access in WebPPL with the <code>rejection</code> method:</p>
+<pre><code>var model = function () {
+    var A = flip()
+    var B = flip()
+    var C = flip()
+    var D = A + B + C
+    condition(D &gt;= 2)
+    return A
+}
+var dist = Infer(
+  {method: 'rejection', samples: 100},
+  model
+)
+viz(dist)</code></pre>
+</section>
+<section id="conditional-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-distributions">3.2.2 Conditional Distributions</h3>
+<p>The formal definition of <em>conditional probability</em> in probability theory is</p>
+<p><span class="math display">\[
+\Pr(A=a \mid B=b) = \frac{
+  \Pr(A = a, B = b)
+}{
+  \Pr(B = b)
+}
+\]</span></p>
+<p>Here <span class="math inline">\(\Pr(A = a \mid B = b)\)</span> is the probability that the <strong>Random Variable</strong> <span class="math inline">\(A\)</span> has value <span class="math inline">\(a\)</span> given that <span class="math inline">\(B\)</span> has value <span class="math inline">\(b\)</span>. (The meaning of the Random Variables <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> must be given elsewhere in this notation, unlike a WebPPL program, which contains the full model specification within the <code>Infer</code> call.)</p>
+<p>The <em>joint probability</em>, <span class="math inline">\(\Pr(A=a,B=b)\)</span>, is the probability that <span class="math inline">\(A\)</span> takes on value <span class="math inline">\(a\)</span> <strong>and</strong> <span class="math inline">\(B\)</span> takes on value <span class="math inline">\(b\)</span>. So the conditional probability is simply the ratio of the joint probability to the probability of the condition.</p>
+<p>In the case of a WebPPL <code>Infer</code> statement with a <code>condition</code>, <span class="math inline">\(A=a\)</span> will be the “event” that the return value is <span class="math inline">\(a\)</span>, while <span class="math inline">\(B=b\)</span> will be the event that the value passed to condition is <code>true</code> (so <span class="math inline">\(b\)</span> is <span class="math inline">\(\textsf{True}\)</span>). Because each of these is a regular (unconditional) probability, they and their ratio can often be computed exactly using the rules of probability. In WebPPL the inference method <code>enumerate</code> attempts to do this calculation (by first enumerating all the possible executions of the model):</p>
+<pre><code>var model = function () {
+    var A = flip()
+    var B = flip()
+    var C = flip()
+    var D = A + B + C
+    condition(D &gt;= 2)
+    return A
+}
+var dist = Infer({method: 'enumerate'}, model)
+viz(dist)</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled" title="Connection to Rejection Sampling">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Connection to Rejection Sampling
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The above notion of conditional distribution in terms of rejection sampling is equivalent to the mathematical definition, when both are well-defined.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Indeed, we can use the process of rejection sampling to understand this alternative definition of the conditional probability <span class="math inline">\(\Pr(A = a \mid B = b)\)</span>.</p>
+<p>Imagine that we have sampled <span class="math inline">\(N_{\text{total}}\)</span> times. We only keep those samples in which the condition is true – say there are <span class="math inline">\(N_{B=\textsf{True}}\)</span> of them. Of these some number <span class="math inline">\(N_{A=a, B=\textsf{True}}\)</span> have the returned value <span class="math inline">\(a\)</span>. The ratio</p>
+<p><span class="math display">\[
+\frac{
+  N_{A=a, B=\textsf{True}}
+}{
+  N_{B=\textsf{True}}
+}
+=
+\frac{
+  \frac{
+    N_{A=a, B=\textsf{True}}
+  }{
+    N_{\text{total}}
+  }
+}{
+  \frac{
+    N_{B=\textsf{True}}
+  }{
+    N_{\text{total}}
+  }
+}
+\]</span></p>
+<p>is the fraction of times that <span class="math inline">\(A=a\)</span> when <span class="math inline">\(B = \textsf{True}\)</span>. When the number of samples is very large this converges to <span class="math inline">\(\frac{\Pr(A=a, B=\textsf{True})}{\Pr(B=\textsf{True})}\)</span>. Thus the rejection sampling definition of conditional probability implies the above (probability ratio) definition.</p>
+<!-- FIXME: add a figure with imagined samples to illustrate. -->
+<p>Try using the formula for conditional probability to compute the probability of the different return values in the above examples. Check that you get the same probability that you observe when using rejection sampling.</p>
+</div>
+</div>
+<section id="bayes-rule" class="level4">
+<h4 class="anchored" data-anchor-id="bayes-rule">Bayes Rule</h4>
+<p>One of the most famous rules of probability is <em>Bayes’ rule</em>, which states:</p>
+<p><span class="math display">\[
+\Pr(h \mid d) = \frac{
+  \Pr(d \mid h)\Pr(h)
+}{
+  \Pr(d)
+}
+\]</span></p>
+<p>It is first worth noting that this follows immediately from the definition of conditional probability:</p>
+<p><span class="math display">\[
+\Pr(h \mid d)
+=
+\frac{
+  \Pr(d,h)
+}{
+  \Pr(d)
+}
+=
+\frac{ \Pr(d, h)\Pr(h) }{ \Pr(d)\Pr(h)}
+=
+\frac{ \Pr(d \mid h) \Pr(h)}{\Pr(d)}
+\]</span></p>
+<p>Next we can ask what this rule means in terms of sampling processes. Consider the program:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> observedData <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> prior <span class="op">=</span> <span class="kw">function</span> () { <span class="fu">flip</span>() }</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> likelihood <span class="op">=</span> <span class="kw">function</span> (h) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  h <span class="op">?</span> <span class="fu">flip</span>(<span class="fl">0.9</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="fl">0.1</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> posterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> () {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> hypothesis <span class="op">=</span> <span class="fu">prior</span>()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> data <span class="op">=</span> <span class="fu">likelihood</span>(hypothesis)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(data <span class="op">==</span> observedData)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="dt">hypothesis</span><span class="op">:</span> hypothesis}</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(posterior)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We have generated a value, the <em>hypothesis</em>, from some distribution called the <em>prior</em>, then used an observation function <code>likelihood</code> which generates data given this hypothesis, the probability of such an observation function is usually called the <em>likelihood</em>. Finally we have returned the hypothesis, conditioned on the observation being equal to some observed data—this conditional distribution is called the <em>posterior</em>. This is a typical setup in which Bayes’ rule is used.</p>
+<p>Bayes’ rule simply says that, in special situations where the model decomposes nicely into a part “before” the value to be returned (hypothesis) and a part “after” the value to be returned, then the conditional probability can be expressed simply in terms of the prior and likelihood components of the model. This is often a useful way to think about conditional inference in simple settings. However, we will see examples as we go along where Bayes’ rule doesn’t apply in a simple way, but the conditional distribution is equally well understood in other terms.</p>
+</section>
+</section>
+<section id="other-implementations-of-infer" class="level3">
+<h3 class="anchored" data-anchor-id="other-implementations-of-infer">3.2.3 Other implementations of <code>Infer</code></h3>
+<p>Much of the difficulty of implementing the WebPPL language (or probabilistic models in general) is in finding useful ways to do conditional inference—to implement <code>Infer</code>.</p>
+<p>We have already seen rejection sampling and enumeration, but the AI literature is replete with other algorithms and techniques for dealing with conditional probabilistic inference. Many of these have been adapted into WebPPL to give implementations of <code>Infer</code> that may be more efficient in various cases. Switching from one method to another is as simple as changing the options passed to <code>Infer</code>. We have already seen two methods: <code>{method: 'enumerate'}</code> and <code>{method: 'rejection', samples: X}</code>; other methods include <code>'MCMC'</code>, <code>'SMC'</code>, and <code>'variational'</code>. Sometimes we even drop the method argument, asking WebPPL to guess the best inference method (which it can often do). The <a href="http://docs.webppl.org/en/master/inference/index.html">Infer documentation</a> provides many more usage details.</p>
+<p>There is an interesting parallel between the <code>Infer</code> abstraction, wrapping up the engineering challenge of different inference methods, and the idea of levels of analysis in cognitive science <span class="citation" data-cites="marr_vision_1982">(<a href="#ref-marr_vision_1982" role="doc-biblioref">Marr 1982</a>)</span>. At the top, or computational level, of analysis we are concerned more with the world knowledge people have and the inferences they license; at the next, algorithmic, level of analysis we are concerned with the details on <em>how</em> these inferences are done.</p>
+<p>In parallel, WebPPL allows us to specify generative knowledge and inference questions, largely abstracting away the methods of inference (they show up only in the options argument to <code>Infer</code>, when provided). We will further explore some of the algorithms used in these implementations in <a href="../ch08/">Algorithms for inference</a>, and ask whether they may be useful algorithmic levels models for human thinking in <a href="../ch09/">Rational process models</a>. For most of this book, however, we work at the computational level, abstracting away from algorithmic details.</p>
+<!--TODO: add more on the levels of analysis analogy. perhaps in the process models section?-->
+</section>
+</section>
+<section id="conditions-and-observations" class="level2">
+<h2 class="anchored" data-anchor-id="conditions-and-observations">3.3 Conditions and Observations</h2>
+<p>A very common pattern is to condition directly on the value of a sample from some distribution. For instance here we try to recover a true number from a noisy observation of it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> trueX <span class="op">=</span> <span class="fu">sample</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Gaussian</span>({<span class="dt">mu</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span>})</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> obsX <span class="op">=</span> <span class="fu">sample</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Gaussian</span>({<span class="dt">mu</span><span class="op">:</span> trueX<span class="op">,</span> <span class="dt">sigma</span><span class="op">:</span> <span class="fl">0.1</span>})</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(obsX <span class="op">==</span> <span class="fl">0.2</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> trueX</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'rejection'</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span><span class="dv">1000</span>}<span class="op">,</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    model</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You will note that this never finishes. (Why? Think about what rejection sampling tries to do here….) In WebPPL we have a special operator, <code>observe</code>, to express the pattern of conditioning on a value sampled directly from a distribution. In addition to being clearer, it also gives the implementation some hints about how to do inference.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> trueX <span class="op">=</span> <span class="fu">sample</span>(<span class="fu">Gaussian</span>({<span class="dt">mu</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span>}))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observe</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Gaussian</span>({<span class="dt">mu</span><span class="op">:</span> trueX<span class="op">,</span> <span class="dt">sigma</span><span class="op">:</span> <span class="fl">0.1</span>})<span class="op">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> trueX</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">method</span><span class="op">:</span> <span class="st">'rejection'</span><span class="op">,</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">samples</span><span class="op">:</span><span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">maxScore</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    model</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It is natural and common to condition a generative model on a value for one of the variables declared in this model (i.e.&nbsp;to <code>observe</code> its value). However, there are many situations in which we desire the greater expressivity of <code>condition</code>; one may wish to ask for more complex hypotheticals: “what if <span class="math inline">\(P\)</span>,” where <span class="math inline">\(P\)</span> is a complex proposition composed out of variables declared in the model.</p>
+<p>Consider the following WebPPL inference:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> () {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> B <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(A <span class="op">+</span> B <span class="op">+</span> C <span class="op">&gt;=</span> <span class="dv">2</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This inference has the same meaning as the earlier example, but the formulation is importantly different. We have directly conditioned on the complex assumption that the sum of these random variables is greater than or equal to 2. This involves a new value or “random variable”, <code>A + B + C &gt;= 2</code> that <em>did not appear</em> anywhere in the generative model (the var definitions).</p>
+<p>We could have instead added a definition <code>var D = (A + B + C &gt;= 2)</code> to the generative model and conditioned (or observed) its value. However, this intertwines the hypothetical assumption (condition) with the generative model knowledge (definitions), and this is not what we want: we want a simple model which supports many queries, rather than a complex model in which only a prescribed set of queries is allowed.</p>
+<p>Using <code>condition</code> allows the flexibility to build complex random expressions like this as needed, making assumptions that are phrased as complex propositions, rather than simple observations. Hence the effective number of queries we can construct for most programs will not merely be a large number but countably infinite, much like the sentences in a natural language. The <code>Infer</code> function (in principle, though with variable efficiency) supports correct conditional inference for this infinite array of situations.</p>
+</section>
+<section id="factors" class="level2">
+<h2 class="anchored" data-anchor-id="factors">3.4 Factors</h2>
+<p>In WebPPL, <code>condition</code> and <code>observe</code> are actually special cases of a more general operator: <code>factor</code>. Whereas <code>condition</code> is like making an assumption that must be true, then <code>factor</code> is like making a <em>soft</em> assumption that is merely preferred to be true. For instance, suppose we flip a single coin. If we condition on the outcome being heads, then the outcome must be heads:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> () {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(A)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>However, if we swap <code>condition</code> for <code>factor</code>, we simply make heads more likely:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> () {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">factor</span>(A <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Technically, <code>factor(x)</code> adds <code>x</code> to the unnormalized log-probability of the program execution within which it occurs. Thus, to get the new probabilities induced by the <code>factor</code> statement we compute the normalizing constant given these log-scores. The resulting probability <span class="math inline">\(\Pr(A=\textsf{True})\)</span> is:</p>
+<p><span class="math display">\[
+\Pr(A = \textsf{True})
+=
+\frac{
+  e^{1}
+}{
+  e^{0} + e^{1}
+}
+\]</span></p>
+<p>Play with this example. Can you revise the example to increase the probability of heads?</p>
+<p>The <code>factor</code> construct is very general. Both <code>condition</code> and <code>observe</code> can be written easily in terms of <code>factor</code>. However models are often clearer when written with the more specialized forms. In machine learning it is common to talk of <em>directed</em> and <em>undirected</em> generative models; directed models can be thought of as those made from only <code>sample</code> and <code>observe</code>, while undirected models include <code>factor</code> (and often have only factors).</p>
+</section>
+<section id="example-reasoning-about-tug-of-war" class="level2">
+<h2 class="anchored" data-anchor-id="example-reasoning-about-tug-of-war">3.5 Example: Reasoning About Tug of War</h2>
+<p>Imagine a game of tug of war, where each person may be strong or weak, and may be lazy or not on each match. If a person is lazy they only pull with half their strength. The team that pulls hardest will win. We assume that strength is a continuous property of an individual, and that on any match, each person has a 1 in 3 chance of being lazy.</p>
+<p>This WebPPL program runs a tournament between several teams, mixing up players across teams. Can you guess who is strong or weak, looking at the tournament results?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> strength <span class="op">=</span> <span class="fu">mem</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> (person) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="fu">gaussian</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">,</span> <span class="fl">0.01</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> lazy <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">flip</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> pulling <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">lazy</span>(person)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> <span class="fu">strength</span>(person) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> <span class="fu">strength</span>(person)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> totalPulling <span class="op">=</span> <span class="kw">function</span> (team) {</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">sum</span>(<span class="fu">map</span>(pulling<span class="op">,</span> team))</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> winner <span class="op">=</span> <span class="kw">function</span> (team1<span class="op">,</span> team2) {</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">totalPulling</span>(team1) <span class="op">&gt;</span> <span class="fu">totalPulling</span>(team2)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> team1</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> team2</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">// For clearing the print buffer... -JJ</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">''</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">winner</span>([<span class="st">'alice'</span><span class="op">,</span> <span class="st">'bob'</span>]<span class="op">,</span> [<span class="st">'sue'</span><span class="op">,</span> <span class="st">'tom'</span>]))</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">winner</span>([<span class="st">'alice'</span><span class="op">,</span> <span class="st">'bob'</span>]<span class="op">,</span> [<span class="st">'sue'</span><span class="op">,</span> <span class="st">'tom'</span>]))</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">winner</span>([<span class="st">'alice'</span><span class="op">,</span> <span class="st">'sue'</span>]<span class="op">,</span> [<span class="st">'bob'</span><span class="op">,</span> <span class="st">'tom'</span>]))</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">winner</span>([<span class="st">'alice'</span><span class="op">,</span> <span class="st">'sue'</span>]<span class="op">,</span> [<span class="st">'bob'</span><span class="op">,</span> <span class="st">'tom'</span>]))</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">winner</span>([<span class="st">'alice'</span><span class="op">,</span> <span class="st">'tom'</span>]<span class="op">,</span> [<span class="st">'bob'</span><span class="op">,</span> <span class="st">'sue'</span>]))</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">winner</span>([<span class="st">'alice'</span><span class="op">,</span> <span class="st">'tom'</span>]<span class="op">,</span> [<span class="st">'bob'</span><span class="op">,</span> <span class="st">'sue'</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Notice that <code>strength</code> is memoized because this is a property of a person true across many matches, while <code>lazy</code> isn’t. Each time you run this program, however, a new “random world” will be created: people’s strengths will be randomly re-generated, then used in all the matches.</p>
+<p>We can use <code>Infer</code> to ask a variety of different questions. For instance, how likely is it that Bob is strong, given that he’s been on a series of winning teams? (Note that we have added the helper function <code>beat</code> as in “team1 beat team2”; this just makes for more compact conditioning statements.)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> strength <span class="op">=</span> <span class="fu">mem</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> (person) {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="fu">gaussian</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">,</span> <span class="fl">0.01</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> lazy <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">flip</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> pulling <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">lazy</span>(person)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="fu">strength</span>(person) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="fu">strength</span>(person)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> totalPulling <span class="op">=</span> <span class="kw">function</span> (team) {</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sum</span>(<span class="fu">map</span>(pulling<span class="op">,</span> team))</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> winner <span class="op">=</span> <span class="kw">function</span> (team1<span class="op">,</span> team2) {</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">totalPulling</span>(team1) <span class="op">&gt;</span> <span class="fu">totalPulling</span>(team2)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> team1</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> team2</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> beat <span class="op">=</span> <span class="kw">function</span>(team1<span class="op">,</span>team2){</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    _<span class="op">.</span><span class="fu">isEqual</span>(<span class="fu">winner</span>(team1<span class="op">,</span>team2)<span class="op">,</span> team1)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">beat</span>([<span class="st">'bob'</span><span class="op">,</span> <span class="st">'mary'</span>]<span class="op">,</span> [<span class="st">'tom'</span><span class="op">,</span> <span class="st">'sue'</span>])</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">beat</span>([<span class="st">'bob'</span><span class="op">,</span> <span class="st">'sue'</span>]<span class="op">,</span>  [<span class="st">'tom'</span><span class="op">,</span> <span class="st">'jim'</span>])</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">strength</span>(<span class="st">'bob'</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'MCMC'</span><span class="op">,</span> <span class="dt">kernel</span><span class="op">:</span> <span class="st">'MH'</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span> <span class="dv">25000</span>}<span class="op">,</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>  model</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">''</span>)</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">'Expected strength: '</span> <span class="op">+</span> <span class="fu">expectation</span>(dist))</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Try varying the number of different teams and teammates that Bob plays with. How does this change the estimate of Bob’s strength? Do these changes agree with your intuitions? Can you modify this example to make laziness a continuous quantity? Can you add a person-specific tendency toward laziness?</p>
+<p>A model very similar to this was used in <span class="citation" data-cites="Gerstenberg2012">(<a href="#ref-Gerstenberg2012" role="doc-biblioref"><strong>Gerstenberg2012?</strong></a>)</span> to predict human judgements about the strength of players in ping-pong tournaments. It achieved very accurate quantitative predictions without many free parameters.</p>
+<!--TODO: add actual conditions from expt. add actual data here and/or in bda chapter.-->
+<p>We can form many complex queries from this simple model. We could ask how likely a team of Bob and Mary is to beat a team of Jim and Sue, given that Mary is at least as strong as sue, and Bob beat Jim in a previous direct match up:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> strength <span class="op">=</span> <span class="fu">mem</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> (person) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="fu">gaussian</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">,</span> <span class="fl">0.01</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> lazy <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">flip</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> pulling <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">lazy</span>(person)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="fu">strength</span>(person) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="fu">strength</span>(person)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> totalPulling <span class="op">=</span> <span class="kw">function</span> (team) {</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sum</span>(<span class="fu">map</span>(pulling<span class="op">,</span> team))</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> winner <span class="op">=</span> <span class="kw">function</span> (team1<span class="op">,</span> team2) {</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">totalPulling</span>(team1) <span class="op">&gt;</span> <span class="fu">totalPulling</span>(team2)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> team1</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> team2</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> beat <span class="op">=</span> <span class="kw">function</span>(team1<span class="op">,</span>team2){</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    _<span class="op">.</span><span class="fu">isEqual</span>(<span class="fu">winner</span>(team1<span class="op">,</span>team2)<span class="op">,</span> team1)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(<span class="fu">strength</span>(<span class="st">'mary'</span>) <span class="op">&gt;=</span> <span class="fu">strength</span>(<span class="st">'sue'</span>))</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(<span class="fu">beat</span>([<span class="st">'bob'</span>]<span class="op">,</span> [<span class="st">'jim'</span>]))</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">beat</span>([<span class="st">'bob'</span><span class="op">,</span><span class="st">'mary'</span>]<span class="op">,</span> [<span class="st">'jim'</span><span class="op">,</span><span class="st">'sue'</span>])</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'MCMC'</span><span class="op">,</span> <span class="dt">kernel</span><span class="op">:</span> <span class="st">'MH'</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span> <span class="dv">25000</span>}<span class="op">,</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  model</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="example-inverse-intuitive-physics" class="level2">
+<h2 class="anchored" data-anchor-id="example-inverse-intuitive-physics">3.6 Example: Inverse Intuitive Physics</h2>
+<p>We previously saw how a generative model of physics—a noisy, intuitive version of Newtonian mechanics—could be used to make judgements about the final state of physical worlds from initial conditions. We showed how this forward simulation could be used to model judgements about stability. We can also use a physics model to reason backward: from final to initial states.</p>
+<p>Imagine that we drop a block from a random position at the top of a world with two fixed obstacles:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">// makes a floor with evenly spaced buckets</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> bins <span class="op">=</span> <span class="kw">function</span> (xmin<span class="op">,</span> xmax<span class="op">,</span> width) {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    (xmax <span class="op">&lt;</span> xmin <span class="op">+</span> width)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// floor</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> {</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">dims</span><span class="op">:</span> [<span class="dv">400</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="dv">175</span><span class="op">,</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">500</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// bins</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> [{</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="dt">dims</span><span class="op">:</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> xmin<span class="op">,</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="dv">490</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      }]<span class="op">.</span><span class="fu">concat</span>(<span class="fu">bins</span>(xmin <span class="op">+</span> width<span class="op">,</span> xmax<span class="op">,</span> width))</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">// add two fixed circles</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> world <span class="op">=</span> [</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">shape</span><span class="op">:</span> <span class="st">'circle'</span><span class="op">,</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">dims</span><span class="op">:</span> [<span class="dv">60</span>]<span class="op">,</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> <span class="dv">200</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">shape</span><span class="op">:</span> <span class="st">'circle'</span><span class="op">,</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">dims</span><span class="op">:</span> [<span class="dv">30</span>]<span class="op">,</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> <span class="dv">300</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>]<span class="op">.</span><span class="fu">concat</span>(<span class="fu">bins</span>(<span class="op">-</span><span class="dv">1000</span><span class="op">,</span> <span class="dv">1000</span><span class="op">,</span> <span class="dv">25</span>))</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> randomBlock <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>    <span class="dt">shape</span><span class="op">:</span> <span class="st">'circle'</span><span class="op">,</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    <span class="dt">dims</span><span class="op">:</span> [<span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> <span class="fu">uniform</span>(<span class="dv">0</span><span class="op">,</span> worldWidth)<span class="op">,</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>physics<span class="op">.</span><span class="fu">animate</span>(</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>  [<span class="fu">randomBlock</span>()]<span class="op">.</span><span class="fu">concat</span>(world)</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Assuming that the block comes to rest in the middle of the floor, where did it come from?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// makes a floor with evenly spaced buckets</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> bins <span class="op">=</span> <span class="kw">function</span> (xmin<span class="op">,</span> xmax<span class="op">,</span> width) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    (xmax <span class="op">&lt;</span> xmin <span class="op">+</span> width)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// floor</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> {</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">dims</span><span class="op">:</span> [<span class="dv">400</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="dv">175</span><span class="op">,</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">500</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// bins</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> [{</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">dims</span><span class="op">:</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> xmin<span class="op">,</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">490</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>      }]<span class="op">.</span><span class="fu">concat</span>(<span class="fu">bins</span>(xmin <span class="op">+</span> width<span class="op">,</span> xmax<span class="op">,</span> width))</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">// add two fixed circles</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> world <span class="op">=</span> [</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">shape</span><span class="op">:</span> <span class="st">'circle'</span><span class="op">,</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">dims</span><span class="op">:</span> [<span class="dv">60</span>]<span class="op">,</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> <span class="dv">200</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">shape</span><span class="op">:</span> <span class="st">'circle'</span><span class="op">,</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">dims</span><span class="op">:</span> [<span class="dv">30</span>]<span class="op">,</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> <span class="dv">300</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>]<span class="op">.</span><span class="fu">concat</span>(<span class="fu">bins</span>(<span class="op">-</span><span class="dv">1000</span><span class="op">,</span> <span class="dv">1000</span><span class="op">,</span> <span class="dv">25</span>))</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> randomBlock <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>    <span class="dt">shape</span><span class="op">:</span> <span class="st">'circle'</span><span class="op">,</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>    <span class="dt">dims</span><span class="op">:</span> [<span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> <span class="fu">uniform</span>(<span class="dv">0</span><span class="op">,</span> worldWidth)<span class="op">,</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> getBallX <span class="op">=</span> <span class="kw">function</span>(world) {</span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> ball <span class="op">=</span> <span class="fu">filter</span>(<span class="kw">function</span>(obj) {</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">!</span>obj<span class="op">.</span><span class="at">static</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> world)[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> ball<span class="op">.</span><span class="at">x</span><span class="op">;</span></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> observedX <span class="op">=</span> <span class="dv">160</span><span class="op">;</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> initState <span class="op">=</span> world<span class="op">.</span><span class="fu">concat</span>([<span class="fu">randomBlock</span>()])</span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> initX <span class="op">=</span> <span class="fu">getBallX</span>(initState)<span class="op">;</span></span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> finalState <span class="op">=</span> physics<span class="op">.</span><span class="fu">run</span>(</span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a>    initState</span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> finalX <span class="op">=</span> <span class="fu">getBallX</span>(finalState)<span class="op">;</span></span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observe</span>(</span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Gaussian</span>({<span class="dt">mu</span><span class="op">:</span> finalX<span class="op">,</span> <span class="dt">sigma</span><span class="op">:</span> <span class="dv">10</span>})<span class="op">,</span></span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>    observedX</span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">initX</span><span class="op">:</span> initX}</span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> initialXDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>    <span class="dt">method</span><span class="op">:</span> <span class="st">'MCMC'</span><span class="op">,</span></span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>    <span class="dt">samples</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lag</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>    <span class="dt">callbacks</span><span class="op">:</span> [editor<span class="op">.</span><span class="fu">MCMCProgress</span>()]</span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a>  model</span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">density</span>(</span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a>  initialXDist<span class="op">,</span></span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">bounds</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">350</span>]}</span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What if the ball comes to rest at the left side, under the large circle (x about 60)? The right side?</p>
+<p>Notice that the model described above has preternatural knowledge of physics. For instance, it knows exactly how the ball will bounce of the pegs, even if there are many bounces. Do you think this is a good model of human intuition? If not, how could you change the model to capture human reasoning better?</p>
+</section>
+<section id="example-causal-inference-in-medical-diagnosis" class="level2">
+<h2 class="anchored" data-anchor-id="example-causal-inference-in-medical-diagnosis">3.7 Example: Causal Inference in Medical Diagnosis</h2>
+<p>This classic Bayesian inference task is a special case of conditioning. Kahneman and Tversky, and Gigerenzer and colleagues, have studied how people make simple judgments like the following:</p>
+<blockquote class="blockquote">
+<p>The probability of breast cancer is 1% for a woman at 40 who participates in a routine screening. If a woman has breast cancer, the probability is 80% that she will have a positive mammography. If a woman does not have breast cancer, the probability is 9.6% that she will also have a positive mammography. A woman in this age group had a positive mammography in a routine screening. What is the probability that she actually has breast cancer?</p>
+</blockquote>
+<p>What is your intuition? Many people without training in statistical inference judge the probability to be rather high, typically between 0.7 and 0.9. The correct answer is much lower, less than 0.1, as we can see by running this WebPPL inference:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> cancerDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> () {</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> breastCancer <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> positiveMammogram <span class="op">=</span> breastCancer</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="fu">flip</span>(<span class="fl">0.8</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="fu">flip</span>(<span class="fl">0.096</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(positiveMammogram)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="dt">breastCancer</span><span class="op">:</span> breastCancer}</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(cancerDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="citation" data-cites="Tversky1974">(<a href="#ref-Tversky1974" role="doc-biblioref"><strong>Tversky1974?</strong></a>)</span> named this kind of judgment error <em>base rate neglect</em>, because in order to make the correct judgment, one must realize that the key contrast is between the <em>base rate</em> of the disease, 0.01 in this case, and the <em>false alarm rate</em> or probability of a positive mammogram given no breast cancer, 0.096. The false alarm rate (or <em>FAR</em> for short) seems low compared to the probability of a positive mammogram given breast cancer (the <em>likelihood</em>), but what matters is that it is almost ten times higher than the base rate of the disease. All three of these quantities are needed to compute the probability of having breast cancer given a positive mammogram using Bayes’ rule for posterior conditional probability:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\Pr(\text{cancer} \mid \text{positive mammogram}) \\
+&amp;= \frac{
+  \Pr(\text{positive mammogram} \mid \text{cancer} )
+  \times
+  \Pr(\text{cancer})
+}{
+  \Pr(\text{positive mammogram})
+} \\
+&amp;= \frac{
+  0.8 \times 0.01
+}{
+  0.8 \times 0.01 + 0.096 \times 0.99
+} = 0.078
+\end{aligned}
+\]</span></p>
+<p><span class="citation" data-cites="Gigerenzer1995">(<a href="#ref-Gigerenzer1995" role="doc-biblioref"><strong>Gigerenzer1995?</strong></a>)</span> showed that this kind of judgment can be made much more intuitive to untrained reasoners if the relevant probabilities are presented as “natural frequencies”, or the sizes of subsets of relevant possible outcomes:</p>
+<blockquote class="blockquote">
+<p>On average, ten out of every 1000 women at age 40 who come in for a routine screen have breast cancer. Eight out of those ten women will get a positive mammography. Of the 990 women without breast cancer, 95 will also get a positive mammography. We assembled a sample of 1000 women at age 40 who participated in a routine screening. How many of those who got a positive mammography do you expect to actually have breast cancer?</p>
+</blockquote>
+<p>Now one can practically read off the answer from the problem formulation: 8 out of 103 (95+8) women in this situation will have breast cancer.</p>
+<p>Gigerenzer (along with Cosmides, Tooby and other colleagues) has argued that this formulation is easier because of evolutionary and computational considerations: human minds have evolved to count and compare natural frequencies of discrete events in the world, not to add, multiply and divide decimal probabilities. But this argument alone cannot account for the very broad human capacity for causal reasoning. We routinely make inferences for which we haven’t stored up sufficient frequencies of events observed <em>in the world.</em> (And often for which no one has told us the relevant frequencies, although perhaps we have been told about degrees of causal strength or base rates in the form of probabilities or other linguistic encoding).</p>
+<p>However, the basic idea that the mind is good at manipulating frequencies of situations, but bad at arithmetic on continuous probability values, can be extended to cope with novel situations if the frequencies that are manipulated can be frequencies of <em>imagined</em> situations. Recall that probabilistic programs explicitly give instructions for sampling imagined situations, and only implicitly specify probability distributions. If human inference is similar to a WebPPL inference then it would readily create and manipulate imagined situations, and this could explain both why the frequency framing of Bayesian probability judgment is natural to people and how people cope with rarer and more novel situations. The numbers given in the frequency formulation (or close approximations thereof) can be read off a tree of evaluation histories for 1000 calls of the WebPPL program that specifies the causal model for this problem:</p>
+<center>
+<p><img src="../assets/img/Cancer-world-tree.png" class="img-fluid" style="width:60.0%"></p>
+</center>
+<p>Each path from root to leaf of this tree represents a sequence of random choices made in evaluating the above program (the first flip for breast-cancer, the second for positive-mammogram), with the number of traversals and the sampled value labeling each edge. (Because this is 1000 <em>random</em> samples, the number are close (but not exactly) those in the Gigerenzer, et al, story.) Selecting just the 106 hypothetical cases of women with a positive mammogram, and computing the fraction of those who also have breast cancer (7/106), corresponds exactly to <code>Infer({method: 'rejection'})</code>. Thus, we have used the causal representation in the above program to manufacture frequencies which can be used to arrive at the inference that relatively few women with positive mammograms actually have breast cancer.</p>
+<p>Yet unlike the rejection sampler people are quite bad at reasoning in this scenario. Why? One answer is that people don’t represent their knowledge in quite the form of this simple program. Indeed, <span class="citation" data-cites="Krynski2007">(<a href="#ref-Krynski2007" role="doc-biblioref"><strong>Krynski2007?</strong></a>)</span> have argued that human statistical judgment is fundamentally based on conditioning more explicit causal models: they suggested that “base rate neglect” and other judgment errors may occur when people are given statistical information that cannot be easily mapped to the parameters of the causal models they intuitively adopt to describe the situation. In the above example, they suggested that the notion of a false alarm rate is not intuitive to many people—particularly when the false alarm rate is ten times higher than the base rate of the disease that the test is intended to diagnose! They showed that “base rate neglect” could be eliminated by reformulating the breast cancer problem in terms of more intuitive causal models. For example, consider their version of the breast cancer problem (the exact numbers and wording differed slightly):</p>
+<blockquote class="blockquote">
+<p>1% of women at age 40 who participate in a routine screening will have breast cancer. Of those with breast cancer, 80% will receive a positive mammogram. 20% of women at age 40 who participate in a routine screening will have a benign cyst. Of those with a benign cyst, 50% will receive a positive mammogram due to unusually dense tissue of the cyst. All others will receive a negative mammogram. Suppose that a woman in this age group has a positive mammography in a routine screening. What is the probability that she actually has breast cancer?</p>
+</blockquote>
+<p>This question is easy for people to answer—empirically, just as easy as the frequency-based formulation given above. We may conjecture this is because the relevant frequencies can be computed from a simple inference on the following more intuitive causal model:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> cancerDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> () {</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> breastCancer <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> benignCyst <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.2</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> positiveMammogram <span class="op">=</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      (breastCancer <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.8</span>))</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (benignCyst <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(positiveMammogram)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="dt">breastCancer</span><span class="op">:</span> breastCancer}</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(cancerDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Because this causal model—this WebPPL program—is more intuitive to people, they can imagine the appropriate situations, despite having been given percentages rather than frequencies. What makes this causal model more intuitive than the one above with an explicitly specified false alarm rate? Essentially we have replaced probabilistic dependencies on the “non-occurrence” of events (e.g., the dependence of a positive mammogram on <em>not</em> having breast cancer) with dependencies on explicitly specified alternative causes for observed effects (e.g., the dependence of a positive mammogram on having a benign cyst).</p>
+<p>A causal model framed in this way can scale up to significantly more complex situations. Recall our more elaborate medical diagnosis network from the previous section, which was also framed in this way using noisy-logical functions to describe the dependence of symptoms on disease:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> () {</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungCancer <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> TB <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.005</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.2</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> stomachFlu <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.1</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> other <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.1</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>)) <span class="op">||</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>      (lungCancer <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>)) <span class="op">||</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>      (TB <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.7</span>)) <span class="op">||</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>      (other <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>)) <span class="op">||</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>      (stomachFlu <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>)) <span class="op">||</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>      (TB <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>)) <span class="op">||</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>      (other <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>      (lungCancer <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.4</span>)) <span class="op">||</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>      (TB <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>)) <span class="op">||</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>      (other <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>      (lungCancer <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.4</span>)) <span class="op">||</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>      (TB <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>)) <span class="op">||</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>      (other <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>      cough <span class="op">&amp;&amp;</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>      fever <span class="op">&amp;&amp;</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>      chestPain <span class="op">&amp;&amp;</span></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>      shortnessOfBreath</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="dt">lungCancer</span><span class="op">:</span> lungCancer<span class="op">,</span> <span class="dt">TB</span><span class="op">:</span> TB}</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can use this model to infer conditional probabilities for any subset of diseases conditioned on any pattern of symptoms.</p>
+<p>Try varying the symptoms in the conditioning set or the diseases in the inference, and see how the model’s inferences compare with your intuitions.</p>
+<p>For example, what happens to inferences about lung cancer and TB in the above model if you remove chest pain and shortness of breath as symptoms? (Why? Consider the alternative explanations.)</p>
+<p>More generally, we can condition on any set of events – any combination of symptoms and diseases – and query any others. We can also condition on the negation of an event (using the JavaScript negation operator <code>!</code>): how does the probability of lung cancer (versus TB) change if we observe that the patient does <em>not</em> have a fever (i.e.&nbsp;<code>condition(!fever)</code>), does <em>not</em> have a cough, or does not have either symptom?</p>
+<p>As we discussed above, WebPPL program thus effectively encodes the answers to a very large number of possible questions in a very compact form. In the program above, there are <span class="math inline">\(3^9=19683\)</span> possible simple conditions corresponding to conjunctions of events or their negations (because the program has 9 stochastic Boolean-valued functions, each of which can be observed true, observed false, or not observed). Then for each of those conditions there are a roughly comparable number of queries, corresponding to all the possible conjunctions of variables that can be in the return value expression. This makes the total number of simple questions encoded on the order of 100 million.</p>
+<p>We are beginning to see the sense in which probabilistic programming provides the foundations for constructing a <em>language of thought</em>, as described in the Introduction: a finite system of knowledge that compactly and efficiently supports an infinite number of inference and decision tasks.</p>
+<p>Expressing our knowledge as a probabilistic program of this form also makes it easy to add in new relevant knowledge we may acquire, without altering or interfering with what we already know. For instance, suppose we decide to consider behavioral and demographic factors that might contribute causally to whether a patient has a given disease:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> () {</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> worksInHospital <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.2</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungCancer <span class="op">=</span> (</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.02</span>))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> TB <span class="op">=</span> (</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.005</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (worksInHospital <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> (</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.2</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (worksInHospital <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.25</span>))</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> stomachFlu <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.1</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> other <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.1</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>)) <span class="op">||</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>      (lungCancer <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>)) <span class="op">||</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>      (TB <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.7</span>)) <span class="op">||</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>      (other <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>)) <span class="op">||</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>      (stomachFlu <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>)) <span class="op">||</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>      (TB <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>)) <span class="op">||</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>      (other <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>      (lungCancer <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.4</span>)) <span class="op">||</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>      (TB <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>)) <span class="op">||</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>      (other <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>      (lungCancer <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.4</span>)) <span class="op">||</span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>      (TB <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>)) <span class="op">||</span></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>      (other <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.01</span>))</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>      cough</span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>      <span class="op">&amp;&amp;</span> chestPain</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>      <span class="op">&amp;&amp;</span> shortnessOfBreath</span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="dt">lungCancer</span><span class="op">:</span> lungCancer<span class="op">,</span> <span class="dt">TB</span><span class="op">:</span> TB}</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Under this model, a patient with coughing, chest pain and shortness of breath is likely to have either lung cancer or TB. Modify the above code to see how these conditional inferences shift if you also know that the patient smokes or works in a hospital (where they could be exposed to various infections, including many worse infections than the typical person encounters). More generally, the causal structure of knowledge representation in a probabilistic program allows us to model intuitive theories that can grow in complexity continually over a lifetime, adding new knowledge without bound.</p>
 
 
 
-</main> <!-- /main -->
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-marr_vision_1982" class="csl-entry" role="listitem">
+Marr, David. 1982. <em><a href="https://www.dropbox.com/scl/fi/pyy2de8c8nyjmxiakclmi/David-Marr-Vision_-A-Computational-Investigation.pdf?rlkey=o42tpwng7c6rr22lkp3asgbiu&amp;dl=1">Vision: <span>A Computational Investigation</span> into the <span>Human Representation</span> and <span>Processing</span> of <span>Visual Information</span></a></em>. MIT Press.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>There are special cases when only one definition makes sense. For instance, when continuous random choices are used it is possible to find situations where rejection sampling almost never returns a sample but the conditional distribution is still well defined. Why?<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -862,18 +1765,24 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../ch02/index.html" class="pagination-link" aria-label="2. Generative Models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2. Generative Models</span>
+      <a href="../ch02/exercises.html" class="pagination-link" aria-label="Exercises">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exercises</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../ch04/index.html" class="pagination-link" aria-label="4. Causal and Statistical Dependence">
-        <span class="nav-page-text">4. Causal and Statistical Dependence</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../ch03/exercises.html" class="pagination-link" aria-label="Exercises">
+        <span class="nav-page-text">Exercises</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch03/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer><script src="../assets/js/webppl.min.js"></script><script src="../assets/js/webppl-viz.min.js"></script><script src="../assets/js/webppl-editor.min.js"></script><script src="../assets/js/paper-full.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch03/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer><script src="../assets/js/box2d.js"></script>
+<script src="../assets/js/physics.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('pre').forEach((elt) => editor.setup(elt, {language:'webppl'}))
+});
+</script>
 
 
 
