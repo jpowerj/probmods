@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -47,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-8d28ae19919d5c67af76f2443fb22f33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3400fdbd8bae38ba2006f86cab23685c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,7 +112,17 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script><link rel="stylesheet" href="../assets/css/webppl-editor.css"><link rel="stylesheet" href="../assets/css/webppl-viz.css"><script src="../assets/js/webppl.min.js"></script><script src="../assets/js/webppl-viz.min.js"></script><script src="../assets/js/webppl-editor.min.js" defer=""></script><script src="../assets/js/paper-full.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<script src="../sidebar.js"></script>
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin="">
+<link href="https://googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap&quot; rel=&quot;stylesheet">
+<link rel="stylesheet" href="../assets/css/webppl-editor.css">
+<link rel="stylesheet" href="../assets/css/webppl-viz.css">
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js" defer=""></script>
+<script src="../assets/js/paper-full.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -512,17 +557,17 @@ window.Quarto = {
   <ul>
   <li><a href="#exercise-5.1-epidemiology" id="toc-exercise-5.1-epidemiology" class="nav-link active" data-scroll-target="#exercise-5.1-epidemiology">Exercise 5.1: Epidemiology</a>
   <ul class="collapse">
-  <li><a href="#a" id="toc-a" class="nav-link" data-scroll-target="#a">a)</a></li>
-  <li><a href="#b" id="toc-b" class="nav-link" data-scroll-target="#b">b)</a></li>
+  <li><a href="#question-5.1.1" id="toc-question-5.1.1" class="nav-link" data-scroll-target="#question-5.1.1">Question 5.1.1</a></li>
+  <li><a href="#question-5.1.2" id="toc-question-5.1.2" class="nav-link" data-scroll-target="#question-5.1.2">Question 5.1.2</a></li>
   </ul></li>
-  <li><a href="#exercise-2-are-they-independent" id="toc-exercise-2-are-they-independent" class="nav-link" data-scroll-target="#exercise-2-are-they-independent">Exercise 2: Are they independent?</a>
+  <li><a href="#exercise-5.2-are-they-independent" id="toc-exercise-5.2-are-they-independent" class="nav-link" data-scroll-target="#exercise-5.2-are-they-independent">Exercise 5.2: Are They Independent?</a>
   <ul class="collapse">
-  <li><a href="#a-1" id="toc-a-1" class="nav-link" data-scroll-target="#a-1">a)</a></li>
-  <li><a href="#b-1" id="toc-b-1" class="nav-link" data-scroll-target="#b-1">b)</a></li>
-  <li><a href="#c" id="toc-c" class="nav-link" data-scroll-target="#c">c)</a></li>
-  <li><a href="#d" id="toc-d" class="nav-link" data-scroll-target="#d">d)</a></li>
-  <li><a href="#e" id="toc-e" class="nav-link" data-scroll-target="#e">e)</a></li>
-  <li><a href="#f" id="toc-f" class="nav-link" data-scroll-target="#f">f)</a></li>
+  <li><a href="#question-5.2.1" id="toc-question-5.2.1" class="nav-link" data-scroll-target="#question-5.2.1">Question 5.2.1</a></li>
+  <li><a href="#question-5.2.2" id="toc-question-5.2.2" class="nav-link" data-scroll-target="#question-5.2.2">Question 5.2.2</a></li>
+  <li><a href="#question-5.2.3" id="toc-question-5.2.3" class="nav-link" data-scroll-target="#question-5.2.3">Question 5.2.3</a></li>
+  <li><a href="#question-5.2.4" id="toc-question-5.2.4" class="nav-link" data-scroll-target="#question-5.2.4">Question 5.2.4</a></li>
+  <li><a href="#question-5.2.5" id="toc-question-5.2.5" class="nav-link" data-scroll-target="#question-5.2.5">Question 5.2.5</a></li>
+  <li><a href="#question-5.2.6" id="toc-question-5.2.6" class="nav-link" data-scroll-target="#question-5.2.6">Question 5.2.6</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch05/exercises.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="exercises.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -552,93 +597,164 @@ window.Quarto = {
 
 <section id="exercise-5.1-epidemiology" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-5.1-epidemiology">Exercise 5.1: Epidemiology</h2>
-<p>Imagine that you are an epidemiologist and you are determining people’s cause of death. In this simplified world, there are two main diseases, cancer and the common cold. People rarely have cancer, <span class="math display">\[p( \text{cancer}) = 0.00001\]</span>. People are much more likely to have a common cold, <span class="math display">\[p( \text{cold} ) = 0.2\]</span>. When people do have cancer, it is often fatal, <span class="math display">\[p( \text{death} \mid \text{cancer, no cold} ) = 0.9\]</span>. Having a cold is rarely fatal, <span class="math display">\[p( \text{death} \mid \text{cold, no cancer} ) = 0.00006\]</span>, but having cancer and a cold is slightly more deadly than having cancer alone, <span class="math display">\[p(\text{death} \mid \text{cold, cancer}) = 0.91\]</span>. Very rarely, people also die of other causes, <span class="math display">\[p(\text{death} \mid \text{no cold, no cancer}) = 0.000000001\]</span>.</p>
-<p>Write this model in WebPPL and use <code>Infer</code> to answer these questions (Be sure to include your code in your answer):</p>
-<section id="a" class="level3">
-<h3 class="anchored" data-anchor-id="a">a)</h3>
-<p>Compute <span class="math display">\[p( \text{cancer} \mid \text{death} , \text{cold} )\]</span> and <span class="math display">\[p( \text{cancer} \mid \text{death} , \text{no cold} )\]</span>. How do these probabilities compare to <span class="math display">\[p( \text{cancer} \mid \text{death} )\]</span> and <span class="math display">\[p( \text{cancer} )\]</span>? Using these probabilities, give an example of explaining away.</p>
-<pre><code>display("prior")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));</code></pre>
-<pre><code>display("death")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));</code></pre>
-<pre><code>display("death and cold")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));</code></pre>
-<pre><code>display("death and no cold")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));</code></pre>
+<p>Imagine that you are an epidemiologist and you are determining people’s cause of death.</p>
+<p>In this simplified world, there are two main diseases, cancer and the common cold.</p>
+<ul>
+<li>People rarely have cancer, <span class="math inline">\(\Pr(\textsf{Cancer}) = 0.00001\)</span>.</li>
+<li>People are much more likely to have a common cold: <span class="math inline">\(\Pr( \textsf{Cold} ) = 0.2\)</span>.</li>
+<li>When people do have cancer, it is often fatal: <span class="math inline">\(\Pr( \textsf{Death} \mid \textsf{Cancer}, \neg \textsf{Cold} ) = 0.9\)</span>.</li>
+<li>Having a cold is rarely fatal: <span class="math inline">\(\Pr( \textsf{Death} \mid \textsf{Cold}, \neg \textsf{Cancer} ) = 0.00006\)</span></li>
+<li>But having cancer and a cold is slightly more deadly than having cancer alone: <span class="math inline">\(\Pr(\textsf{Death} \mid \textsf{Cold}, \textsf{Cancer}) = 0.91\)</span>.</li>
+<li>Very rarely, people also die of other causes: <span class="math inline">\(\Pr(\textsf{Death} \mid \neg\textsf{Cold}, \neg\textsf{Cancer}) = 0.000000001\)</span>.</li>
+</ul>
+<p>Write this model in WebPPL and use <code>Infer</code> to answer the following questions (Be sure to include your code in your answer):</p>
+<section id="question-5.1.1" class="level3">
+<h3 class="anchored" data-anchor-id="question-5.1.1">Question 5.1.1</h3>
+<p>Compute <span class="math inline">\(\Pr( \textsf{Cancer} \mid \textsf{Death} , \textsf{Cold} )\)</span> and <span class="math inline">\(\Pr( \textsf{Cancer} \mid \textsf{Death} , \neg\textsf{Cold} )\)</span>.</p>
+<p>How do these probabilities compare to <span class="math inline">\(\Pr( \textsf{Cancer} \mid \textsf{Death} )\)</span> and <span class="math inline">\(\Pr( \textsf{Cancer} )\)</span>?</p>
+<p>Using these probabilities, give an example of explaining away.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"Prior:"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"Death:"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"Death and Cold:"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"Death and No Cold:"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="b" class="level3">
-<h3 class="anchored" data-anchor-id="b">b)</h3>
-<p>Compute <span class="math display">\[p( \text{cold} \mid \text{death} , \text{cancer} )\]</span> and <span class="math display">\[p( \text{cold} \mid \text{death} , \text{no cancer} )\]</span>. How do these probabilities compare to <span class="math display">\[p( \text{cold} \mid \text{death} )\]</span> and <span class="math display">\[p( \text{cold} )\]</span>? Using these probabilities, give an example of explaining away.</p>
-<pre><code>display("prior")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));</code></pre>
-<pre><code>display("death")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));</code></pre>
-<pre><code>display("death and cancer")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));</code></pre>
-<pre><code>display("death and no cancer")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));</code></pre>
+<section id="question-5.1.2" class="level3">
+<h3 class="anchored" data-anchor-id="question-5.1.2">Question 5.1.2</h3>
+<p>Compute <span class="math inline">\(\Pr( \textsf{Cold} \mid \textsf{Death} , \textsf{Cancer} )\)</span> and <span class="math inline">\(\Pr( \textsf{Cold} \mid \textsf{Death} , \neg\textsf{Cancer} )\)</span>.</p>
+<p>How do these probabilities compare to <span class="math inline">\(\Pr( \textsf{Cold} \mid \textsf{Death} )\)</span> and <span class="math inline">\(\Pr( \textsf{Cold} )\)</span>?</p>
+<p>Using these probabilities, give an example of explaining away.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"Prior:"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"Death:"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"Death and Cancer:"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"Death and No Cancer:"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="exercise-2-are-they-independent" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-are-they-independent">Exercise 2: Are they independent?</h2>
-<p>For each question, determine whether the relevant variables are independent in the given Bayes net. Grey nodes represent observed variables while white nodes represent unobserved variables.</p>
-<section id="a-1" class="level3">
-<h3 class="anchored" data-anchor-id="a-1">a)</h3>
-<p>Are A and B independent?</p>
-<center>
-<img src="../assets/img/bayes-net-q1.png" width="30%" height="30%">
-</center>
+<section id="exercise-5.2-are-they-independent" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5.2-are-they-independent">Exercise 5.2: Are They Independent?</h2>
+<p>For each question, determine whether the relevant variables are independent in the given Bayes Net. Here, grey nodes represent <em>observed</em> variables while white nodes represent <em>unobserved</em> variables.</p>
+<section id="question-5.2.1" class="level3">
+<h3 class="anchored" data-anchor-id="question-5.2.1">Question 5.2.1</h3>
+<p>Are <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/img/bayes-net-q1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Bayes Net for Question 5.2.1</figcaption>
+</figure>
+</div>
 </section>
-<section id="b-1" class="level3">
-<h3 class="anchored" data-anchor-id="b-1">b)</h3>
-<p>Are A and B independent?</p>
-<center>
-<img src="../assets/img/bayes-net-q2.png" width="30%" height="30%">
-</center>
+<section id="question-5.2.2" class="level3">
+<h3 class="anchored" data-anchor-id="question-5.2.2">Question 5.2.2</h3>
+<p>Are <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/img/bayes-net-q2.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Bayes Net for Question 5.2.2</figcaption>
+</figure>
+</div>
 </section>
-<section id="c" class="level3">
-<h3 class="anchored" data-anchor-id="c">c)</h3>
-<p>Are A and C independent?</p>
-<center>
-<img src="../assets/img/bayes-net-q3.png" width="30%" height="30%">
-</center>
+<section id="question-5.2.3" class="level3">
+<h3 class="anchored" data-anchor-id="question-5.2.3">Question 5.2.3</h3>
+<p>Are <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> independent?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/img/bayes-net-q3.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Bayes Net for Question 5.2.3</figcaption>
+</figure>
+</div>
 </section>
-<section id="d" class="level3">
-<h3 class="anchored" data-anchor-id="d">d)</h3>
-<p>Are B and C independent?</p>
-<center>
-<img src="../assets/img/bayes-net-q4.png" width="30%" height="30%">
-</center>
+<section id="question-5.2.4" class="level3">
+<h3 class="anchored" data-anchor-id="question-5.2.4">Question 5.2.4</h3>
+<p>Are <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> independent?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/img/bayes-net-q4.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Bayes Net for Question 5.2.4</figcaption>
+</figure>
+</div>
 </section>
-<section id="e" class="level3">
-<h3 class="anchored" data-anchor-id="e">e)</h3>
-<p>Are B and C independent?</p>
-<center>
-<img src="../assets/img/bayes-net-q5.png" width="30%" height="30%">
-</center>
+<section id="question-5.2.5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5.2.5">Question 5.2.5</h3>
+<p>Are <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> independent?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/img/bayes-net-q5.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Bayes Net for Question 5.2.5</figcaption>
+</figure>
+</div>
 </section>
-<section id="f" class="level3">
-<h3 class="anchored" data-anchor-id="f">f)</h3>
-<p>Are A and B independent?</p>
-<center>
-<img src="../assets/img/bayes-net-q6.png" width="30%" height="30%">
-</center>
+<section id="question-5.2.6" class="level3">
+<h3 class="anchored" data-anchor-id="question-5.2.6">Question 5.2.6</h3>
+<p>Are <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/img/bayes-net-q6.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Bayes Net for Question 5.2.6</figcaption>
+</figure>
+</div>
 
 
 </section>

@@ -1,0 +1,13 @@
+include-after-body:
+  text: |
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let jsBlocks = Array.from(document.querySelectorAll('pre'))
+      jsBlocks
+        .filter((elt) => !elt.classList.contains('plaintext')) 
+        .forEach(
+          (elt) => editor.setup(elt, {language:'webppl'})
+        )
+      }
+    )
+    </script>

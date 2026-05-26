@@ -13,118 +13,166 @@ include-after-body:
 ## Exercise 5.1: Epidemiology
 
 Imagine that you are an epidemiologist and you are determining people's cause of death.
+
 In this simplified world, there are two main diseases, cancer and the common cold.
-People rarely have cancer, $$p( \text{cancer}) = 0.00001$$. People are much more likely to have a common cold, $$p( \text{cold} ) = 0.2$$.
-When people do have cancer, it is often fatal, $$p( \text{death} \mid \text{cancer, no cold} ) = 0.9$$.
-Having a cold is rarely fatal, $$p( \text{death} \mid \text{cold, no cancer} ) = 0.00006$$, but having cancer and a cold is slightly more deadly than having cancer alone, $$p(\text{death} \mid \text{cold, cancer}) = 0.91$$.
-Very rarely, people also die of other causes, $$p(\text{death} \mid \text{no cold, no cancer}) = 0.000000001$$.
 
-Write this model in WebPPL and use `Infer` to answer these questions (Be sure to include your code in your answer):
+* People rarely have cancer, $\Pr(\textsf{Cancer}) = 0.00001$. 
+* People are much more likely to have a common cold: $\Pr( \textsf{Cold} ) = 0.2$.
+* When people do have cancer, it is often fatal: $\Pr( \textsf{Death} \mid \textsf{Cancer}, \neg \textsf{Cold} ) = 0.9$.
+* Having a cold is rarely fatal: $\Pr( \textsf{Death} \mid \textsf{Cold}, \neg \textsf{Cancer} ) = 0.00006$
+* But having cancer and a cold is slightly more deadly than having cancer alone: $\Pr(\textsf{Death} \mid \textsf{Cold}, \textsf{Cancer}) = 0.91$.
+* Very rarely, people also die of other causes: $\Pr(\textsf{Death} \mid \neg\textsf{Cold}, \neg\textsf{Cancer}) = 0.000000001$.
 
-### a)
+Write this model in WebPPL and use `Infer` to answer the following questions (Be sure to include your code in your answer):
 
-Compute $$p( \text{cancer} \mid \text{death} , \text{cold} )$$ and $$p( \text{cancer} \mid \text{death} , \text{no cold} )$$.
-How do these probabilities compare to $$p( \text{cancer} \mid \text{death} )$$ and $$p( \text{cancer} )$$?
+### Question 5.1.1
+
+Compute $\Pr( \textsf{Cancer} \mid \textsf{Death} , \textsf{Cold} )$ and $\Pr( \textsf{Cancer} \mid \textsf{Death} , \neg\textsf{Cold} )$.
+
+How do these probabilities compare to $\Pr( \textsf{Cancer} \mid \textsf{Death} )$ and $\Pr( \textsf{Cancer} )$?
+
 Using these probabilities, give an example of explaining away.
 
-~~~~ 
-display("prior")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));
-~~~~
+```{.js}
+display("Prior:")
+viz.table(
+  Infer(
+    {method: 'enumerate'},
+    function() {
+      ...
+    }
+  )
+)
+```
 
-~~~~
-display("death")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));
-~~~~
+```{.js}
+display("Death:")
+viz.table(
+  Infer(
+    {method: 'enumerate'},
+    function() {
+      ...
+    }
+  )
+)
+```
 
-~~~~
-display("death and cold")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));
-~~~~
+```{.js}
+display("Death and Cold:")
+viz.table(
+  Infer(
+    {method: 'enumerate'},
+    function() {
+      ...
+    }
+  )
+)
+```
 
-~~~~
-display("death and no cold")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));
-~~~~
+```{.js}
+display("Death and No Cold:")
+viz.table(
+  Infer(
+    {method: 'enumerate'},
+    function() {
+      ...
+    }
+  )
+)
+```
 
-### b)
+### Question 5.1.2
 
-Compute $$p( \text{cold} \mid \text{death} , \text{cancer} )$$ and $$p( \text{cold} \mid \text{death} , \text{no cancer} )$$.
-How do these probabilities compare to $$p( \text{cold} \mid \text{death} )$$ and $$p( \text{cold} )$$?
+Compute $\Pr( \textsf{Cold} \mid \textsf{Death} , \textsf{Cancer} )$ and $\Pr( \textsf{Cold} \mid \textsf{Death} , \neg\textsf{Cancer} )$.
+
+How do these probabilities compare to $\Pr( \textsf{Cold} \mid \textsf{Death} )$ and $\Pr( \textsf{Cold} )$?
+
 Using these probabilities, give an example of explaining away.
 
-~~~~ 
-display("prior")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));
-~~~~
+```{.js}
+display("Prior:")
+viz.table(
+  Infer(
+    {method: 'enumerate'},
+    function() {
+      ...
+    }
+  )
+)
+```
 
-~~~~
-display("death")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));
-~~~~
+```{.js}
+display("Death:")
+viz.table(
+  Infer(
+    {method: 'enumerate'},
+    function() {
+      ...
+    }
+  )
+)
+```
 
-~~~~
-display("death and cancer")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));
-~~~~
+```{.js}
+display("Death and Cancer:")
+viz.table(
+  Infer(
+    {method: 'enumerate'},
+    function() {
+      ...
+    }
+  )
+)
+```
 
-~~~~
-display("death and no cancer")
-viz.table(Infer({method: 'enumerate'}, function() {
-  ...
-}));
-~~~~
+```{.js}
+display("Death and No Cancer:")
+viz.table(
+  Infer(
+    {method: 'enumerate'},
+    function() {
+      ...
+    }
+  )
+)
+```
 
-## Exercise 2: Are they independent?
+## Exercise 5.2: Are They Independent?
 
-For each question, determine whether the relevant variables are independent in the given Bayes net. Grey nodes represent observed variables while white nodes represent unobserved variables.
+For each question, determine whether the relevant variables are independent in the given Bayes Net. Here, grey nodes represent *observed* variables while white nodes represent *unobserved* variables.
 
-### a)
+### Question 5.2.1
 
-Are A and B independent?
+Are $A$ and $B$ independent?
 
-<center><img src="../assets/img/bayes-net-q1.png" width="30%" height="30%" ></center>
+![Bayes Net for Question 5.2.1](../assets/img/bayes-net-q1.png){fig-align="center" width="50%"}
 
-### b)
+### Question 5.2.2
 
-Are A and B independent?
+Are $A$ and $B$ independent?
 
-<center><img src="../assets/img/bayes-net-q2.png" width="30%" height="30%" ></center>
+![Bayes Net for Question 5.2.2](../assets/img/bayes-net-q2.png){fig-align="center" width="50%"}
 
-### c)
+### Question 5.2.3
 
-Are A and C independent?
+Are $A$ and $C$ independent?
 
-<center><img src="../assets/img/bayes-net-q3.png" width="30%" height="30%" ></center>
+![Bayes Net for Question 5.2.3](../assets/img/bayes-net-q3.png){fig-align="center" width="50%"}
 
-### d)
+### Question 5.2.4
 
-Are B and C independent?
+Are $B$ and $C$ independent?
 
-<center><img src="../assets/img/bayes-net-q4.png" width="30%" height="30%" ></center>
+![Bayes Net for Question 5.2.4](../assets/img/bayes-net-q4.png){fig-align="center" width="50%"}
 
-### e)
+### Question 5.2.5
 
-Are B and C independent?
+Are $B$ and $C$ independent?
 
-<center><img src="../assets/img/bayes-net-q5.png" width="30%" height="30%" ></center>
+![Bayes Net for Question 5.2.5](../assets/img/bayes-net-q5.png){fig-align="center" width="50%"}
 
-### f)
+### Question 5.2.6
 
-Are A and B independent?
+Are $A$ and $B$ independent?
 
-<center><img src="../assets/img/bayes-net-q6.png" width="30%" height="30%" ></center>
+![Bayes Net for Question 5.2.6](../assets/img/bayes-net-q6.png){fig-align="center" width="50%"}

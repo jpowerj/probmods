@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -47,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-8d28ae19919d5c67af76f2443fb22f33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3400fdbd8bae38ba2006f86cab23685c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,7 +112,17 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script><link rel="stylesheet" href="../assets/css/webppl-editor.css"><link rel="stylesheet" href="../assets/css/webppl-viz.css"><script src="../assets/js/webppl.min.js"></script><script src="../assets/js/webppl-viz.min.js"></script><script src="../assets/js/webppl-editor.min.js" defer=""></script><script src="../assets/js/paper-full.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<script src="../sidebar.js"></script>
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin="">
+<link href="https://googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap&quot; rel=&quot;stylesheet">
+<link rel="stylesheet" href="../assets/css/webppl-editor.css">
+<link rel="stylesheet" href="../assets/css/webppl-viz.css">
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js" defer=""></script>
+<script src="../assets/js/paper-full.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -589,43 +634,47 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="exercise-2.1">Exercise 2.1</h2>
 <section id="question-2.1.1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.1.1">Question 2.1.1</h3>
-<p>Show mathematically that the marginal distribution on return values for these three programs is the same by directly computing the probability using the rules of probability (hint: write down each possible history of random choices for each program).</p>
-<pre><code>flip() ? flip(.7) : flip(.1)</code></pre>
-<pre><code>flip(flip() ? .7 : .1)</code></pre>
-<pre><code>flip(.4)</code></pre>
+<p>Show mathematically that the marginal distribution on return values for these three programs is the same by directly computing the probability using the rules of probability.</p>
+<p>(<em>Hint</em>: write down each possible history of random choices for each program).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flip</span>() <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">7</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flip</span>(<span class="fu">flip</span>() <span class="op">?</span> <span class="op">.</span><span class="dv">7</span> <span class="op">:</span> <span class="op">.</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flip</span>(<span class="op">.</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.2.2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.2.2">Question 2.2.2</h3>
 <p>Check your answers by sampling from the programs, 1000 times each, and plotting the results.</p>
-<pre><code></code></pre>
-<pre><code></code></pre>
-<pre><code></code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.2.3" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.2.3">Question 2.2.3</h3>
 <p>Write another new program with the same marginal distribution on return values that looks different from all of the above programs.</p>
-<pre><code></code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="exercise-2.2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2.2">Exercise 2.2</h2>
 <section id="question-2.2.1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.2.1">Question 2.2.1</h3>
-<p>Explain why (in terms of the evaluation process) these two programs give different answers (i.e.&nbsp;have different distributions on return values).</p>
-<pre><code>var foo = flip()
-display([foo, foo, foo])</code></pre>
-<pre><code>var foo = function() { return flip() }
-display([foo(), foo(), foo()])</code></pre>
+<p>Explain why (in terms of the evaluation process) these two programs give different answers (i.e., why they have different distributions on return values).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> foo <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([foo<span class="op">,</span> foo<span class="op">,</span> foo])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> foo <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">flip</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([<span class="fu">foo</span>()<span class="op">,</span> <span class="fu">foo</span>()<span class="op">,</span> <span class="fu">foo</span>()])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.2.2-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.2.2-1">Question 2.2.2</h3>
 <p>Modify the second program using <code>mem</code> so that it has the same distribution as the first program.</p>
-<pre><code></code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.2.3-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.2.3-1">Question 2.2.3</h3>
-<p>Change the program in Part B so that the first two elements in the list are always the same as each other, but the third element can be different. <em>Optional challenge:</em> try to do this by adding only these 4 characters: <code>x</code>, <code>0</code>, <code>0</code>, and <code>1</code>.</p>
-<pre><code></code></pre>
+<p>Change the program in Question 2.2.2 so that the first two elements in the list are always the same as each other, but the third element can be different.</p>
+<p>(<em>Optional challenge:</em> try to do this by adding only these 4 characters: <code>x</code>, <code>0</code>, <code>0</code>, and <code>1</code>.)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="exercise-2.3" class="level2">
@@ -633,23 +682,28 @@ display([foo(), foo(), foo()])</code></pre>
 <section id="question-2.3.1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.3.1">Question 2.3.1</h3>
 <p>Which of these programs would be more likely to generate the following proportions for 100 values of C? Justify your response.</p>
-<center>
-<img src="../assets/img/flip0.7.svg">
-</center>
-<pre><code>// Program "A"
-var A = flip()
-var B = flip(0.9)
-var C = flip() ? A &amp;&amp; B : A || B
-display([A, B, C])</code></pre>
-<pre><code>// Program "B"
-var A = flip(0.9);
-var B = A &amp;&amp; flip(0.9)
-var C = B &amp;&amp; flip(0.9)
-display([A, B, C])</code></pre>
+<div class="quarto-figure quarto-figure-center" style="background-color: white">
+<figure class="figure">
+<p><img src="../assets/img/flip0.7.svg" class="img-fluid figure-img" data-align="center"></p>
+<figcaption><span style="color: black">Histogram for Q2.3.1</span></figcaption>
+</figure>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Program "A"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.9</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> A <span class="op">&amp;&amp;</span> B</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> A <span class="op">||</span> B</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([A<span class="op">,</span> B<span class="op">,</span> C])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Program "B"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.9</span>)<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> A <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.9</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> C <span class="op">=</span> B <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.9</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([A<span class="op">,</span> B<span class="op">,</span> C])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.3.2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.3.2">Question 2.3.2</h3>
-<p>Could the program you did <em>not</em> choose in Q2.3.1 have <em>also</em> generated those return values? Explain.</p>
+<p>Could the program you did <em>not</em> choose in Question 2.3.1 have <em>also</em> generated those return values? Explain.</p>
 </section>
 </section>
 <section id="exercise-2.4" class="level2">
@@ -658,74 +712,86 @@ display([A, B, C])</code></pre>
 <section id="question-2.4.1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.4.1">Question 2.4.1</h3>
 <p>Let’s look at just two common conditions (a cold and allergies) and just two symptoms (sneeze and fever), and let’s assume that symptoms are deterministic.</p>
-<pre><code>var allergies = flip(0.3)
-var cold = flip(0.2)
-
-var sneeze = cold || allergies
-var fever = cold
-
-display([sneeze, fever])</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> allergies <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.3</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.2</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sneeze <span class="op">=</span> cold <span class="op">||</span> allergies</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> fever <span class="op">=</span> cold</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([sneeze<span class="op">,</span> fever])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Under this model, what is the probability that the patient is sneezing? What is the probability that the patient is sneezing <em>and</em> has a fever?</p>
 </section>
 <section id="question-2.4.2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.4.2">Question 2.4.2</h3>
-<p>Inspect the joint probability distributions of <code>sneeze</code> and <code>fever</code> using <code>Infer</code>.</p>
-<pre><code>Infer({method: "forward", samples: 1000}, function() {
-  ...
-  return { ... }
-})</code></pre>
+<p>Update the following code to inspect the joint probability distributions of <code>sneeze</code> and <code>fever</code> using <code>Infer</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Infer</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">"forward"</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span> <span class="dv">1000</span>}<span class="op">,</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> { <span class="op">...</span> }</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.4.3" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.4.3">Question 2.4.3</h3>
 <p>If we wanted to represent the diseases of many patients we might have tried to make each disease and symptom into a function from a person to whether they have that disease, like this:</p>
-<pre><code>var allergies = function(person) { return flip(.3) }
-var cold = function(person) { return flip(.2) }
-
-var sneeze = function(person) { return cold(person) || allergies(person) }
-
-display([sneeze('bob'), sneeze('alice')])</code></pre>
-<p>Add <code>fever</code> to the program above, and use <code>Infer</code> to inspect the probability distribution over Bob’s symptoms. Is this the same probability distribution that you computed for the single patient in Part A? If not, what can you do to fix this program to capture our intuitions correctly?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> allergies <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">3</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> cold <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sneeze <span class="op">=</span> <span class="kw">function</span>(person) {</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">cold</span>(person) <span class="op">||</span> <span class="fu">allergies</span>(person)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([<span class="fu">sneeze</span>(<span class="st">'bob'</span>)<span class="op">,</span> <span class="fu">sneeze</span>(<span class="st">'alice'</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Add <code>fever</code> to the program above, and use <code>Infer</code> to inspect the probability distribution over Bob’s symptoms. Is this the same probability distribution that you computed for the single patient in Question 2.4.1? If not, what can you do to fix this program to capture our intuitions correctly?</p>
 </section>
 </section>
 <section id="exercise-2.5" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2.5">Exercise 2.5</h2>
-<p>Work through the evaluation process for the <code>bend</code> higher-order function in this example:</p>
-<pre><code>var makeCoin = function(weight) {
-  return function() {
-    return flip(weight) ? 'h' : 't'
-  }
-}
-var bend = function(coin) {
-  return function() {
-    return coin() == 'h' ? makeCoin(.7)() : makeCoin(.1)()
-  }
-}
-
-var fairCoin = makeCoin(.5)
-var bentCoin = bend(fairCoin)</code></pre>
+<p>In this exercise you will work through the evaluation process for the <code>bend</code> higher-order function in this example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> makeCoin <span class="op">=</span> <span class="kw">function</span>(weight) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">function</span>() {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">flip</span>(weight) <span class="op">?</span> <span class="st">'h'</span> <span class="op">:</span> <span class="st">'t'</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> bend <span class="op">=</span> <span class="kw">function</span>(coin) {</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">function</span>() {</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">coin</span>() <span class="op">==</span> <span class="st">'h'</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="fu">makeCoin</span>(<span class="op">.</span><span class="dv">7</span>)()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="fu">makeCoin</span>(<span class="op">.</span><span class="dv">1</span>)()</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> fairCoin <span class="op">=</span> <span class="fu">makeCoin</span>(<span class="op">.</span><span class="dv">5</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> bentCoin <span class="op">=</span> <span class="fu">bend</span>(fairCoin)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="question-2.5.1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.5.1">Question 2.5.1</h3>
 <p>Directly compute the probability distribution of the bent coin in the example.</p>
 </section>
 <section id="quetion-2.5.2" class="level3">
 <h3 class="anchored" data-anchor-id="quetion-2.5.2">Quetion 2.5.2</h3>
-<p>Check your answer by using <code>Infer</code>.</p>
-<pre><code></code></pre>
+<p>Now, check your answer by using <code>Infer</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="exercise-2.6" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2.6">Exercise 2.6</h2>
 <section id="question-2.6.1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.6.1">Question 2.6.1</h3>
-<p>Directly compute the probability that the geometric distribution defined by the following stochastic recursion returns the number 5. <em>Hint:</em> What is the default parameter for <code>flip()</code>?</p>
-<pre><code>var geometric = function() {
-  return flip() ? 0 : 1 + geometric()
-}</code></pre>
+<p>Directly compute the probability that the geometric distribution defined by the following stochastic recursion returns the number 5.</p>
+<p><em>Hint:</em> What is the default parameter value for <code>flip()</code>?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> geometric <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">flip</span>() <span class="op">?</span> <span class="dv">0</span> <span class="op">:</span> <span class="dv">1</span> <span class="op">+</span> <span class="fu">geometric</span>()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.6.2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.6.2">Question 2.6.2</h3>
 <p>Check your answer by using <code>Infer</code>.</p>
-<pre><code></code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="exercise-2.7" class="level2">
@@ -734,72 +800,87 @@ var bentCoin = bend(fairCoin)</code></pre>
 <h3 class="anchored" data-anchor-id="quesiton-2.7.1">Quesiton 2.7.1</h3>
 <p>Convert the following probability table to a compact WebPPL program:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
 <thead>
 <tr class="header">
-<th><span class="math inline">\(A\)</span></th>
-<th><span class="math inline">\(B\)</span></th>
-<th><span class="math inline">\(\Pr(A,B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(A\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(B\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\Pr(A,B)\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>F</td>
-<td>F</td>
-<td>0.14</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">0.14</td>
 </tr>
 <tr class="even">
-<td>F</td>
-<td>T</td>
-<td>0.06</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">0.06</td>
 </tr>
 <tr class="odd">
-<td>T</td>
-<td>F</td>
-<td>0.4</td>
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">0.40</td>
 </tr>
 <tr class="even">
-<td>T</td>
-<td>T</td>
-<td>0.4</td>
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">0.40</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Requirement:</strong> fix the probability of <span class="math inline">\(A\)</span> first and then define the probability of <span class="math inline">\(B\)</span> to <em>depend</em> on whether <span class="math inline">\(A\)</span> is true or not.</p>
-<pre><code>var a = ...
-var b = ...
-display([a, b])</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([A<span class="op">,</span> B])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.7.2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.7.2">Question 2.7.2</h3>
 <p>Run your WebPPL program and use <code>Infer</code> to check that you get the correct distribution.</p>
-<pre><code></code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="exercise-2.8" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2.8">Exercise 2.8</h2>
-<p>Below we’ve defined a higher-order function <code>flipSequence</code> that takes a coin flipping function (e.g.&nbsp;<code>trickCoin</code>, below) and flips that coin until it gets a <em>sequence</em> of two heads in a row (in which case it returns heads <code>'h'</code>) or two tails in a row (in which case it returns tails <code>'t'</code>). Try out different weights for the <code>trickCoin</code>.</p>
-<pre><code>var makeCoin = function(weight) {
-  return function() {
-    return flip(weight) ? 'h' : 't'
-  }
-}
-var flipSequence = function(coin) {
-  return function() {
-    var flip1 = coin()
-    var flip2 = coin()
-    if (flip1 == flip2) {
-      return flip1
-    } else {
-      return flipSequence(coin)()
-    }
-  }
-}
-
-var trickCoin = makeCoin(.6)
-
-var n_samples = 10000;
-viz(Infer({method: "forward", samples: n_samples}, trickCoin))
-viz(Infer({method: "forward", samples: n_samples}, flipSequence(trickCoin)))</code></pre>
+<p>Below we’ve defined a higher-order function <code>flipSequence</code> that takes a coin flipping function (e.g.&nbsp;<code>trickCoin</code>, below) and flips that coin until it gets a <em>sequence</em> of two heads in a row (in which case it returns heads <code>'h'</code>) or two tails in a row (in which case it returns tails <code>'t'</code>).</p>
+<p>Try out different weights for the <code>trickCoin</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> makeCoin <span class="op">=</span> <span class="kw">function</span>(weight) {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">function</span>() {</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">flip</span>(weight) <span class="op">?</span> <span class="st">'h'</span> <span class="op">:</span> <span class="st">'t'</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> flipSequence <span class="op">=</span> <span class="kw">function</span>(coin) {</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">function</span>() {</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> flip1 <span class="op">=</span> <span class="fu">coin</span>()</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> flip2 <span class="op">=</span> <span class="fu">coin</span>()</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (flip1 <span class="op">==</span> flip2) {</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> flip1</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">flipSequence</span>(coin)()</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trickCoin <span class="op">=</span> <span class="fu">makeCoin</span>(<span class="op">.</span><span class="dv">6</span>)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> n_samples <span class="op">=</span> <span class="dv">10000</span><span class="op">;</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">"forward"</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span> n_samples}<span class="op">,</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    trickCoin</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">"forward"</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span> n_samples}<span class="op">,</span> <span class="fu">flipSequence</span>(trickCoin)</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="question-2.8.1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.8.1">Question 2.8.1</h3>
 <p>How does <code>flipSequence</code> change the distribution over return values (qualitatively)? Explain why requiring two flips in a row to be the same has this effect.</p>
@@ -812,7 +893,7 @@ viz(Infer({method: "forward", samples: n_samples}, flipSequence(trickCoin)))</co
 <section id="exercise-2.9" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2.9">Exercise 2.9</h2>
 <p>Box2D is a two dimensional simulation engine for simulating rigid bodies (those with constant shape). It allows for the construction of arbitray worlds and models important physical concepts including collisions, friction, gravity, momentum, and more.</p>
-<p>We have provided a wrapper around Box2D that allows for the easy construction of worlds. A world consists of list of shapes. Shapes are created by JavaScript objects with the following properties:</p>
+<p>Here we have provided a wrapper around Box2D that allows for the easy construction of worlds. A world consists of list of shapes. Shapes are created as JavaScript objects with the following properties:</p>
 <table class="caption-top table">
 <tbody>
 <tr class="odd">
@@ -842,102 +923,128 @@ viz(Infer({method: "forward", samples: n_samples}, flipSequence(trickCoin)))</co
 </tbody>
 </table>
 <p>The variables <code>worldWidth</code> and <code>worldHeight</code> are constants representing the visible size of the simulation window.</p>
-<p>Here’s an example with a ground and a single rectangle. Add another object to <code>bowlingWorld</code> and give it an initial velocity so that it knocks the original rectangle down.</p>
-<pre><code>var ground = {
-  shape: 'rect',
-  static: true,
-  dims: [worldWidth, 10],
-  x: worldWidth/2,
-  y: worldHeight
-}
-
-var rect = {
-  shape: 'rect',
-  static: false,
-  dims: [10, 100],
-  x: worldWidth/2,
-  y: 390
-}
-
-var bowlingWorld = [ground, rect]
-physics.animate(1000, bowlingWorld)</code></pre>
+<p>Here’s an example with a ground and a single rectangle. Add another object to <code>bowlingWorld</code> and give it an initial velocity so that it knocks the original rectangle down:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ground <span class="op">=</span> {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dims</span><span class="op">:</span> [worldWidth<span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> worldWidth<span class="op">/</span><span class="dv">2</span><span class="op">,</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> worldHeight</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> rect <span class="op">=</span> {</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">static</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dims</span><span class="op">:</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> worldWidth<span class="op">/</span><span class="dv">2</span><span class="op">,</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> <span class="dv">390</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> bowlingWorld <span class="op">=</span> [ground<span class="op">,</span> rect]</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>physics<span class="op">.</span><span class="fu">animate</span>(<span class="dv">1000</span><span class="op">,</span> bowlingWorld)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="exercise-2.10" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2.10">Exercise 2.10</h2>
-<p>In <strong>Example: Intuitive physics</strong> we modeled instability of a tower as the probability that the tower falls when perturbed, and we modeled “falling” as getting shorter. It would be reasonable to instead measure <em>how much shorter</em> the tower gets.</p>
+<p>In <a href="../ch02/index.html#example-intuitive-physics"><strong>Example: Intuitive Physics</strong></a>, we modeled instability of a tower as the probability that the tower falls when perturbed, and we modeled “falling” as getting shorter. It would be reasonable to instead measure <em>how much shorter</em> the tower gets.</p>
 <section id="question-2.10.1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.10.1">Question 2.10.1</h3>
-<p>Below, modify the stability/instability model by writing a continuous measure, <code>towerFallDegree</code>. Let this measure take different values between 0 and 1. That way, your continuous measure will be numerically comparable to the discrete measure, <code>doesTowerFall</code> (defined here as either 0 or 1). Explain what your continuous measure represents and why it might be a good continuous measure of instability.</p>
-<pre><code>///fold:
-var listMin = function(xs) {
-  if (xs.length == 1) {
-    return xs[0]
-  } else {
-    return Math.min(xs[0], listMin(rest(xs)))
-  }
-}
-
-var highestY = function (w) { listMin(map(function(obj) { return obj.y }, w)) }
-var ground = {
-  shape: 'rect',
-  static: true,
-  dims: [worldWidth, 10],
-  x: worldWidth / 2,
-  y: worldHeight + 6
-}
-
-var almostUnstableWorld = [
-  ground,
-  {shape: 'rect', static: false, dims: [24, 22], x: 175, y: 473},
-  {shape: 'rect', static: false, dims: [15, 38], x: 159.97995044874122, y: 413},
-  {shape: 'rect', static: false, dims: [11, 35], x: 166.91912737427202, y: 340},
-  {shape: 'rect', static: false, dims: [11, 29], x: 177.26195677111082, y: 276},
-  {shape: 'rect', static: false, dims: [11, 17], x: 168.51354470809122, y: 230}
-]
-
-var noisify = function (world) {
-  var perturbX = function (obj) {
-    var noiseWidth = 10
-    if (obj.static) {
-      return obj
-    } else {
-      return _.extend({}, obj, {x: uniform(obj.x - noiseWidth, obj.x + noiseWidth)})
-    }
-  }
-  map(perturbX, world)
-}
-
-///
-
-// Returns height of tower
-var getTowerHeight = function(world) {
-  return worldHeight - highestY(world)
-}
-
-var doesTowerFall = function (initialW, finalW) {
-  var approxEqual = function (a, b) { Math.abs(a - b) &lt; 1.0 }
-  return 1 - approxEqual(highestY(initialW), highestY(finalW))
-}
-
-var towerFallDegree = function(initialW, finalW) {
-  ...
-}
-
-var visualizeInstabilityMeasure = function(measureFunction) {
-  var initialWorld = noisify(almostUnstableWorld)
-  var finalWorld = physics.run(1000, initialWorld)
-  var measureValue = measureFunction(initialWorld, finalWorld)
-  print("Instability measure: " + measureValue)
-  print("Initial height: " + getTowerHeight(initialWorld))
-  print("Final height: " + getTowerHeight(finalWorld))
-  physics.animate(1000, initialWorld)
-}
-
-// Test binary doesTowerFall measure
-// visualizeInstabilityMeasure(doesTowerFall)
-
-// Test custom towerFallDegree measure
-visualizeInstabilityMeasure(towerFallDegree)</code></pre>
+<p>Below, modify the stability/instability model by creating a continuous measure, <code>towerFallDegree</code>. Let this measure take different values between 0 and 1. That way, your continuous measure will be numerically comparable to the discrete measure, <code>doesTowerFall</code> (defined here as either 0 or 1).</p>
+<p>Explain what your continuous measure represents and why it might be a good continuous measure of instability.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">///fold:</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> listMin <span class="op">=</span> <span class="kw">function</span>(xs) {</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (xs<span class="op">.</span><span class="at">length</span> <span class="op">==</span> <span class="dv">1</span>) {</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> xs[<span class="dv">0</span>]</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      xs[<span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">listMin</span>(<span class="fu">rest</span>(xs))</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> highestY <span class="op">=</span> <span class="kw">function</span> (w) {</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">listMin</span>(</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">function</span>(obj) { <span class="cf">return</span> obj<span class="op">.</span><span class="at">y</span> }<span class="op">,</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>      w</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ground <span class="op">=</span> {</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">static</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dims</span><span class="op">:</span> [worldWidth<span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> worldWidth <span class="op">/</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> worldHeight <span class="op">+</span> <span class="dv">6</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> almostUnstableWorld <span class="op">=</span> [</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>  ground<span class="op">,</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span> <span class="dt">static</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">dims</span><span class="op">:</span> [<span class="dv">24</span><span class="op">,</span> <span class="dv">22</span>]<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="dv">175</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">473</span>}<span class="op">,</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span> <span class="dt">static</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">dims</span><span class="op">:</span> [<span class="dv">15</span><span class="op">,</span> <span class="dv">38</span>]<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="fl">159.97995044874122</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">413</span>}<span class="op">,</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span> <span class="dt">static</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">dims</span><span class="op">:</span> [<span class="dv">11</span><span class="op">,</span> <span class="dv">35</span>]<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="fl">166.91912737427202</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">340</span>}<span class="op">,</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span> <span class="dt">static</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">dims</span><span class="op">:</span> [<span class="dv">11</span><span class="op">,</span> <span class="dv">29</span>]<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="fl">177.26195677111082</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">276</span>}<span class="op">,</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">shape</span><span class="op">:</span> <span class="st">'rect'</span><span class="op">,</span> <span class="dt">static</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">dims</span><span class="op">:</span> [<span class="dv">11</span><span class="op">,</span> <span class="dv">17</span>]<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="fl">168.51354470809122</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">230</span>}</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> noisify <span class="op">=</span> <span class="kw">function</span> (world) {</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> perturbX <span class="op">=</span> <span class="kw">function</span> (obj) {</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> noiseWidth <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (obj<span class="op">.</span><span class="at">static</span>) {</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> obj</span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> _<span class="op">.</span><span class="fu">extend</span>(</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>        {}<span class="op">,</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>        obj<span class="op">,</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="fu">uniform</span>(</span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>            obj<span class="op">.</span><span class="at">x</span> <span class="op">-</span> noiseWidth<span class="op">,</span></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>            obj<span class="op">.</span><span class="at">x</span> <span class="op">+</span> noiseWidth</span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(perturbX<span class="op">,</span> world)</span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a><span class="co">///</span></span>
+<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns height of tower</span></span>
+<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> getTowerHeight <span class="op">=</span> <span class="kw">function</span>(world) {</span>
+<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> worldHeight <span class="op">-</span> <span class="fu">highestY</span>(world)</span>
+<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> doesTowerFall <span class="op">=</span> <span class="kw">function</span> (initialW<span class="op">,</span> finalW) {</span>
+<span id="cb25-65"><a href="#cb25-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> approxEqual <span class="op">=</span> <span class="kw">function</span> (a<span class="op">,</span> b) {</span>
+<span id="cb25-66"><a href="#cb25-66" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(a <span class="op">-</span> b) <span class="op">&lt;</span> <span class="fl">1.0</span></span>
+<span id="cb25-67"><a href="#cb25-67" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-68"><a href="#cb25-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="fu">approxEqual</span>(</span>
+<span id="cb25-69"><a href="#cb25-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">highestY</span>(initialW)<span class="op">,</span></span>
+<span id="cb25-70"><a href="#cb25-70" aria-hidden="true" tabindex="-1"></a>    <span class="fu">highestY</span>(finalW)</span>
+<span id="cb25-71"><a href="#cb25-71" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-72"><a href="#cb25-72" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-73"><a href="#cb25-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-74"><a href="#cb25-74" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> towerFallDegree <span class="op">=</span> <span class="kw">function</span>(initialW<span class="op">,</span> finalW) {</span>
+<span id="cb25-75"><a href="#cb25-75" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span></span>
+<span id="cb25-76"><a href="#cb25-76" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-77"><a href="#cb25-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-78"><a href="#cb25-78" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> visualizeInstabilityMeasure <span class="op">=</span> <span class="kw">function</span>(measureFunction) {</span>
+<span id="cb25-79"><a href="#cb25-79" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> initialWorld <span class="op">=</span> <span class="fu">noisify</span>(almostUnstableWorld)</span>
+<span id="cb25-80"><a href="#cb25-80" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> finalWorld <span class="op">=</span> physics<span class="op">.</span><span class="fu">run</span>(<span class="dv">1000</span><span class="op">,</span> initialWorld)</span>
+<span id="cb25-81"><a href="#cb25-81" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> measureValue <span class="op">=</span> <span class="fu">measureFunction</span>(</span>
+<span id="cb25-82"><a href="#cb25-82" aria-hidden="true" tabindex="-1"></a>    initialWorld<span class="op">,</span></span>
+<span id="cb25-83"><a href="#cb25-83" aria-hidden="true" tabindex="-1"></a>    finalWorld</span>
+<span id="cb25-84"><a href="#cb25-84" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-85"><a href="#cb25-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Instability measure: "</span> <span class="op">+</span> measureValue)</span>
+<span id="cb25-86"><a href="#cb25-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Initial height: "</span> <span class="op">+</span> <span class="fu">getTowerHeight</span>(initialWorld))</span>
+<span id="cb25-87"><a href="#cb25-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Final height: "</span> <span class="op">+</span> <span class="fu">getTowerHeight</span>(finalWorld))</span>
+<span id="cb25-88"><a href="#cb25-88" aria-hidden="true" tabindex="-1"></a>  physics<span class="op">.</span><span class="fu">animate</span>(<span class="dv">1000</span><span class="op">,</span> initialWorld)</span>
+<span id="cb25-89"><a href="#cb25-89" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-90"><a href="#cb25-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-91"><a href="#cb25-91" aria-hidden="true" tabindex="-1"></a><span class="co">// Test binary doesTowerFall measure</span></span>
+<span id="cb25-92"><a href="#cb25-92" aria-hidden="true" tabindex="-1"></a><span class="co">// visualizeInstabilityMeasure(doesTowerFall)</span></span>
+<span id="cb25-93"><a href="#cb25-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-94"><a href="#cb25-94" aria-hidden="true" tabindex="-1"></a><span class="co">// Test custom towerFallDegree measure</span></span>
+<span id="cb25-95"><a href="#cb25-95" aria-hidden="true" tabindex="-1"></a><span class="fu">visualizeInstabilityMeasure</span>(towerFallDegree)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2.10.2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2.10.2">Question 2.10.2</h3>

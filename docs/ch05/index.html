@@ -23,7 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -47,9 +102,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-8d28ae19919d5c67af76f2443fb22f33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3400fdbd8bae38ba2006f86cab23685c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,8 +132,47 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script><link rel="stylesheet" href="../assets/css/webppl-editor.css"><link rel="stylesheet" href="../assets/css/webppl-viz.css"><script src="../assets/js/webppl.min.js"></script><script src="../assets/js/webppl-viz.min.js"></script><script src="../assets/js/webppl-editor.min.js" defer=""></script><script src="../assets/js/paper-full.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<script src="../sidebar.js"></script>
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin="">
+<link href="https://googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap&quot; rel=&quot;stylesheet">
+<link rel="stylesheet" href="../assets/css/webppl-editor.css">
+<link rel="stylesheet" href="../assets/css/webppl-viz.css">
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js" defer=""></script>
+<script src="../assets/js/paper-full.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -485,12 +579,13 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#screening-off" id="toc-screening-off" class="nav-link" data-scroll-target="#screening-off">5.1.1 Screening Off</a></li>
   <li><a href="#explaining-away" id="toc-explaining-away" class="nav-link" data-scroll-target="#explaining-away">5.1.2 Explaining away</a></li>
-  <li><a href="#non-monotonic-reasoning" id="toc-non-monotonic-reasoning" class="nav-link" data-scroll-target="#non-monotonic-reasoning">5.1.3 Non-monotonic Reasoning</a></li>
+  <li><a href="#non-monotonic-reasoning" id="toc-non-monotonic-reasoning" class="nav-link" data-scroll-target="#non-monotonic-reasoning">5.1.3 Non-Monotonic Reasoning</a></li>
   <li><a href="#example-medical-diagnosis" id="toc-example-medical-diagnosis" class="nav-link" data-scroll-target="#example-medical-diagnosis">5.1.4 Example: Medical Diagnosis</a></li>
   </ul></li>
   <li><a href="#example-trait-attribution" id="toc-example-trait-attribution" class="nav-link" data-scroll-target="#example-trait-attribution">5.2 Example: Trait Attribution</a></li>
   <li><a href="#example-of-blickets-and-blocking" id="toc-example-of-blickets-and-blocking" class="nav-link" data-scroll-target="#example-of-blickets-and-blocking">5.3 Example: Of Blickets and Blocking</a></li>
   <li><a href="#a-case-study-in-modularity-visual-perception-of-surface-color" id="toc-a-case-study-in-modularity-visual-perception-of-surface-color" class="nav-link" data-scroll-target="#a-case-study-in-modularity-visual-perception-of-surface-color">5.4 A Case Study in Modularity: Visual Perception of Surface Color</a></li>
+  <li><a href="#readings-and-discussion" id="toc-readings-and-discussion" class="nav-link" data-scroll-target="#readings-and-discussion">5.5 Readings and Discussion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch05/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -519,43 +614,61 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="from-a-priori-dependence-to-conditional-dependence" class="level2">
 <h2 class="anchored" data-anchor-id="from-a-priori-dependence-to-conditional-dependence">5.1 From <em>A Priori</em> Dependence to Conditional Dependence</h2>
-<p>The relationships between causal structure and statistical dependence become particularly interesting and subtle when we look at the effects of additional observations or assumptions. Events that are statistically dependent <em>a priori</em> may become independent when we condition on some observation; this is called <em>screening off</em>. Also, events that are statistically independent <em>a priori</em> may become dependent when we condition on observations; this is known as <em>explaining away</em>. The dynamics of screening off and explaining away are extremely important for understanding patterns of inference—reasoning and learning—in probabilistic models.</p>
+<p>The relationships between causal structure and statistical dependence become particularly interesting and subtle when we look at the effects of additional observations or assumptions.</p>
+<p>Events that are statistically dependent <em>a priori</em> may become independent when we condition on some observation; this is called <em>screening off</em>.</p>
+<p>Also, events that are statistically independent <em>a priori</em> may become dependent when we condition on observations; this is known as <em>explaining away</em>.</p>
+<p>The dynamics of screening off and explaining away are extremely important for understanding patterns of inference—reasoning and learning—in probabilistic models.</p>
 <section id="screening-off" class="level3">
 <h3 class="anchored" data-anchor-id="screening-off">5.1.1 Screening Off</h3>
-<p><em>Screening off</em> refers to a pattern of statistical inference that is quite common in both scientific and intuitive reasoning. If the statistical dependence between two events A and B is only indirect, mediated strictly by one or more other events C, then conditioning on (observing) C should render A and B statistically independent. This can occur if A and B are connected by one or more causal chains, and all such chains run through the set of events C, or if C comprises all of the common causes of A and B.</p>
+<p><em>Screening off</em> refers to a pattern of statistical inference that is quite common in both scientific and intuitive reasoning.</p>
+<p>If the statistical dependence between two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is only indirect, mediated strictly by one or more other events <span class="math inline">\(C\)</span>, then conditioning on (observing) <span class="math inline">\(C\)</span> should render <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> statistically independent.</p>
+<p>This can occur if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are connected by one or more causal chains, and all such chains run through the set of events <span class="math inline">\(C\)</span>, or if <span class="math inline">\(C\)</span> comprises all of the common causes of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
 <p>For instance, let’s look again at our common cause example, this time assuming that we <em>already</em> know the value of <code>C</code>:</p>
-<pre><code>var BcondA = function(Aval) {
-  return Infer({method: 'enumerate'}, function() {
-    var C = flip()
-    var B = C ? flip(.5) : flip(.9)
-    var A = C ? flip(.1) : flip(.4)
-    condition(C)
-    condition(A == Aval)
-    return {B: B}
-  })
-}
-
-viz(BcondA(true))
-viz(BcondA(false))</code></pre>
-<p>We see that <code>A</code> an <code>B</code> are statistically <em>independent</em> given knowledge of <code>C</code>.</p>
-<p>Screening off is a purely statistical phenomenon. For example, consider the the causal chain model, where A directly causes C, which in turn directly causes B. Here, when we observe C – the event that mediates an <em>indirect</em> causal relation between A and B – A and B are still causally dependent in our model of the world: it is just our beliefs about the states of A and B that become uncorrelated. There is also an analogous causal phenomenon. If we can actually manipulate or <em>intervene</em> on the causal system, and set the value of C to some known value, then A and B become both statistically and causally independent (by intervening on C, we break the causal link between A and C).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> BcondA <span class="op">=</span> <span class="kw">function</span>(Aval) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> B <span class="op">=</span> C <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">5</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">9</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> A <span class="op">=</span> C <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">1</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">4</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(C)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(A <span class="op">==</span> Aval)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> {</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">B</span><span class="op">:</span> B</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BcondA</span>(<span class="kw">true</span>))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BcondA</span>(<span class="kw">false</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We see that <code>A</code> and <code>B</code> are statistically <em>independent</em> given knowledge of <code>C</code>.</p>
+<p>Screening off is a purely statistical phenomenon. For example, consider the the causal chain model, where <span class="math inline">\(A\)</span> directly causes <span class="math inline">\(C\)</span>, which in turn directly causes <span class="math inline">\(B\)</span>.</p>
+<p>Here, when we observe <span class="math inline">\(C\)</span> – the event that mediates an <em>indirect</em> causal relation between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> – <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are still causally dependent in our model of the world: it is just our <em>beliefs</em> about the states of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> that become uncorrelated.</p>
+<p>There is also an analogous causal phenomenon.</p>
+<p>If we can actually manipulate or <em>intervene</em> on the causal system, and <em>set</em> the value of <span class="math inline">\(C\)</span> to some known value, then <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> become both statistically and causally independent (by intervening on <span class="math inline">\(C\)</span>, we break the causal link between <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span>).</p>
 </section>
 <section id="explaining-away" class="level3">
 <h3 class="anchored" data-anchor-id="explaining-away">5.1.2 Explaining away</h3>
-<p>“Explaining away” <span class="citation" data-cites="Pearl1988">(<a href="#ref-Pearl1988" role="doc-biblioref"><strong>Pearl1988?</strong></a>)</span> refers to a complementary pattern of statistical inference which is somewhat more subtle than screening off. If two events A and B are statistically (and hence causally) independent, but they are both causes of one or more other events C, then conditioning on (observing) C can render A and B statistically dependent. Here is an example where <code>A</code> and <code>B</code> have a common <em>effect</em>:</p>
-<pre><code>var BcondA = function(Aval) {
-  return Infer({method: 'enumerate'}, function() {
-    var A = flip()
-    var B = flip()
-    var C = (A || B) ? flip(.9) : flip(.2)
-    condition(C)
-    condition(A == Aval)
-    return {B: B}
-  })
-}
-
-viz(BcondA(true))
-viz(BcondA(false))</code></pre>
+<p>“Explaining away” <span class="citation" data-cites="pearl_causality_2000">(<a href="#ref-pearl_causality_2000" role="doc-biblioref">Pearl 2000</a>)</span> refers to a complementary pattern of statistical inference which is somewhat more subtle than screening off.</p>
+<p>If two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are statistically (and hence causally) independent, but they are both causes of one or more other events <span class="math inline">\(C\)</span>, then conditioning on (observing) <span class="math inline">\(C\)</span> can render <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> statistically <em>de</em>pendent.</p>
+<p>Here is an example where <code>A</code> and <code>B</code> have a common <em>effect</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> BcondA <span class="op">=</span> <span class="kw">function</span>(Aval) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> B <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> C <span class="op">=</span> (A <span class="op">||</span> B) <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">9</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(C)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(A <span class="op">==</span> Aval)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">B</span><span class="op">:</span> B</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BcondA</span>(<span class="kw">true</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BcondA</span>(<span class="kw">false</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>As with screening off, we only induce statistical dependence from learning about <code>C</code>, not causal dependence: when we observe <code>C</code>, <code>A</code> and <code>B</code> remain causally independent in our model of the world; it is our beliefs about A and B that become correlated.</p>
 <!--
 This is an important point, but I'm not sure how to work it in. It should also be made more general, beyond linguistics:
@@ -564,38 +677,53 @@ In models in cognitive science in general and linguistics in particular this kin
 
 -->
 <p>We can express the general phenomenon of explaining away with the following schematic WebPPL query:</p>
-<pre class="norun"><code>Infer({...}, function() {
-  var a = ...
-  var b = ...
-  var data = f(a, b)
-  condition(data == someVal &amp;&amp; a == someOtherVal)
-  return b
-})</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Infer</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  {<span class="op">...</span>}<span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> a <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> b <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> data <span class="op">=</span> <span class="fu">f</span>(a<span class="op">,</span> b)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(data <span class="op">==</span> someVal <span class="op">&amp;&amp;</span> a <span class="op">==</span> someOtherVal)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> b</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We have defined two independent variables <code>a</code> and <code>b</code> both of which are used to define the value of our data. If we condition on <code>data</code> and <code>a</code> the posterior distribution on <code>b</code> will now be dependent on <code>a</code>: observing additional information about <code>a</code> changes our conclusions about <code>b</code>.</p>
-<p>The most typical pattern of explaining away we see in causal reasoning is a kind of <em>anti-correlation</em>: the probabilities of two possible causes for the same effect increase when the effect is observed, but they are conditionally anti-correlated, so that observing additional evidence in favor of one cause should lower our degree of belief in the other cause. (This pattern is where the term explaining away comes from.) However, the coupling induced by conditioning on common effects depends on the nature of the interaction between the causes, it is not always an anti-correlation. Explaining away takes the form of an anti-correlation when the causes interact in a roughly disjunctive or additive form: the effect tends to happen if any cause happens; or the effect happens if the sum of some continuous influences exceeds a threshold. The following simple mathematical examples show this and other patterns.</p>
+<p>The most typical pattern of explaining away we see in causal reasoning is a kind of <em>anti-correlation</em>: the probabilities of two possible causes for the same effect increase when the effect is observed, but they are conditionally anti-correlated, so that observing additional evidence in favor of one cause should lower our degree of belief in the other cause. (This pattern is where the term “explaining away” comes from.)</p>
+<p>However, the coupling induced by conditioning on common effects depends on the nature of the interaction between the causes, it is not always an anti-correlation.</p>
+<p>Explaining away takes the form of an anti-correlation when the causes interact in a roughly disjunctive or additive form: the effect tends to happen if any cause happens; or the effect happens if the sum of some continuous influences exceeds a threshold. The following simple mathematical examples show this and other patterns.</p>
 <p>Suppose we condition on observing the sum of two integers drawn uniformly from 0 to 9:</p>
-<pre><code>var sumPosterior = Infer({method: 'enumerate'}, function() {
-  var A = randomInteger({n: 10})
-  var B = randomInteger({n: 10})
-  condition(A + B == 9);
-  return {A:A, B:B}
-})
-
-viz(sumPosterior)
-//sometimes this scatter plot is easier to interpret:
-viz.scatter(sumPosterior.support())</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sumPosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> A <span class="op">=</span> <span class="fu">randomInteger</span>({<span class="dt">n</span><span class="op">:</span> <span class="dv">10</span>})</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> B <span class="op">=</span> <span class="fu">randomInteger</span>({<span class="dt">n</span><span class="op">:</span> <span class="dv">10</span>})</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(A <span class="op">+</span> B <span class="op">==</span> <span class="dv">9</span>)<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">A</span><span class="op">:</span> A<span class="op">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">B</span><span class="op">:</span> B</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(sumPosterior)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">// Sometimes this scatter plot is</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">// easier to interpret:</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">scatter</span>(sumPosterior<span class="op">.</span><span class="fu">support</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This gives perfect anti-correlation in conditional inferences for <code>A</code> and <code>B</code>. But suppose we instead condition on observing that <code>A</code> and <code>B</code> are equal:</p>
-<pre><code>var sumPosterior = Infer({method: 'enumerate'}, function() {
-  var A = randomInteger({n: 10})
-  var B = randomInteger({n: 10})
-  condition(A == B)
-  return {A:A, B:B}
-})
-
-viz(sumPosterior)
-//sometimes this scatter plot is easier to interpret:
-viz.scatter(sumPosterior.support())</code></pre>
-<p>Now, of course, A and B go from being independent a priori to being perfectly correlated in the conditional distribution. Try out these other conditions to see other possible patterns of conditional dependence for <em>a priori</em> independent functions:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sumPosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> A <span class="op">=</span> <span class="fu">randomInteger</span>({<span class="dt">n</span><span class="op">:</span> <span class="dv">10</span>})</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> B <span class="op">=</span> <span class="fu">randomInteger</span>({<span class="dt">n</span><span class="op">:</span> <span class="dv">10</span>})</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(A <span class="op">==</span> B)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">A</span><span class="op">:</span> A<span class="op">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">B</span><span class="op">:</span> B</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(sumPosterior)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">scatter</span>(sumPosterior<span class="op">.</span><span class="fu">support</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now, of course, <code>A</code> and <code>B</code> go from being independent a priori to being perfectly correlated in the conditional distribution. Try out these other conditions to see other possible patterns of conditional dependence for <em>a priori</em> independent functions:</p>
 <ul>
 <li><code>Math.abs(A - B) &lt; 2</code></li>
 <li><code>(A + B &gt;= 9) &amp;&amp; (A + B &lt;= 11)</code></li>
@@ -606,90 +734,210 @@ viz.scatter(sumPosterior.support())</code></pre>
 </ul>
 </section>
 <section id="non-monotonic-reasoning" class="level3">
-<h3 class="anchored" data-anchor-id="non-monotonic-reasoning">5.1.3 Non-monotonic Reasoning</h3>
-<p>One reason explaining away is an important phenomenon in probabilistic inference is that it is an example of <em>non-monotonic</em> reasoning. In formal logic, a theory is said to be monotonic if adding an assumption (or formula) to the theory never reduces the set of conclusions that can be drawn. Most traditional logics (e.g. First Order) are monotonic, but human reasoning does not seem to be. For instance, if I tell you that Tweety is a bird, you conclude that he can fly; if I now tell you that Tweety is an <em>ostrich</em> you retract the conclusion that he can fly. Over the years many non-monotonic logics have been introduced to model aspects of human reasoning. One of the first reasons that probabilistic reasoning with Bayesian networks was recognized as important for AI was that it could perspicuously capture these patterns of reasoning <span class="citation" data-cites="Pearl1988">(see for instance <a href="#ref-Pearl1988" role="doc-biblioref"><strong>Pearl1988?</strong></a>)</span>.</p>
-<p>Another way to think about monotonicity is by considering the trajectory of our belief in a specific proposition, as we gain additional relevant information. In traditional logic, there are only three states of belief: true, false, and unknown (when neither a proposition nor its negation can be proven). As we learn more about the world, maintaining logical consistency requires that our belief in any proposition only move from unknown to true or false. That is our “confidence” in any conclusion only increases (and only does so in one giant leap from unknown to true or false).</p>
-<p>In a probabilistic approach, by contrast, belief comes in a whole spectrum of degrees. We can think of confidence as a measure of how far our beliefs are from a uniform distribution—how close to the extremes of 0 or 1. In probabilistic inference, unlike in traditional logic, our confidence in a proposition can both increase and decrease. Even fairly simple probabilistic models can induce complex explaining-away dynamics that lead our degree of belief in a proposition to reverse directions multiple times as observations accumulate.</p>
+<h3 class="anchored" data-anchor-id="non-monotonic-reasoning">5.1.3 Non-Monotonic Reasoning</h3>
+<p>One reason explaining away is an important phenomenon in probabilistic inference is that it is an example of <em>non-monotonic</em> reasoning.</p>
+<p>In formal logic, a theory is said to be <em>monotonic</em> if adding an assumption (or formula) to the theory never reduces the set of conclusions that can be drawn.</p>
+<p>Most traditional logics (e.g., first-order logic) are monotonic, but human reasoning does not seem to be. For instance, if I tell you that Tweety is a bird, you conclude that he can fly; if I now tell you that Tweety is an <em>ostrich</em> you retract the conclusion that he can fly.</p>
+<p>Over the years many non-monotonic logics have been introduced to model aspects of human reasoning.</p>
+<p>One of the first reasons that probabilistic reasoning with Bayesian networks was recognized as important for AI was that it could perspicuously capture these patterns of reasoning <span class="citation" data-cites="pearl_causality_2000">(<a href="#ref-pearl_causality_2000" role="doc-biblioref">Pearl 2000</a>)</span>.</p>
+<p>Another way to think about monotonicity is by considering the trajectory of our belief in a specific proposition, as we gain additional relevant information.</p>
+<p>In traditional logic, there are only three states of belief: true, false, and unknown (when neither a proposition nor its negation can be proven). As we learn more about the world, maintaining logical consistency requires that our belief in any proposition only move from unknown to true or false. That is, our “confidence” in any conclusion only increases, and only does so in one “giant leap” from unknown to true or false.</p>
+<p>In a probabilistic approach, by contrast, belief comes in a whole spectrum of degrees.</p>
+<p>We can think of <strong>confidence</strong> as a measure of <strong>how far our beliefs are from a uniform distribution</strong>—how close to the extremes of 0 or 1.</p>
+<p>In probabilistic inference, unlike in traditional logic, our confidence in a proposition can both increase and decrease. Even fairly simple probabilistic models can induce complex explaining-away dynamics that lead our degree of belief in a proposition to reverse directions multiple times as observations accumulate.</p>
 </section>
 <section id="example-medical-diagnosis" class="level3">
 <h3 class="anchored" data-anchor-id="example-medical-diagnosis">5.1.4 Example: Medical Diagnosis</h3>
-<p>The medical scenario is a great model to explore screening off and explaining away. In this model <code>smokes</code> is statistically dependent on several symptoms—<code>cough</code>, <code>chestPain</code>, and <code>shortnessOfBreath</code>—due to a causal chain between them mediated by <code>lungDisease</code>. We can see this easily by conditioning on these symptoms and looking at <code>smokes</code>:</p>
-<pre><code>var medicalDist = Infer({method: 'enumerate'}, function() {
-  var smokes = flip(.2);
-  var lungDisease = flip(0.001) || (smokes &amp;&amp; flip(0.1));
-  var cold = flip(0.02);
-
-  var cough = (cold &amp;&amp; flip(0.5)) || (lungDisease &amp;&amp; flip(0.5)) || flip(0.001);
-  var fever = (cold &amp;&amp; flip(0.3)) || flip(0.01);
-  var chestPain = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);
-  var shortnessOfBreath = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);
-
-  condition(cough &amp;&amp; chestPain &amp;&amp; shortnessOfBreath);
-
-  return smokes
-})
-viz(medicalDist)</code></pre>
-<p>The conditional probability of <code>smokes</code> is much higher than the base rate, 0.2, because observing all these symptoms gives strong evidence for smoking. See how much evidence the different symptoms contribute by dropping them out of the conditioning set. (For instance, try conditioning on <code>cough &amp;&amp; chestPain</code>, or just <code>cough</code>; you should observe the probability of <code>smokes</code> decrease as fewer symptoms are observed.)</p>
-<p>Now, suppose we condition also on knowledge about the function that mediates these causal links: <code>lungDisease</code>. Is there still an informational dependence between these various symptoms and <code>smokes</code>? In the Inference below, try adding and removing various symptoms (<code>cough</code>, <code>chestPain</code>, <code>shortnessOfBreath</code>) but maintaining the observation <code>lungDisease</code>:</p>
-<pre><code>var medicalDist = Infer({method: 'enumerate'}, function() {
-  var smokes = flip(.2);
-  var lungDisease = flip(0.001) || (smokes &amp;&amp; flip(0.1));
-  var cold = flip(0.02);
-
-  var cough = (cold &amp;&amp; flip(0.5)) || (lungDisease &amp;&amp; flip(0.5)) || flip(0.001);
-  var fever = (cold &amp;&amp; flip(0.3)) || flip(0.01);
-  var chestPain = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);
-  var shortnessOfBreath = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);
-
-  condition(lungDisease &amp;&amp; (cough &amp;&amp; chestPain &amp;&amp; shortnessOfBreath));
-
-  return smokes
-})
-
-viz(medicalDist)</code></pre>
+<p>The medical scenario is a great model to explore screening off and explaining away.</p>
+<p>In this model <code>smokes</code> is statistically dependent on several symptoms—<code>cough</code>, <code>chestPain</code>, and <code>shortnessOfBreath</code>—due to a causal chain between them mediated by <code>lungDisease</code>. We can see this easily by conditioning on these symptoms and looking at <code>smokes</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> medicalDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungDisease <span class="op">=</span> (</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.1</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.02</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>      cough</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>      <span class="op">&amp;&amp;</span> chestPain</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>      <span class="op">&amp;&amp;</span> shortnessOfBreath</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> smokes</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(medicalDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The conditional probability of <code>smokes</code> is much higher than the base rate, 0.2, because observing all these symptoms gives strong evidence for smoking.</p>
+<p>See how much evidence the different symptoms contribute by dropping them out of the conditioning set. For instance, try conditioning on <code>cough &amp;&amp; chestPain</code>, or just <code>cough</code>; you should observe the probability of <code>smokes</code> decrease as fewer symptoms are observed.</p>
+<p>Now, suppose we condition also on knowledge about the function that mediates these causal links: <code>lungDisease</code>. Is there still an informational dependence between these various symptoms and <code>smokes</code>?</p>
+<p>In the Inference below, try adding and removing various symptoms (<code>cough</code>, <code>chestPain</code>, <code>shortnessOfBreath</code>) but maintaining the observation <code>lungDisease</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> medicalDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungDisease <span class="op">=</span> (</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.1</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.02</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>      lungDisease</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      <span class="op">&amp;&amp;</span> cough</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      <span class="op">&amp;&amp;</span> chestPain</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>      <span class="op">&amp;&amp;</span> shortnessOfBreath</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> smokes</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(medicalDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see an effect of whether the patient has lung disease on conditional inferences about smoking—a person is judged to be substantially more likely to be a smoker if they have lung disease than otherwise—but there are no separate effects of chest pain, shortness of breath, or cough over and above the evidence provided by knowing whether the patient has lung-disease. The intermediate variable lung disease <em>screens off</em> the root cause (smoking) from the more distant effects (coughing, chest pain and shortness of breath).</p>
-<p>Here is a concrete example of explaining away in our medical scenario. Having a cold and having lung disease are <em>a priori</em> independent both causally and statistically. But because they are both causes of coughing if we observe <code>cough</code> then <code>cold</code> and <code>lungDisease</code> become statistically dependent. That is, learning something about whether a patient has <code>cold</code> or <code>lungDisease</code> will, in the presence of their common effect <code>cough</code>, convey information about the other condition. <code>cold</code> and <code>lungCancer</code> are <em>a priori</em> independent, but <em>conditionally dependent</em> given <code>cough</code>.</p>
+<p>Here is a concrete example of explaining away in our medical scenario.</p>
+<p>Having a cold and having lung disease are <em>a priori</em> independent both causally and statistically. But because they are both causes of coughing if we observe <code>cough</code> then <code>cold</code> and <code>lungDisease</code> become statistically dependent.</p>
+<p>That is, learning something about whether a patient has <code>cold</code> or <code>lungDisease</code> will, in the presence of their common effect <code>cough</code>, convey information about the other condition. <code>cold</code> and <code>lungCancer</code> are <em>a priori</em> independent, but <em>conditionally dependent</em> given <code>cough</code>.</p>
 <p>To illustrate, observe how the probabilities of <code>cold</code> and <code>lungDisease</code> change when we observe <code>cough</code> is true:</p>
-<pre><code>var medicalDist = Infer({method: 'enumerate'}, function() {
-  var smokes = flip(.2);
-  var lungDisease = flip(0.001) || (smokes &amp;&amp; flip(0.1));
-  var cold = flip(0.02);
-
-  var cough = (cold &amp;&amp; flip(0.5)) || (lungDisease &amp;&amp; flip(0.5)) || flip(0.001);
-  var fever = (cold &amp;&amp; flip(0.3)) || flip(0.01);
-  var chestPain = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);
-  var shortnessOfBreath = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);
-
-  condition(cough);
-
-  return {cold: cold, lungDisease: lungDisease}
-})
-
-viz.marginals(medicalDist)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> medicalDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungDisease <span class="op">=</span> (</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.1</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.02</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>))</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(cough)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cold</span><span class="op">:</span> cold<span class="op">,</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">lungDisease</span><span class="op">:</span> lungDisease</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(medicalDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Both cold and lung disease are now far more likely that their baseline probability: the probability of having a cold increases from 2% to around 50%; the probability of having lung disease also increases from 2.1% to around 50%.</p>
-<p>Now suppose we <em>also</em> learn that the patient does <em>not</em> have a cold.</p>
-<pre><code>var medicalDist = Infer({method: 'enumerate'}, function() {
-  var smokes = flip(.2);
-  var lungDisease = flip(0.001) || (smokes &amp;&amp; flip(0.1));
-  var cold = flip(0.02);
-
-  var cough = (cold &amp;&amp; flip(0.5)) || (lungDisease &amp;&amp; flip(0.5)) || flip(0.001);
-  var fever = (cold &amp;&amp; flip(0.3)) || flip(0.01);
-  var chestPain = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);
-  var shortnessOfBreath = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);
-
-  condition(cough &amp;&amp; !cold);
-
-  return {cold: cold, lungDisease: lungDisease}
-})
-
-viz.marginals(medicalDist)</code></pre>
-<p>The probability of having lung disease increases dramatically. If instead we had observed that the patient does have a cold, the probability of lung cancer returns to its base rate of 2.1% <sub></sub> var medicalDist = Infer({method: ‘enumerate’}, function() { var smokes = flip(.2); var lungDisease = flip(0.001) || (smokes &amp;&amp; flip(0.1)); var cold = flip(0.02);</p>
-<p>var cough = (cold &amp;&amp; flip(0.5)) || (lungDisease &amp;&amp; flip(0.5)) || flip(0.001); var fever = (cold &amp;&amp; flip(0.3)) || flip(0.01); var chestPain = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01); var shortnessOfBreath = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01);</p>
-<p>condition(cough &amp;&amp; cold);</p>
-<p>return {cold: cold, lungDisease: lungDisease} })</p>
-<p>viz.marginals(medicalDist) <sub></sub></p>
-<p>This is the conditional statistical dependence between lung disease and cold, given cough: Learning that the patient does in fact have a cold “explains away” the observed cough, so the alternative of lung disease decreases to a much lower value — roughly back to its 1 in a 1000 rate in the general population. If on the other hand, we had learned that the patient does not have a cold, so the most likely alternative to lung disease is <em>not</em> in fact available to “explain away” the observed cough, that raises the conditional probability of lung disease dramatically. As an exercise, check that if we remove the observation of coughing, the observation of having a cold or not has no influence on our belief about lung disease; this effect is purely conditional on the observation of a common effect of these two causes.</p>
+<p>Now suppose we <em>also</em> learn that the patient does <em>not</em> have a cold:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> medicalDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungDisease <span class="op">=</span> (</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.1</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.02</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(cough <span class="op">&amp;&amp;</span> <span class="op">!</span>cold)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cold</span><span class="op">:</span> cold<span class="op">,</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">lungDisease</span><span class="op">:</span> lungDisease</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(medicalDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The probability of having lung disease increases dramatically. If instead we had observed that the patient does have a cold, the probability of lung cancer returns to its base rate of 2.1%:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> medicalDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungDisease <span class="op">=</span> (</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.1</span>))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.02</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(cough <span class="op">&amp;&amp;</span> cold)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cold</span><span class="op">:</span> cold<span class="op">,</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">lungDisease</span><span class="op">:</span> lungDisease</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(medicalDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is the conditional statistical dependence between lung disease and cold, given cough: Learning that the patient does in fact have a cold “explains away” the observed cough, so the alternative of lung disease decreases to a much lower value — roughly back to its 1 in a 1000 rate in the general population.</p>
+<p>If on the other hand, we had learned that the patient does not have a cold, so the most likely alternative to lung disease is <em>not</em> in fact available to “explain away” the observed cough, that raises the conditional probability of lung disease dramatically.</p>
+<p>As an exercise, check that if we remove the observation of coughing, the observation of having a cold or not has no influence on our belief about lung disease; this effect is purely conditional on the observation of a common effect of these two causes.</p>
 <!--
 Consider now a patient with a cough who also smokes, you will find that cold and lung disease are roughly equally likely explanations.
 Or add the observation that the patient has chest pain, so lung disease becomes an even more probable condition than having a cold. These are the settings where explaining away effects will be strongest. Modify the above program to observe that the patient either has a cold or does not have a cold, in addition to having a cough, smoking, and perhaps having chest-pain.
@@ -704,7 +952,9 @@ E.g., compare these conditioners:
 
 Notice how far up or down knowledge about whether the patient has a cold can push the conditional belief in having lung disease.
 -->
-<p>Explaining away effects can be more indirect. Instead of observing the truth value of <code>cold</code>, a direct alternative cause of <code>cough</code>, we might simply observe another symptom that provides evidence for <code>cold</code>, such as <code>fever</code>. Compare these conditions using the above WebPPL program to see an “explaining away” conditional dependence in belief between <code>fever</code> and <code>lungDisease</code>.</p>
+<p>Explaining away effects can be more indirect.</p>
+<p>Instead of observing the truth value of <code>cold</code>, a direct alternative cause of <code>cough</code>, we might simply observe another symptom that provides evidence for <code>cold</code>, such as <code>fever</code>.</p>
+<p>Compare these conditions using the above WebPPL program to see an “explaining away” conditional dependence in belief between <code>fever</code> and <code>lungDisease</code>.</p>
 <!--
 Replace `(and smokes chestPain cough)`  with `(and smokes chest-pain cough fever)` or `(and smokes chest-pain cough (not fever))`.
 In this case, finding out that the patient either does or does not have a fever makes a crucial difference in whether we think that the patient has lung disease...
@@ -714,51 +964,98 @@ even though fever itself is not at all diagnostic of lung disease, and there is 
 </section>
 <section id="example-trait-attribution" class="level2">
 <h2 class="anchored" data-anchor-id="example-trait-attribution">5.2 Example: Trait Attribution</h2>
-<p>A familiar example of rich patterns of inference comes from reasoning about the causes of students’ success and failure in the classroom. Imagine yourself in the position of an interested outside observer—a parent, another teacher, a guidance counselor or college admissions officer—in thinking about these conditional inferences. If a student doesn’t pass an exam, what can you say about why he failed? Maybe he doesn’t do his homework, maybe the exam was unfair, or maybe he was just unlucky?</p>
-<pre><code>var examPosterior = Infer({method: 'enumerate'}, function() {
-  var examFair = flip(.8)
-  var doesHomework = flip(.8)
-  var pass = flip(examFair ?
-                  (doesHomework ? 0.9 : 0.4) :
-                  (doesHomework ? 0.6 : 0.2))
-  condition(!pass)
-  return {doesHomework: doesHomework, examFair: examFair}
-})
-
-viz.marginals(examPosterior)
-viz(examPosterior)</code></pre>
+<p>A familiar example of rich patterns of inference comes from reasoning about the causes of students’ success and failure in the classroom.</p>
+<p>Imagine yourself in the position of an interested outside observer—a parent, another teacher, a guidance counselor or college admissions officer—in thinking about these conditional inferences. If a student doesn’t pass an exam, what can you say about why they failed? Maybe they don’t do their homework, maybe the exam was unfair, or maybe they were just unlucky?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> examPosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> examFair <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">8</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> doesHomework <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">8</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> pass <span class="op">=</span> <span class="fu">flip</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      examFair</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> (doesHomework <span class="op">?</span> <span class="fl">0.9</span> <span class="op">:</span> <span class="fl">0.4</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> (doesHomework <span class="op">?</span> <span class="fl">0.6</span> <span class="op">:</span> <span class="fl">0.2</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(<span class="op">!</span>pass)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">doesHomework</span><span class="op">:</span> doesHomework<span class="op">,</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">examFair</span><span class="op">:</span> examFair</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(examPosterior)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(examPosterior)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now what if you have evidence from several students and several exams? We first re-write the above model to allow many students and exams:</p>
-<pre><code>var examPosterior = Infer({method: 'enumerate'}, function() {
-  var examFair = mem(function(exam){return flip(0.8)})
-  var doesHomework = mem(function(student){return flip(0.8)})
-
-  var pass = function(student, exam) {
-    return flip(examFair(exam) ?
-                (doesHomework(student) ? 0.9 : 0.4) :
-                (doesHomework(student) ? 0.6 : 0.2))
-  };
-
-  condition(!pass('bill', 'exam1'))
-
-  return {doesHomework: doesHomework('bill'), examFair: examFair('exam1')}
-})
-
-viz.marginals(examPosterior)
-viz(examPosterior)</code></pre>
-<p>Initially we observe that Bill failed exam 1. A priori, we assume that most students do their homework and most exams are fair, but given this one observation it becomes somewhat likely that either the student didn’t study or the exam was unfair.</p>
-<p>Notice that we have set the probabilities in the <code>pass</code> function to be asymmetric: whether a student does homework has a greater influence on passing the test than whether the exam is fair. This in turns means that when inferring the <em>cause</em> of a failed exam, the model tends to attribute it to the person property (not doing homework) over the situation property (exam being unfair). This asymmetry is an example of the <em>fundamental attribution bias</em> <span class="citation" data-cites="Ross1977">(<a href="#ref-Ross1977" role="doc-biblioref"><strong>Ross1977?</strong></a>)</span>: we tend to attribute outcomes to personal traits rather than situations. However there are many interacting tendencies (for instance the direction of this bias switches for members of some east-asian cultures). How could you extend the model to account for these interactions?</p>
-<p>See how conditional inferences about Bill and exam 1 change as you add in more data about this student or this exam, or additional students and exams. Try using each of the below expressions as the condition for the above inference. Try to explain the different inferences that result at each stage. What does each new piece of the larger data set contribute to your intuition about Bill and exam 1?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> examPosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> examFair <span class="op">=</span> <span class="fu">mem</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">function</span>(exam){ <span class="cf">return</span> <span class="fu">flip</span>(<span class="fl">0.8</span>) }</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> doesHomework <span class="op">=</span> <span class="fu">mem</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">function</span>(student){ <span class="cf">return</span> <span class="fu">flip</span>(<span class="fl">0.8</span>) }</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> pass <span class="op">=</span> <span class="kw">function</span>(student<span class="op">,</span> exam) {</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">flip</span>(</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">examFair</span>(exam)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="fu">doesHomework</span>(student) <span class="op">?</span> <span class="fl">0.9</span> <span class="op">:</span> <span class="fl">0.4</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> <span class="fu">doesHomework</span>(student) <span class="op">?</span> <span class="fl">0.6</span> <span class="op">:</span> <span class="fl">0.2</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(<span class="op">!</span><span class="fu">pass</span>(<span class="st">'bill'</span><span class="op">,</span> <span class="st">'exam1'</span>))</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">doesHomework</span><span class="op">:</span> <span class="fu">doesHomework</span>(<span class="st">'bill'</span>)<span class="op">,</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">examFair</span><span class="op">:</span> <span class="fu">examFair</span>(<span class="st">'exam1'</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(examPosterior)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(examPosterior)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Initially we observe that Bill failed Exam 1. A priori, we assume that most students do their homework and most exams are fair, but given this one observation it becomes somewhat likely that either the student didn’t study or the exam was unfair.</p>
+<p>Notice that we have set the probabilities in the <code>pass</code> function to be asymmetric: whether a student does homework has a greater influence on passing the test than whether the exam is fair. This in turns means that when inferring the <em>cause</em> of a failed exam, the model tends to attribute it to the person property (not doing homework) over the situation property (exam being unfair).</p>
+<p>This asymmetry is an example of the <em>fundamental attribution bias</em> <span class="citation" data-cites="ross_intuitive_1977">(<a href="#ref-ross_intuitive_1977" role="doc-biblioref">Ross 1977</a>)</span>: we tend to attribute outcomes to personal traits rather than situations.</p>
+<p>However, there are many interacting tendencies (for instance, the direction of this bias switches for members of some east-asian cultures). How could you extend the model to account for these interactions?</p>
+<p>See how conditional inferences about Bill and exam 1 change as you add in more data about this student or this exam, or additional students and exams. Try using each of the below expressions as the condition for the above inference, and try to explain the different inferences that result at each stage. What does each new piece of the larger data set contribute to your intuition about Bill and Exam 1?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>!pass('bill', 'exam1') &amp;&amp; !pass('bill', 'exam2')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>!pass('bill', 'exam1') &amp;&amp; !pass('mary', 'exam1')</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>&amp;&amp; !pass('tim', 'exam1')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>!pass('bill', 'exam1') &amp;&amp; !pass('bill', 'exam2')</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>&amp;&amp; !pass('mary', 'exam1') &amp;&amp; !pass('tim', 'exam1')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>!pass('bill', 'exam1') &amp;&amp; !pass('mary', 'exam1')</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam2') &amp;&amp; pass('mary', 'exam3')</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam4') &amp;&amp; pass('mary', 'exam5')</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>&amp;&amp; !pass('tim', 'exam1') &amp;&amp; pass('tim', 'exam2')</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam3') &amp;&amp; pass('tim', 'exam4')</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam5')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>!pass('bill', 'exam1') &amp;&amp; pass('mary', 'exam1')</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam1')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>!pass('bill', 'exam1') &amp;&amp; pass('mary', 'exam1')</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam2') &amp;&amp; pass('mary', 'exam3')</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam4') &amp;&amp; pass('mary', 'exam5')</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam1') &amp;&amp; pass('tim', 'exam2')</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam3') &amp;&amp; pass('tim', 'exam4')</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam5')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>!pass('bill', 'exam1') &amp;&amp; !pass('bill', 'exam2')</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam1') &amp;&amp; pass('mary', 'exam2')</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam3') &amp;&amp; pass('mary', 'exam4')</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam5') &amp;&amp; pass('tim', 'exam1')</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam2') &amp;&amp; pass('tim', 'exam3')</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam4') &amp;&amp; pass('tim', 'exam5')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>!pass('bill', 'exam1') &amp;&amp; !pass('bill', 'exam2')</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('bill', 'exam3') &amp;&amp; pass('bill', 'exam4')</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('bill', 'exam5') &amp;&amp; pass('mary', 'exam1')</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam2') &amp;&amp; pass('mary', 'exam3')</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('mary', 'exam4') &amp;&amp; pass('mary', 'exam5')</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam1') &amp;&amp; pass('tim', 'exam2')</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam3') &amp;&amp; pass('tim', 'exam4')</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>&amp;&amp; pass('tim', 'exam5')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This example is inspired by the work of Harold Kelley (and many others) on causal attribution in social settings <span class="citation" data-cites="kelley_processes_1973">(<a href="#ref-kelley_processes_1973" role="doc-biblioref">Kelley 1973</a>)</span>. Kelley identified three important dimensions of variation in the evidence, which affect the attributions people make of the cause of an outcome. These three dimensions are:</p>
 <ul>
-<li><p><code>!pass('bill', 'exam1') &amp;&amp; !pass('bill', 'exam2')</code></p></li>
-<li><p><code>!pass('bill', 'exam1') &amp;&amp; !pass('mary', 'exam1') &amp;&amp; !pass('tim', 'exam1')</code></p></li>
-<li><p><code>!pass('bill', 'exam1') &amp;&amp; !pass('bill', 'exam2') &amp;&amp; !pass('mary', 'exam1') &amp;&amp; !pass('tim', 'exam1')</code></p></li>
-<li><p><code>!pass('bill', 'exam1') &amp;&amp; !pass('mary', 'exam1') &amp;&amp; pass('mary', 'exam2') &amp;&amp; pass('mary', 'exam3') &amp;&amp; pass('mary', 'exam4') &amp;&amp; pass('mary', 'exam5') &amp;&amp; !pass('tim', 'exam1') &amp;&amp; pass('tim', 'exam2') &amp;&amp; pass('tim', 'exam3') &amp;&amp; pass('tim', 'exam4') &amp;&amp; pass('tim', 'exam5')</code></p></li>
-<li><p><code>!pass('bill', 'exam1') &amp;&amp; pass('mary', 'exam1') &amp;&amp; pass('tim', 'exam1')</code></p></li>
-<li><p><code>!pass('bill', 'exam1') &amp;&amp; pass('mary', 'exam1') &amp;&amp; pass('mary', 'exam2') &amp;&amp; pass('mary', 'exam3') &amp;&amp; pass('mary', 'exam4') &amp;&amp; pass('mary', 'exam5') &amp;&amp; pass('tim', 'exam1') &amp;&amp; pass('tim', 'exam2') &amp;&amp; pass('tim', 'exam3') &amp;&amp; pass('tim', 'exam4') &amp;&amp; pass('tim', 'exam5')</code></p></li>
-<li><p><code>!pass('bill', 'exam1') &amp;&amp; !pass('bill', 'exam2') &amp;&amp; pass('mary', 'exam1') &amp;&amp; pass('mary', 'exam2') &amp;&amp; pass('mary', 'exam3') &amp;&amp; pass('mary', 'exam4') &amp;&amp; pass('mary', 'exam5') &amp;&amp; pass('tim', 'exam1') &amp;&amp; pass('tim', 'exam2') &amp;&amp; pass('tim', 'exam3') &amp;&amp; pass('tim', 'exam4') &amp;&amp; pass('tim', 'exam5')</code></p></li>
-<li><p><code>!pass('bill', 'exam1') &amp;&amp; !pass('bill', 'exam2') &amp;&amp; pass('bill', 'exam3') &amp;&amp; pass('bill', 'exam4') &amp;&amp; pass('bill', 'exam5') &amp;&amp; pass('mary', 'exam1') &amp;&amp; pass('mary', 'exam2') &amp;&amp; pass('mary', 'exam3') &amp;&amp; pass('mary', 'exam4') &amp;&amp; pass('mary', 'exam5') &amp;&amp; pass('tim', 'exam1') &amp;&amp; pass('tim', 'exam2') &amp;&amp; pass('tim', 'exam3') &amp;&amp; pass('tim', 'exam4') &amp;&amp; pass('tim', 'exam5')</code></p></li>
+<li><em>Persons</em>: Is the outcome consistent across different people in the situation?</li>
+<li><em>Entities</em>: Is the outcome consistent for different entities in the situation?</li>
+<li><em>Time</em>: Is the outcome consistent over different episodes?</li>
 </ul>
-<p>This example is inspired by the work of Harold Kelley (and many others) on causal attribution in social settings <span class="citation" data-cites="Kelley1973">(<a href="#ref-Kelley1973" role="doc-biblioref"><strong>Kelley1973?</strong></a>)</span>. Kelley identified three important dimensions of variation in the evidence, which affect the attributions people make of the cause of an outcome. These three dimensions are: Persons—is the outcome consistent across different people in the situation?; Entities—is the outcome consistent for different entities in the situation?; Time—is the outcome consistent over different episodes? These dimensions map onto the different sets of evidence we have just seen—how?</p>
+<p>These dimensions map onto the different sets of evidence we have just seen—how?</p>
 <!--- wikipedia:
 1) Consistency: "Is the behavior consistent across most people in the given situation?" 2) Distinctiveness: "Does the behavior vary across different situations?" and 3) Consensus: "Do most people engage in this behavior in this situation?"
 --->
@@ -766,66 +1063,133 @@ viz(examPosterior)</code></pre>
 </section>
 <section id="example-of-blickets-and-blocking" class="level2">
 <h2 class="anchored" data-anchor-id="example-of-blickets-and-blocking">5.3 Example: Of Blickets and Blocking</h2>
-<p>A number of researchers have explored children’s causal learning abilities by using the “blicket detector” <span class="citation" data-cites="Gopnik2000">(<a href="#ref-Gopnik2000" role="doc-biblioref"><strong>Gopnik2000?</strong></a>)</span>: a toy box that will light up when certain blocks, the blickets, are put on top of it. Children are shown a set of evidence and then asked which blocks are blickets. For instance, if block A makes the detector go off, it is probably a blicket. Ambiguous patterns are particularly interesting. Imagine that blocks A and B are put on the detector together, making the detector go off; it is fairly likely that A is a blicket. Now B is put on the detector alone, making the detector go off; it is now less plausible that A is a blicket. This is called “backward blocking”, and it is an example of explaining away.</p>
-<p>We can capture this set up with a model in which each block has a persistent “blicket-ness” property, and the causal power of the block to make the machine go off depends on its blicketness. Finally, the machine goes off if any of the blocks on it is a blicket (but noisily).</p>
-<pre><code>var blicketPosterior = Infer({method: 'enumerate'}, function() {
-  var blicket = mem(function(block) {return flip(.4)})
-  var power = function(block) {return blicket(block) ? .9 : .05}
-  var machine = function(blocks) {
-    return (blocks.length == 0 ?
-            flip(.05) :
-            flip(power(first(blocks))) || machine(rest(blocks)))
-  }
-  condition(machine(['A', 'B']))
-  //condition(machine(['B'])) //uncomment to see explaining away!
-  return blicket('A')
-});
-
-viz(blicketPosterior)</code></pre>
-<p>Try the backward blocking scenario described above. <span class="citation" data-cites="Sobel2004">(<a href="#ref-Sobel2004" role="doc-biblioref"><strong>Sobel2004?</strong></a>)</span> tried this with children, finding that four year-olds perform similarly to the model: evidence that B is a blicket explains away the evidence that A and B made the detector go away.</p>
+<p>A number of researchers have explored children’s causal learning abilities by using the “blicket detector” <span class="citation" data-cites="gopnik_detecting_2000">(<a href="#ref-gopnik_detecting_2000" role="doc-biblioref">Gopnik and Sobel 2000</a>)</span>: a toy box that will light up when certain blocks, the blickets, are put on top of it. Children are shown a set of evidence and then asked which blocks are blickets. For instance, if block <span class="math inline">\(A\)</span> makes the detector go off, it is probably a blicket.</p>
+<p>Ambiguous patterns are particularly interesting. Imagine that blocks <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are put on the detector together, making the detector go off; it is fairly likely that <span class="math inline">\(A\)</span> is a blicket. Now <span class="math inline">\(B\)</span> is put on the detector alone, making the detector go off; it is now less plausible that <span class="math inline">\(A\)</span> is a blicket. This is called “backward blocking”, and it is an example of explaining away.</p>
+<p>We can capture this setup with a model in which each block has a persistent “blicket-ness” property, and the causal power of the block to make the machine go off depends on its blicketness. The machine goes off if any of the blocks on it is a blicket, but noisily:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> blicketPosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> blicket <span class="op">=</span> <span class="fu">mem</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">function</span>(block) { <span class="cf">return</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">4</span>) }</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> power <span class="op">=</span> <span class="kw">function</span>(block) {</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">blicket</span>(block) <span class="op">?</span> <span class="op">.</span><span class="dv">9</span> <span class="op">:</span> <span class="op">.</span><span class="bn">05</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> machine <span class="op">=</span> <span class="kw">function</span>(blocks) {</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> blocks<span class="op">.</span><span class="at">length</span> <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="bn">05</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> (</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>          <span class="fu">flip</span>(<span class="fu">power</span>(<span class="fu">first</span>(blocks)))</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>          <span class="op">||</span> <span class="fu">machine</span>(<span class="fu">rest</span>(blocks))</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(<span class="fu">machine</span>([<span class="st">'A'</span><span class="op">,</span> <span class="st">'B'</span>]))</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Uncomment the following line to</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// see "explaining away" in action!</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">// condition(machine(['B']))</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">blicket</span>(<span class="st">'A'</span>)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(blicketPosterior)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Try the backward blocking scenario described above. <span class="citation" data-cites="sobel_childrens_2004">Sobel, Tenenbaum, and Gopnik (<a href="#ref-sobel_childrens_2004" role="doc-biblioref">2004</a>)</span> tried this with children, finding that four year-olds perform similarly to the model: evidence that <span class="math inline">\(B\)</span> is a blicket explains away the evidence that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> made the detector go away.</p>
 </section>
 <section id="a-case-study-in-modularity-visual-perception-of-surface-color" class="level2">
 <h2 class="anchored" data-anchor-id="a-case-study-in-modularity-visual-perception-of-surface-color">5.4 A Case Study in Modularity: Visual Perception of Surface Color</h2>
-<p>Visual perception is full of rich conditional inference phenomena, including both screening off and explaining away. Some very impressive demonstrations have been constructed using the perception of surface structure by mid-level vision researchers; see the work of Dan Kersten, David Knill, Ted Adelson, Bart Anderson, Ken Nakayama, among others. Most striking is when conditional inference appears to violate or alter the apparently “modular” structure of visual processing. Neuroscientists have developed an understanding of the primate visual system in which processing for different aspects of visual stimuli—color, shape, motion, stereo—appears to be at least somewhat localized in different brain regions. This view is consistent with findings by cognitive psychologists that at least in early vision, these different stimulus dimensions are not integrated but processed in a sequential, modular fashion. Yet vision is at heart about constructing a unified and coherent percept of a three-dimensional scene from the patterns of light falling on our retinas. That is, vision is causal inference on a grand scale. Its output is a rich description of the objects, surface properties and relations in the world that are not themselves directly grasped by the brain but that are the true causes of the input—low-level stimulation of the retina. Solving this problem requires integration of many appearance features across an image, and this results in the potential for massive effects of explaining away and screening off.</p>
-<p>In vision, the luminance of a surface depends on two factors, the illumination of the surface (how much light is hitting it) and its intrinsic reflectance. The actual luminance is the product of the two factors. Thus luminance is inherently ambiguous. The visual system has to determine what proportion of the luminance is due to reflectance and what proportion is due to the illumination of the scene. This has led to a famous illusion known as the <em>checker shadow illusion</em> discovered by Ted Adelson.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/img/Checkershadow_illusion_small.png" class="img-fluid figure-img"></p>
-<figcaption>Are the two squares the same shade of grey?</figcaption>
+<p>Visual perception is full of rich conditional inference phenomena, including both screening off and explaining away. Some very impressive demonstrations have been constructed using the perception of surface structure by mid-level vision researchers; see the work of Dan Kersten, David Knill, Ted Adelson, Bart Anderson, Ken Nakayama, among others.</p>
+<p>Most striking is when conditional inference appears to violate or alter the apparently “modular” structure of visual processing. Neuroscientists have developed an understanding of the primate visual system in which processing for different aspects of visual stimuli—color, shape, motion, stereo—appears to be at least somewhat localized in different brain regions. This view is consistent with findings by cognitive psychologists that at least in early vision, these different stimulus dimensions are not integrated but processed in a sequential, modular fashion.</p>
+<p>Yet vision is at heart about constructing a unified and coherent percept of a three-dimensional scene from the patterns of light falling on our retinas. That is, vision is causal inference on a grand scale.</p>
+<p>Its output is a rich description of the objects, surface properties and relations in the world that are not themselves directly grasped by the brain but that are the true causes of the input—low-level stimulation of the retina. Solving this problem requires integration of many appearance features across an image, and this results in the potential for massive effects of explaining away and screening off.</p>
+<p>In vision, the <strong>luminance</strong> of a surface depends on two factors: the <strong>illumination</strong> of the surface (how much light is hitting it) and its intrinsic <strong>reflectance</strong>. The actual luminance is the <strong>product</strong> of these two factors.</p>
+<p>Thus luminance is inherently ambiguous: The visual system has to determine what proportion of the luminance is due to reflectance and what proportion is due to the illumination of the scene. This has led to a famous illusion known as the <em>checker shadow illusion</em> discovered by Ted Adelson (<a href="#fig-shadow" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<div id="fig-shadow" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shadow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/img/Checkershadow_illusion_small.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shadow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Are the two squares the same shade of grey?
+</figcaption>
 </figure>
 </div>
-<p>Despite appearances, in the image above both the square labeled A and the square labeled B are actually the same shade of gray. This can be seen in the figure below where they are connected by solid gray bars on either side.</p>
-<p><img src="../assets/img/Checkershadow_proof_small.png" class="img-fluid"></p>
-<p>The presence of the cylinder is providing evidence that the illumination of square B is actually less than that of square A (because it is expected to cast a shadow). Thus we perceive square B as having higher reflectance since its luminance is identical to square A and we believe there is less light hitting it. The following program implements a simple version of this scenario “before” we see the shadow cast by the cylinder.</p>
-<pre><code>var observedLuminance = 3;
+<p>Despite appearances, in the image above both the square labeled <span class="math inline">\(A\)</span> and the square labeled <span class="math inline">\(B\)</span> are actually the same shade of gray! This can be seen in <a href="#fig-shadow-proof" class="quarto-xref">Figure&nbsp;2</a>, where they are connected by solid gray bars on either side:</p>
+<div id="fig-shadow-proof" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shadow-proof-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/img/Checkershadow_proof_small.png" id="fig-shadow-proof" class="img-fluid quarto-figure quarto-figure-center anchored figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-shadow-proof-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+<p>The presence of the cylinder is providing evidence that the illumination of square <span class="math inline">\(B\)</span> is actually less than that of square <span class="math inline">\(A\)</span> (because it is expected to cast a shadow). Thus we perceive square <span class="math inline">\(B\)</span> as having higher reflectance since its luminance is identical to square <span class="math inline">\(A\)</span> and we believe there is less light hitting it.</p>
+<p>The following program implements a simple version of this scenario “before” we see the shadow cast by the cylinder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> observedLuminance <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> reflectancePosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'MCMC'</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span> <span class="dv">10000</span>}<span class="op">,</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> reflectance <span class="op">=</span> <span class="fu">gaussian</span>({</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">mu</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> illumination <span class="op">=</span> <span class="fu">gaussian</span>({</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">mu</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> luminance <span class="op">=</span> reflectance <span class="op">*</span> illumination</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">observe</span>(</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Gaussian</span>({</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mu</span><span class="op">:</span> luminance<span class="op">,</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>      observedLuminance</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> reflectance</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">''</span>)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">expectation</span>(reflectancePosterior))</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(reflectancePosterior)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now let’s condition on the presence of the cylinder, by conditioning on the presence of its “shadow” (i.e., gaining a noisy observation suggesting that illumination is lower than expected <em>a priori</em>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> observedLuminance <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> reflectancePosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'MCMC'</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span> <span class="dv">10000</span>}<span class="op">,</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> reflectance <span class="op">=</span> <span class="fu">gaussian</span>({</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">mu</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> illumination <span class="op">=</span> <span class="fu">gaussian</span>({</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">mu</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> luminance <span class="op">=</span> reflectance <span class="op">*</span> illumination</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">observe</span>(</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Gaussian</span>({</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mu</span><span class="op">:</span> luminance<span class="op">,</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>      observedLuminance</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">observe</span>(</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Gaussian</span>({</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mu</span><span class="op">:</span> illumination<span class="op">,</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>        <span class="dt">sigma</span><span class="op">:</span> <span class="fl">0.1</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>      <span class="fl">0.5</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> reflectance</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">''</span>)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">expectation</span>(reflectancePosterior))</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(reflectancePosterior)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The variables <code>reflectance</code> and <code>illumination</code> are conditionally independent in the generative model, but after we condition on <code>luminance</code> they become dependent: changing one of them affects the probability of the other.</p>
+<p>Although the model of (our knowledge of) the world has a certain kind of modularity implied by conditional independence, as soon as we start using the model to do conditional inference on some data, formerly modularly isolated variables can become dependent. This general phenomenon has important consequences for cognitive science.</p>
+<!-- ## Other vision examples (to be developed)
 
-var reflectancePosterior = Infer({method: 'MCMC', samples: 10000}, function() {
-  var reflectance = gaussian({mu: 1, sigma: 1})
-  var illumination = gaussian({mu: 3, sigma: 1})
-  var luminance = reflectance * illumination
-  observe(Gaussian({mu: luminance, sigma: 1}), observedLuminance)
-  return reflectance
-});
-
-print(expectation(reflectancePosterior))
-viz(reflectancePosterior)</code></pre>
-<p>Now let’s condition on the presence of the cylinder, by conditioning on the presence of its “shadow” (i.e.&nbsp;gaining a noisy observation suggesting that illumination is lower than expected <em>a priori</em>):</p>
-<pre><code>var observedLuminance = 3;
-
-var reflectancePosterior = Infer({method: 'MCMC', samples: 10000}, function() {
-  var reflectance = gaussian({mu: 1, sigma: 1})
-  var illumination = gaussian({mu: 3, sigma: 1})
-  var luminance = reflectance * illumination
-  observe(Gaussian({mu: luminance, sigma: 1}), observedLuminance)
-  observe(Gaussian({mu: illumination, sigma: 0.1}), 0.5)
-  return reflectance
-});
-
-print(expectation(reflectancePosterior))
-viz(reflectancePosterior)</code></pre>
-<p>The variables <code>reflectance</code> and <code>illumination</code> are conditionally independent in the generative model, but after we condition on <code>luminance</code> they become dependent: changing one of them affects the probability of the other. Although the model of (our knowledge of) the world has a certain kind of modularity implied by conditional independence, as soon as we start using the model to do conditional inference on some data, formerly modularly isolated variables can become dependent. This general phenomenon has important consequences for cognitive science.</p>
-<!--
-## Other vision examples (to be developed)
 Kersten's [colored Mach card](http://vision.psych.umn.edu/users/kersten/kersten-lab/Mutual_illumination/BlojKerstenHurlbertDemo99.pdf) illusion is a beautiful example of both explaining away and screening off in visual surface perception, as well as a switch between these two patterns of inference conditioned on an auxiliary variable.
 Depending on how we perceive the geometry of a surface folded down the middle -- whether it is concave so that the two halves face each other or convex so that they face away -- the perceived colors of the faces will change as the visual system either discounts (explains away) or ignores (screens off) the effects of inter-reflections between the surfaces.
 
@@ -861,13 +1225,46 @@ compute simple discrete derivatives of shape for angle of surface normal
 condition on effect of observing contour
 
 -->
-<p>Reading &amp; Discussion</p>
-<p>Test your knowledge: <a href="../ch05/exercises.html">Exercises</a></p>
+</section>
+<section id="readings-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="readings-and-discussion">5.5 Readings and Discussion</h2>
+<p>The following three articles by Edward H. Adelson provide a deeper dive into the mechanics of human perception of brightness:</p>
+<ul>
+<li><span class="citation" data-cites="adelson_perceptual_1993">Edward H. Adelson (<a href="#ref-adelson_perceptual_1993" role="doc-biblioref">1993</a>)</span></li>
+<li><span class="citation" data-cites="adelson_lightness_2000">Edward H. Adelson (<a href="#ref-adelson_lightness_2000" role="doc-biblioref">2000</a>)</span></li>
+<li><span class="citation" data-cites="adelson_seeing_2001">Edward H. Adelson (<a href="#ref-adelson_seeing_2001" role="doc-biblioref">2001</a>)</span></li>
+</ul>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-adelson_lightness_2000" class="csl-entry" role="listitem">
+Adelson, Edward H. 2000. <span>“Lightness <span>Perception</span> and <span>Lightness Illusions</span>.”</span> In <em>The <span>New Cognitive Neurosciences</span></em>, edited by M Gazzaniga, 2nd ed., 339–51. Cambridge, MA: MIT PRess.
+</div>
+<div id="ref-adelson_perceptual_1993" class="csl-entry" role="listitem">
+Adelson, Edward H. 1993. <span>“<a href="https://doi.org/10.1126/science.8266102">Perceptual Organization and the Judgment of Brightness</a>.”</span> <em>Science</em> 262 (5142): 2042–44.
+</div>
+<div id="ref-adelson_seeing_2001" class="csl-entry" role="listitem">
+———. 2001. <span>“<a href="https://doi.org/10.1117/12.429489">On Seeing Stuff: The Perception of Materials by Humans and Machines</a>.”</span> In <em>Human <span>Vision</span> and <span>Electronic Imaging VI</span></em>, 4299:1. SPIE.
+</div>
+<div id="ref-gopnik_detecting_2000" class="csl-entry" role="listitem">
+Gopnik, Alison, and David M Sobel. 2000. <span>“<a href="https://doi.org/10.1111/1467-8624.00224">Detecting <span>Blickets</span>: <span>How Young Children Use Information</span> about <span>Novel Causal Powers</span> in <span>Categorization</span> and <span>Induction</span></a>.”</span> <em>Child Development</em> 71 (5): 1205–22.
+</div>
+<div id="ref-kelley_processes_1973" class="csl-entry" role="listitem">
+Kelley, Harold H. 1973. <span>“<a href="https://doi.org/10.1037/h0034225">The Processes of Causal Attribution</a>.”</span> <em>American Psychologist</em> 28 (2): 107–28.
+</div>
+<div id="ref-pearl_causality_2000" class="csl-entry" role="listitem">
+Pearl, Judea. 2000. <em><a href="https://www.dropbox.com/scl/fi/4kfpro4gpx7tg55fwd7qt/Judea-Pearl-Causality_-Models-Reasoning-and-Inference.pdf?rlkey=f0abw0cgmsyiegx6xapq5z7j2&amp;dl=1">Causality: <span>Models</span>, <span>Reasoning</span>, and <span>Inference</span></a></em>. Cambridge University Press.
+</div>
+<div id="ref-ross_intuitive_1977" class="csl-entry" role="listitem">
+Ross, Lee. 1977. <span>“<a href="https://doi.org/10.1016/S0065-2601(08)60357-3">The <span>Intuitive Psychologist And His Shortcomings</span>: <span>Distortions</span> in the <span>Attribution Process</span></a>.”</span> <em>Advances in Experimental Social Psychology</em> 10 (January): 173–220.
+</div>
+<div id="ref-sobel_childrens_2004" class="csl-entry" role="listitem">
+Sobel, David M., Joshua B. Tenenbaum, and Alison Gopnik. 2004. <span>“<a href="https://doi.org/10.1207/s15516709cog2803_1">Children’s Causal Inferences from Indirect Evidence: <span>Backwards</span> Blocking and <span>Bayesian</span> Reasoning in Preschoolers</a>.”</span> <em>Cognitive Science</em> 28 (3): 303–33.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -1303,8 +1700,14 @@ condition on effect of observing contour
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch05/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer><script>
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('pre').forEach((elt) => editor.setup(elt, {language:'webppl'}))
-});
+  let jsBlocks = Array.from(document.querySelectorAll('pre'))
+  jsBlocks
+    .filter((elt) => !elt.classList.contains('default'))
+    .forEach(
+      (elt) => editor.setup(elt, {language:'webppl'})
+    )
+  }
+)
 </script>
 
 

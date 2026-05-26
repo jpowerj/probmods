@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -47,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-8d28ae19919d5c67af76f2443fb22f33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3400fdbd8bae38ba2006f86cab23685c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,7 +112,17 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script><link rel="stylesheet" href="../assets/css/webppl-editor.css"><link rel="stylesheet" href="../assets/css/webppl-viz.css"><script src="../assets/js/webppl.min.js"></script><script src="../assets/js/webppl-viz.min.js"></script><script src="../assets/js/webppl-editor.min.js" defer=""></script><script src="../assets/js/paper-full.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<script src="../sidebar.js"></script>
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin="">
+<link href="https://googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap&quot; rel=&quot;stylesheet">
+<link rel="stylesheet" href="../assets/css/webppl-editor.css">
+<link rel="stylesheet" href="../assets/css/webppl-viz.css">
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js" defer=""></script>
+<script src="../assets/js/paper-full.js"></script>
 
 
 </head>
@@ -481,17 +526,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-4.1-causal-and-statistical-dependency." id="toc-exercise-4.1-causal-and-statistical-dependency." class="nav-link active" data-scroll-target="#exercise-4.1-causal-and-statistical-dependency.">Exercise 4.1: Causal and statistical dependency.</a>
+  <li><a href="#exercise-4.1-causal-and-statistical-dependency" id="toc-exercise-4.1-causal-and-statistical-dependency" class="nav-link active" data-scroll-target="#exercise-4.1-causal-and-statistical-dependency">Exercise 4.1: Causal and Statistical Dependency</a>
   <ul class="collapse">
-  <li><a href="#a" id="toc-a" class="nav-link" data-scroll-target="#a">a)</a></li>
-  <li><a href="#b" id="toc-b" class="nav-link" data-scroll-target="#b">b)</a></li>
-  <li><a href="#c" id="toc-c" class="nav-link" data-scroll-target="#c">c)</a></li>
-  <li><a href="#d" id="toc-d" class="nav-link" data-scroll-target="#d">d)</a></li>
-  <li><a href="#e" id="toc-e" class="nav-link" data-scroll-target="#e">e)</a></li>
+  <li><a href="#question-4.1.1" id="toc-question-4.1.1" class="nav-link" data-scroll-target="#question-4.1.1">Question 4.1.1</a></li>
+  <li><a href="#question-4.1.2" id="toc-question-4.1.2" class="nav-link" data-scroll-target="#question-4.1.2">Question 4.1.2</a></li>
+  <li><a href="#question-4.1.3" id="toc-question-4.1.3" class="nav-link" data-scroll-target="#question-4.1.3">Question 4.1.3</a></li>
+  <li><a href="#question-4.1.4" id="toc-question-4.1.4" class="nav-link" data-scroll-target="#question-4.1.4">Question 4.1.4</a></li>
+  <li><a href="#question-4.1.5" id="toc-question-4.1.5" class="nav-link" data-scroll-target="#question-4.1.5">Question 4.1.5</a></li>
   </ul></li>
-  <li><a href="#exercise-2-probabilistic-programs-without-corresponding-graphical-models" id="toc-exercise-2-probabilistic-programs-without-corresponding-graphical-models" class="nav-link" data-scroll-target="#exercise-2-probabilistic-programs-without-corresponding-graphical-models">Exercise 2: Probabilistic programs without corresponding graphical models</a>
+  <li><a href="#exercise-4.2-probabilistic-programs-without-corresponding-graphical-models" id="toc-exercise-4.2-probabilistic-programs-without-corresponding-graphical-models" class="nav-link" data-scroll-target="#exercise-4.2-probabilistic-programs-without-corresponding-graphical-models">Exercise 4.2: Probabilistic Programs Without Corresponding Graphical Models</a>
   <ul class="collapse">
-  <li><a href="#a-1" id="toc-a-1" class="nav-link" data-scroll-target="#a-1">a)</a></li>
+  <li><a href="#question-4.2.1" id="toc-question-4.2.1" class="nav-link" data-scroll-target="#question-4.2.1">Question 4.2.1</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch04/exercises.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="exercises.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -519,75 +564,100 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-4.1-causal-and-statistical-dependency." class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4.1-causal-and-statistical-dependency.">Exercise 4.1: Causal and statistical dependency.</h2>
+<section id="exercise-4.1-causal-and-statistical-dependency" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4.1-causal-and-statistical-dependency">Exercise 4.1: Causal and Statistical Dependency</h2>
 <p>For each of the following programs:</p>
 <ul>
-<li><p>Draw the dependency diagram (Bayes net). If you don’t have software on your computer for doing this, Google Docs has a decent interface for creating drawings.</p></li>
-<li><p>Use informal evaluation order reasoning and the intervention method to determine causal dependency between A and B.</p></li>
-<li><p>Use conditioning to determine whether A and B are statistically dependent.</p></li>
+<li>Draw the dependency diagram as a Bayes Net. If you don’t have software on your computer for doing this, Google Docs has a decent interface for creating drawings.</li>
+<li>Use informal evaluation order reasoning and the intervention method to determine causal dependency between <code>A</code> and <code>B</code>.</li>
+<li>Use conditioning to determine whether <code>A</code> and <code>B</code> are statistically dependent.</li>
 </ul>
-<section id="a" class="level3">
-<h3 class="anchored" data-anchor-id="a">a)</h3>
-<pre><code>var a = flip();
-var b = flip();
-var c = flip(a &amp;&amp; b ? .8 : .5);</code></pre>
+<section id="question-4.1.1" class="level3">
+<h3 class="anchored" data-anchor-id="question-4.1.1">Question 4.1.1</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>(A <span class="op">&amp;&amp;</span> B <span class="op">?</span> <span class="op">.</span><span class="dv">8</span> <span class="op">:</span> <span class="op">.</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="b" class="level3">
-<h3 class="anchored" data-anchor-id="b">b)</h3>
-<pre><code>var a = flip();
-var b = flip(a ? .9 : .2);
-var c = flip(b ? .7 : .1);</code></pre>
+<section id="question-4.1.2" class="level3">
+<h3 class="anchored" data-anchor-id="question-4.1.2">Question 4.1.2</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> <span class="fu">flip</span>(A <span class="op">?</span> <span class="op">.</span><span class="dv">9</span> <span class="op">:</span> <span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>(B <span class="op">?</span> <span class="op">.</span><span class="dv">7</span> <span class="op">:</span> <span class="op">.</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="c" class="level3">
-<h3 class="anchored" data-anchor-id="c">c)</h3>
-<pre><code>var a = flip();
-var b = flip(a ? .9 : .2);
-var c = flip(a ? .7 : .1);</code></pre>
+<section id="question-4.1.3" class="level3">
+<h3 class="anchored" data-anchor-id="question-4.1.3">Question 4.1.3</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> b <span class="op">=</span> <span class="fu">flip</span>(a <span class="op">?</span> <span class="op">.</span><span class="dv">9</span> <span class="op">:</span> <span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> c <span class="op">=</span> <span class="fu">flip</span>(a <span class="op">?</span> <span class="op">.</span><span class="dv">7</span> <span class="op">:</span> <span class="op">.</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="d" class="level3">
-<h3 class="anchored" data-anchor-id="d">d)</h3>
-<pre><code>var a = flip(.6);
-var c = flip(.1);
-var z = flip() ? a : c;
-var b = z ? 'foo' : 'bar';</code></pre>
+<section id="question-4.1.4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4.1.4">Question 4.1.4</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">6</span>)<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> Z <span class="op">=</span> <span class="fu">flip</span>() <span class="op">?</span> A <span class="op">:</span> C<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> Z <span class="op">?</span> <span class="st">'foo'</span> <span class="op">:</span> <span class="st">'bar'</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="e" class="level3">
-<h3 class="anchored" data-anchor-id="e">e)</h3>
-<pre><code>var examFairPrior = Bernoulli({p: .8});
-var doesHomeworkPrior = Bernoulli({p: .8});
-var examFair = mem(function(exam) { return sample(examFairPrior) });
-var doesHomework = mem(function(student) { return sample(doesHomeworkPrior) });
-
-var pass = function(student, exam) {
-  return flip(examFair(exam) ?
-              (doesHomework(student) ? .9 : .5) :
-              (doesHomework(student) ? .2 : .1));
-}
-var a = pass('alice', 'historyExam');
-var b = pass('bob', 'historyExam');</code></pre>
+<section id="question-4.1.5" class="level3">
+<h3 class="anchored" data-anchor-id="question-4.1.5">Question 4.1.5</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> examFairPrior <span class="op">=</span> <span class="fu">Bernoulli</span>({<span class="dt">p</span><span class="op">:</span> <span class="op">.</span><span class="dv">8</span>})</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> doesHomeworkPrior <span class="op">=</span> <span class="fu">Bernoulli</span>({<span class="dt">p</span><span class="op">:</span> <span class="op">.</span><span class="dv">8</span>})</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> examFair <span class="op">=</span> <span class="fu">mem</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>(exam) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sample</span>(examFairPrior)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> doesHomework <span class="op">=</span> <span class="fu">mem</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>(student) {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sample</span>(doesHomeworkPrior)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> pass <span class="op">=</span> <span class="kw">function</span>(student<span class="op">,</span> exam) {</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">flip</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">examFair</span>(exam)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> (<span class="fu">doesHomework</span>(student) <span class="op">?</span> <span class="op">.</span><span class="dv">9</span> <span class="op">:</span> <span class="op">.</span><span class="dv">5</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> (<span class="fu">doesHomework</span>(student) <span class="op">?</span> <span class="op">.</span><span class="dv">2</span> <span class="op">:</span> <span class="op">.</span><span class="dv">1</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> <span class="fu">pass</span>(<span class="st">'alice'</span><span class="op">,</span> <span class="st">'historyExam'</span>)<span class="op">;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> <span class="fu">pass</span>(<span class="st">'bob'</span><span class="op">,</span> <span class="st">'historyExam'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="exercise-2-probabilistic-programs-without-corresponding-graphical-models" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-probabilistic-programs-without-corresponding-graphical-models">Exercise 2: Probabilistic programs without corresponding graphical models</h2>
+<section id="exercise-4.2-probabilistic-programs-without-corresponding-graphical-models" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4.2-probabilistic-programs-without-corresponding-graphical-models">Exercise 4.2: Probabilistic Programs Without Corresponding Graphical Models</h2>
 <p>As the end of the chapter mentions, some probabilistic programs do not have corresponding graphical models. This includes programs with recursion. The example below is an example of a recursive probabilistic program:</p>
-<pre><code>// compute the total rainfall over the course of a storm
-var totalRain = function() {
-  // amount of rainfall today
-  var dailyRainfall = sample(Gaussian({mu: 5, sigma: 1}))
-  // if it rained a lot today, the storm is likely to continue
-  if (dailyRainfall &gt; 6 &amp;&amp; flip(0.8) || flip(0.3)) {
-    return dailyRainfall + totalRain()
-  } else {
-    return dailyRainfall
-  }
-}
-
-viz(Infer({"model": totalRain, "method": "forward"}))</code></pre>
-<section id="a-1" class="level3">
-<h3 class="anchored" data-anchor-id="a-1">a)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Compute total rainfall over the</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">// course of a storm</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> totalRain <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Amount of rainfall today</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> dailyRainfall <span class="op">=</span> <span class="fu">sample</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Gaussian</span>({</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">mu</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sigma</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">// If it rained a lot today,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// the storm is likely to continue</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    (dailyRainfall <span class="op">&gt;</span> <span class="dv">6</span> <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.8</span>))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.3</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  ) {</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dailyRainfall <span class="op">+</span> <span class="fu">totalRain</span>()</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dailyRainfall</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>({</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">model</span><span class="op">:</span> totalRain<span class="op">,</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">method</span><span class="op">:</span> <span class="st">"forward"</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="question-4.2.1" class="level3">
+<h3 class="anchored" data-anchor-id="question-4.2.1">Question 4.2.1</h3>
 <p>Write another recursive probabilistic program to model some real-world phenomenon below:</p>
-<pre><code></code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

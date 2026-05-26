@@ -349,6 +349,15 @@ details {
     clip-path: inset(0 0 0 50%) !important;
 }
 
+.quarto-dark {
+
+    h1 code,
+    h2 code,
+    h3 code {
+        background-color: rgba(67.15, 67.15, 67.15, .65) !important;
+    }
+}
+
 figcaption {
     text-align: center !important;
     font-style: italic !important;

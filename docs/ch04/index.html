@@ -23,7 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -47,9 +102,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-8d28ae19919d5c67af76f2443fb22f33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3400fdbd8bae38ba2006f86cab23685c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,8 +132,47 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script><link rel="stylesheet" href="../assets/css/webppl-editor.css"><link rel="stylesheet" href="../assets/css/webppl-viz.css"><script src="../assets/js/webppl.min.js"></script><script src="../assets/js/webppl-viz.min.js"></script><script src="../assets/js/webppl-editor.min.js" defer=""></script><script src="../assets/js/paper-full.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<script src="../sidebar.js"></script>
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin="">
+<link href="https://googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap&quot; rel=&quot;stylesheet">
+<link rel="stylesheet" href="../assets/css/webppl-editor.css">
+<link rel="stylesheet" href="../assets/css/webppl-viz.css">
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js" defer=""></script>
+<script src="../assets/js/paper-full.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -487,6 +581,11 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#statistical-dependence" id="toc-statistical-dependence" class="nav-link" data-scroll-target="#statistical-dependence">4.2 Statistical Dependence</a></li>
   <li><a href="#graphical-notations-for-dependence" id="toc-graphical-notations-for-dependence" class="nav-link" data-scroll-target="#graphical-notations-for-dependence">4.3 Graphical Notations for Dependence</a></li>
+  <li><a href="#readings-and-discussion" id="toc-readings-and-discussion" class="nav-link" data-scroll-target="#readings-and-discussion">4.4 Readings and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#models-of-causal-reasoning" id="toc-models-of-causal-reasoning" class="nav-link" data-scroll-target="#models-of-causal-reasoning">4.4.1 Models of Causal Reasoning</a></li>
+  <li><a href="#extras" id="toc-extras" class="nav-link" data-scroll-target="#extras">4.4.2 Extras</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch04/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -515,139 +614,285 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="causal-dependence" class="level2">
 <h2 class="anchored" data-anchor-id="causal-dependence">4.1 Causal Dependence</h2>
-<p>Probabilistic programs encode knowledge about the world in the form of causal models, and it is useful to understand how their function relates to their structure by thinking about some of the intuitive properties of causal relations. Causal relations are local, modular, and directed. They are <em>modular</em> in the sense that any two arbitrary events in the world are most likely causally unrelated, or independent. If they are related, or dependent, the relation is only very weak and liable to be ignored in our mental models. Causal structure is <em>local</em> in the sense that many events that are related are not related directly: They are connected only through causal chains of several steps, a series of intermediate and more local dependencies. And the basic dependencies are <em>directed</em>: when we say that A causes B, it means something different than saying that B causes A. The <em>causal influence</em> flows only one way along a causal relation—we expect that manipulating the cause will change the effect, but not vice versa—but <em>information</em> can flow both ways—learning about either event will give us information about the other.</p>
-<p>Let’s examine this notion of “causal dependence” a little more carefully. What does it mean to believe that A depends causally on B? Viewing cognition through the lens of probabilistic programs, the most basic notions of causal dependence are in terms of the structure of the program and the flow of evaluation (or “control”) in its execution. We say that expression A causally depends on expression B if it is necessary to evaluate B in order to evaluate A. (More precisely, expression A depends on expression B if it is ever necessary to evaluate B in order to evaluate A.) For instance, in this program <code>A</code> depends on <code>B</code> but not on <code>C</code> (the final expression depends on both <code>A</code> and <code>C</code>):</p>
-<pre><code>var C = flip()
-var B = flip()
-var A = B ? flip(0.1) : flip(0.4)
-A || C</code></pre>
-<p>Note that causal dependence order is weaker than a notion of ordering in time—one expression might happen to be evaluated before another in time (for instance <code>C</code> before <code>A</code>), but without the second expression requiring the first. (This notion of causal dependence is related to the notion of <a href="http://en.wikipedia.org/wiki/Dependence_analysis">flow dependence</a> in the programming language literature.)</p>
+<p>Probabilistic programs encode knowledge about the world in the form of causal models, and it is useful to understand how their function relates to their structure by thinking about some of the intuitive properties of causal relations.</p>
+<p>Causal relations are <strong>local</strong>, <strong>modular</strong>, and <strong>directed</strong>:</p>
+<ul>
+<li>They are <strong>modular</strong> in the sense that any two arbitrary events in the world are most likely causally unrelated, or independent. If they are related, or dependent, the relation is only very weak and liable to be ignored in our mental models.</li>
+<li>Causal structure is <strong>local</strong> in the sense that many events that are related are not related directly: They are connected only through causal chains of several steps, a series of intermediate and more local dependencies.</li>
+<li>And the basic dependencies are <strong>directed</strong>: when we say that <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span>, it means something different than saying that <span class="math inline">\(B\)</span> causes <span class="math inline">\(A\)</span>. The <em>causal influence</em> flows only one way along a causal relation—we expect that manipulating the cause will change the effect, but not vice versa—but <em>information</em> can flow both ways—learning about either event will give us information about the other.</li>
+</ul>
+<p>Let’s examine this notion of “causal dependence” a little more carefully. What does it mean to believe that <span class="math inline">\(A\)</span> depends causally on <span class="math inline">\(B\)</span>?</p>
+<p>Viewing cognition through the lens of probabilistic programs, the most basic notions of causal dependence are in terms of the structure of the program and the flow of evaluation (or “control”) in its execution.</p>
+<p>We say that expression <code>A</code> causally depends on expression <code>B</code> if it is necessary to evaluate <code>B</code> in order to evaluate <code>A</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> For instance, in this program <code>A</code> depends on <code>B</code> but not on <code>C</code> (the final expression depends on both <code>A</code> and <code>C</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> B <span class="op">?</span> <span class="fu">flip</span>(<span class="fl">0.1</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="fl">0.4</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">||</span> C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note that causal dependence order is weaker than a notion of ordering in time—one expression might happen to be evaluated before another in time (for instance <code>C</code> before <code>A</code>), but without the second expression requiring the first.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>For example, consider a simpler variant of our medical diagnosis scenario:</p>
-<pre><code>var marg = Infer({method: 'enumerate'}, function() {
-  var smokes = flip(0.2)
-  var lungDisease = (smokes &amp;&amp; flip(0.1)) || flip(0.001)
-  var cold = flip(0.02)
-  var cough = (cold &amp;&amp; flip(0.5)) || (lungDisease &amp;&amp; flip(0.5)) || flip(0.001)
-  var fever = (cold &amp;&amp; flip(0.3)) || flip(0.01)
-  var chestPain = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01)
-  var shortnessOfBreath = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01)
-
-  condition(cough)
-  return {cold: cold, lungDisease: lungDisease}
-})
-
-viz.marginals(marg)</code></pre>
-<p>Here, <code>cough</code> depends causally on both <code>lungDisease</code> and <code>cold</code>, while <code>fever</code> depends causally on <code>cold</code> but not <code>lungDisease</code>. We can see that <code>cough</code> depends causally on <code>smokes</code> but only indirectly: although <code>cough</code> does not call <code>smokes</code> directly, in order to evaluate whether a patient coughs, we first have to evaluate the expression <code>lungDisease</code> that must itself evaluate <code>smokes</code>.</p>
-<p>We haven’t made the notion of “direct” causal dependence precise: do we want to say that <code>cough</code> depends directly on <code>cold</code>, or only directly on the expression <code>(cold &amp;&amp; flip(0.5)) || ...</code>? This can be resolved in several ways that all result in similar intuitions. For instance, we could first re-write the program into a form where each intermediate expression is named (called A-normal form) and then say direct dependence is when one expression immediately includes the name of another.</p>
-<p>There are several special situations that are worth mentioning. In some cases, whether expression A requires expression B will depend on the value of some third expression C. For example, here is a particular way of writing a noisy-AND relationship:</p>
-<pre><code>var C = flip()
-var B = flip()
-var A = (C ?
-         (B ? flip(.85) : false) :
-         false)
-A</code></pre>
-<p>A always requires C, but only evaluates B if C returns true. Under the above definition of causal dependence A depends on B (as well as C). However, one could imagine a more fine-grained notion of causal dependence that would be useful here: we could say that A depends causally on B only in certain <em>contexts</em> (just those where C happens to return true and thus A calls B).</p>
-<p>Another nuance is that an expression that occurs inside a function body may get evaluated several times in a program execution. In such cases it is useful to speak of causal dependence between specific evaluations of two expressions. (However, note that if a specific evaluation of A depends on a specific evaluation of B, then any other specific evaluation of A will depend on <em>some</em> specific evaluation of B. Why?)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> marg <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.2</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungDisease <span class="op">=</span> (</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.1</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.02</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(cough)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cold</span><span class="op">:</span> cold<span class="op">,</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">lungDisease</span><span class="op">:</span> lungDisease</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(marg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here, <code>cough</code> depends causally on both <code>lungDisease</code> and <code>cold</code>, while <code>fever</code> depends causally on <code>cold</code> but not <code>lungDisease</code>.</p>
+<p>We can see that <code>cough</code> depends causally on <code>smokes</code> but only indirectly: although <code>cough</code> does not call <code>smokes</code> directly, in order to evaluate whether a patient coughs, we first have to evaluate the expression <code>lungDisease</code> that must itself evaluate <code>smokes</code>.</p>
+<p>We haven’t made the notion of “direct” causal dependence precise: do we want to say that <code>cough</code> depends directly on <code>cold</code>, or only directly on the expression <code>(cold &amp;&amp; flip(0.5)) || ...</code>? This can be resolved in several ways that all result in similar intuitions.</p>
+<p>For instance, we could first re-write the program into a form where each intermediate expression is named (called A-normal form) and then say direct dependence is when one expression immediately includes the name of another.</p>
+<p>There are several special situations that are worth mentioning. In some cases, whether expression <code>A</code> requires expression <code>B</code> will depend on the value of some third expression <code>C</code>. For example, here is a particular way of writing a <strong>noisy-AND relationship</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> B <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> A <span class="op">=</span> (C</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> (B <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">85</span>) <span class="op">:</span> <span class="kw">false</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>A</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>A</code> always requires <code>C</code>, but only evaluates <code>B</code> if <code>C</code> returns <code>true</code>. Under the above definition of causal dependence <code>A</code> depends on <code>B</code> (as well as <code>C</code>).</p>
+<p>However, one could imagine a more fine-grained notion of causal dependence that would be useful here: we could say that <code>A</code> depends causally on <code>B</code> only in certain <em>contexts</em> (just those where <code>C</code> happens to return <code>true</code> and thus <code>A</code> calls <code>B</code>).</p>
+<p>Another nuance is that an expression that occurs inside a function body may get evaluated several times in a program execution. In such cases it is useful to speak of causal dependence between specific evaluations of two expressions.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <section id="detecting-dependence-through-intervention" class="level3">
 <h3 class="anchored" data-anchor-id="detecting-dependence-through-intervention">4.1.1 Detecting Dependence Through Intervention</h3>
-<p>The causal dependence structure is not always immediately clear from examining a program, particularly where there are complex functions calls. Another way to detect (or according to some philosophers, such as Jim Woodward, to <em>define</em>) causal dependence is more operational, in terms of “difference making”: If we manipulate A, does B tend to change? By <em>manipulate</em> here we don’t mean an assumption in the sense of <code>condition</code>. Instead we mean actually edit, or <em>intervene on</em>, the program in order to make an expression have a particular value independent of its (former) causes. If setting A to different values in this way changes the distribution of values of B, then B causally depends on A.</p>
-<pre><code>var BdoA = function(Aval) {
-  return Infer({method: 'enumerate'}, function() {
-    var C = flip()
-    var A = Aval //we directly set A to the target value
-    var B = A ? flip(.1) : flip(.4)
-    return {B: B}
-  })
-}
-
-viz(BdoA(true))
-viz(BdoA(false))</code></pre>
-<p>This method is known in the causal Bayesian network literature as the “do operator” or graph surgery (Pearl, 1988). It is also the basis for interesting theories of counterfactual reasoning by Pearl and colleagues (Halpern, Hitchcock and others).</p>
+<p>The causal dependence structure is not always immediately clear from examining a program, particularly where there are complex functions calls.</p>
+<p>Another way to detect (or according to some philosophers, such as Jim Woodward, to <em>define</em>) causal dependence is more operational, in terms of “difference making”: If we manipulate <code>A</code>, does <code>B</code> tend to change?</p>
+<p>By <em>manipulate</em> here we don’t mean an assumption in the sense of <code>condition</code>. Instead we mean actually edit, or <em>intervene on</em>, the program in order to make an expression have a particular value independent of its (former) causes. If setting <code>A</code> to different values in this way changes the distribution of values of <code>B</code>, then <code>B</code> causally depends on <code>A</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> BdoA <span class="op">=</span> <span class="kw">function</span>(Aval) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="co">// We *directly set A* to the target value:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> A <span class="op">=</span> Aval</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> B <span class="op">=</span> A <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">1</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">4</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">B</span><span class="op">:</span> B</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BdoA</span>(<span class="kw">true</span>))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BdoA</span>(<span class="kw">false</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This method is known in the causal Bayesian network literature as the <strong>“<span class="math inline">\(\textsf{do}(\cdot)\)</span> operator”</strong> <span class="citation" data-cites="pearl_causality_2000">(<a href="#ref-pearl_causality_2000" role="doc-biblioref">Pearl 2000</a>)</span>.</p>
+<p>It is also the basis for interesting theories of counterfactual reasoning by Pearl and colleagues (Halpern, Hitchcock and others).</p>
 <p>For example, this code represents whether a patient is likely to have a cold or a cough <em>a priori</em>, without conditions or observations:</p>
-<pre><code>var medicalDist = Infer({method: 'enumerate'}, function() {
-  var smokes = flip(.2)
-  var lungDisease = flip(0.001) || (smokes &amp;&amp; flip(0.1))
-  var cold = flip(0.02)
-
-  var cough = (cold &amp;&amp; flip(0.5)) || (lungDisease &amp;&amp; flip(0.5)) || flip(0.001)
-  var fever = (cold &amp;&amp; flip(0.3)) || flip(0.01)
-  var chestPain = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01)
-  var shortnessOfBreath = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01)
-
-  return {cough: cough, cold: cold}
-})
-viz.marginals(medicalDist)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> medicalDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungDisease <span class="op">=</span> (</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.1</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="fu">flip</span>(<span class="fl">0.02</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cough</span><span class="op">:</span> cough<span class="op">,</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cold</span><span class="op">:</span> cold</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(medicalDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Imagine we now <em>give</em> our hypothetical patient a cold—for example, by exposing him to a strong cocktail of cold viruses. We should not model this as an observation (e.g.&nbsp;by conditioning on having a cold), because we have taken direct action to change the normal causal structure. Instead we implement intervention by directly editing the program: try to first do <code>var cold = true</code>, then do <code>var cold = false</code>:</p>
-<pre><code>var medicalDist = Infer({method: 'enumerate'}, function() {
-  var smokes = flip(.2)
-  var lungDisease = flip(0.001) || (smokes &amp;&amp; flip(0.1))
-  var cold = true // we intervene to make cold true
-
-  var cough = (cold &amp;&amp; flip(0.5)) || (lungDisease &amp;&amp; flip(0.5)) || flip(0.001)
-  var fever = (cold &amp;&amp; flip(0.3)) || flip(0.01)
-  var chestPain = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01)
-  var shortnessOfBreath = (lungDisease &amp;&amp; flip(0.2)) || flip(0.01)
-
-  return {cough: cough, cold: cold}
-})
-viz.marginals(medicalDist)</code></pre>
-<p>You should see that the distribution on <code>cough</code> changes: coughing becomes more likely if we know that a patient has been given a cold by external intervention. But the reverse is not true: Try forcing the patient to have a cough (e.g., with some unusual drug or by exposure to some cough-inducing dust) by writing <code>var cough = true</code>: the distribution on <code>cold</code> is unaffected. We have captured a familiar fact: treating the symptoms of a disease directly doesn’t cure the disease (taking cough medicine doesn’t make your cold go away), but treating the disease <em>does</em> relieve the symptoms.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> medicalDist <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> smokes <span class="op">=</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">2</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> lungDisease <span class="op">=</span> (</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (smokes <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.1</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// We *intervene* to make cold true:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cold <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cough <span class="op">=</span> (</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.5</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.001</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> fever <span class="op">=</span> (</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      (cold <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.3</span>))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> chestPain <span class="op">=</span> (</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> shortnessOfBreath <span class="op">=</span> (</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>      (lungDisease <span class="op">&amp;&amp;</span> <span class="fu">flip</span>(<span class="fl">0.2</span>))</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>      <span class="op">||</span> <span class="fu">flip</span>(<span class="fl">0.01</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cough</span><span class="op">:</span> cough<span class="op">,</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cold</span><span class="op">:</span> cold</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(medicalDist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see that the distribution on <code>cough</code> changes: coughing becomes more likely if we know that a patient has been given a cold by external intervention.</p>
+<p>But the reverse is not true: Try forcing the patient to have a cough (e.g., with some unusual drug or by exposure to some cough-inducing dust) by writing <code>var cough = true</code> – the distribution on <code>cold</code> is unaffected.</p>
+<p>We have captured a familiar fact: treating the <em>symptoms</em> of a disease directly doesn’t cure the <em>disease</em> (taking cough medicine doesn’t make your cold go away), but treating the disease <em>does</em> relieve the symptoms.</p>
 <p>Verify in the program above that the method of manipulation works also to identify causal relations that are only indirect: for example, force a patient to smoke and show that it increases their probability of coughing, but not vice versa.</p>
-<p>If we are given a program representing a causal model, and the model is simple enough, it is straightforward to read off causal dependencies from the program code itself. However, the notion of causation as difference-making may be easier to compute in much larger, more complex models—and it does not require an analysis of the program code. As long as we can modify (or imagine modifying) the definitions in the program and can run the resulting model, we can compute whether two events or functions are causally related by the difference-making criterion.</p>
+<p>If we are given a program representing a causal model, and the model is simple enough, it is straightforward to read off causal dependencies from the program code itself. However, the notion of causation as difference-making may be easier to compute in much larger, more complex models—and it does not require an analysis of the program code.</p>
+<p>As long as we can modify (or imagine modifying) the definitions in the program and can run the resulting model, we can compute whether two events or functions are causally related by the difference-making criterion.</p>
 </section>
 </section>
 <section id="statistical-dependence" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-dependence">4.2 Statistical Dependence</h2>
-<p>One often hears the warning, “correlation does not imply causation”. By “correlation” we mean a different kind of dependence between events or functions—<em>statistical dependence</em>. We say that A and B are statistically dependent, if learning information about A tells us something about B, and vice versa. In the language of webppl: using <code>condition</code> to make an assumption about A changes the value expected for B. Statistical dependence is a <em>symmetric</em> relation between events referring to how information flows between them when we observe or reason about them. (If conditioning on A changes B, then conditioning on B also changes A. Why?) The fact that we need to be warned against confusing statistical and causal dependence suggests they are related, and indeed, they are. In general, if A causes B, then A and B will be statistically dependent. (One might even say the two notions are “causally related”, in the sense that causal dependencies give rise to statistical dependencies.)</p>
+<p>One often hears the warning, “correlation does not imply causation”.</p>
+<p>By “correlation” we mean a different kind of dependence between events or functions—<em>statistical dependence</em>. We say that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are statistically dependent, if learning information about <span class="math inline">\(A\)</span> tells us something about <span class="math inline">\(B\)</span>, and vice versa. In the language of webppl, using <code>condition</code> to make an assumption about <code>A</code> changes the value expected for <code>B</code>.</p>
+<p>Statistical dependence is a <em>symmetric</em> relation between events referring to how information flows between them when we observe or reason about them. (If conditioning on <span class="math inline">\(A\)</span> changes <span class="math inline">\(B\)</span>, then conditioning on <span class="math inline">\(B\)</span> also changes <span class="math inline">\(A\)</span>. Why?)</p>
+<p>The fact that we need to be warned against confusing statistical and causal dependence suggests they are related, and indeed, they are.</p>
+<p>In general, if <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span>, then <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> will be statistically dependent. (One might even say the two notions are “causally related”, in the sense that causal dependencies give rise to statistical dependencies.)</p>
 <p>Diagnosing statistical dependence using <code>condition</code> is similar to diagnosing causal dependence through intervention. We condition on various values of the possible statistical dependent, here <code>A</code>, and see whether it changes the distribution on the target, here <code>B</code>:</p>
-<pre><code>var BcondA = function(Aval) {
-  return Infer({method: 'enumerate'}, function() {
-    var C = flip()
-    var A = flip()
-    var B = A ? flip(.1) : flip(.4)
-    condition(A == Aval) //condition on new information about A
-    return {B: B}
-  })
-}
-
-viz(BcondA(true))
-viz(BcondA(false))</code></pre>
-<p>Because the two distributions on <code>B</code> (when we have different information about <code>A</code>) are different, we can conclude that <code>B</code> statistically depends on <code>A</code>. Do the same procedure for testing if <code>A</code> statistically depends on <code>B</code>. How is this similar (and different) from the causal dependence between these two? As an exercise, make a version of the above medical example to test the statistical dependence between <code>cough</code> and <code>cold</code>. Verify that statistical dependence holds symmetrically for events that are connected by an indirect causal chain, such as <code>smokes</code> and <code>coughs</code>.</p>
-<p>Correlation is not just a symmetrized version of causality. Two events may be statistically dependent even if there is no causal chain running between them, as long as they have a common cause (direct or indirect). That is, two expressions in a WebPPL program can be statistically dependent if one calls the other, directly or indirectly, <em>or</em> if they both at some point in their evaluation histories refer to some other expression (a “common cause”). Here is an example of statistical dependence generated by a common cause:</p>
-<pre><code>var BcondA = function(Aval) {
-  return Infer({method: 'enumerate'}, function() {
-    var C = flip();
-    var A = C ? flip(.5) : flip(.9);
-    var B = C ? flip(.1) : flip(.4);
-    condition(A == Aval);
-    return {B: B};
-  })
-}
-
-viz(BcondA(true))
-viz(BcondA(false))</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> BcondA <span class="op">=</span> <span class="kw">function</span>(Aval) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> A <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> B <span class="op">=</span> A <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">1</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">4</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Condition on new information about A:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(A <span class="op">==</span> Aval)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> {</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">B</span><span class="op">:</span> B</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BcondA</span>(<span class="kw">true</span>))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BcondA</span>(<span class="kw">false</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Because the two distributions on <code>B</code> (when we have different information about <code>A</code>) are different, we can conclude that <code>B</code> statistically depends on <code>A</code>.</p>
+<p>Now try to carry out the same procedure for testing if <code>A</code> statistically depends on <code>B</code>: How is this similar (and different) from the causal dependence between these two?</p>
+<p>As an exercise, make a version of the above medical example to test the statistical dependence between <code>cough</code> and <code>cold</code>. Verify that statistical dependence holds symmetrically for events that are connected by an indirect causal chain, such as <code>smokes</code> and <code>coughs</code>.</p>
+<p>Correlation is not just a symmetrized version of causality.</p>
+<p>Two events may be statistically dependent even if there is no causal chain running between them, as long as they have a common cause (direct or indirect). That is, two expressions in a WebPPL program can be statistically dependent if one calls the other, directly or indirectly, <em>or</em> if they both at some point in their evaluation histories refer to some other expression (a “common cause”). Here is an example of statistical dependence generated by a common cause:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> BcondA <span class="op">=</span> <span class="kw">function</span>(Aval) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> C <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> A <span class="op">=</span> C <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">5</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">9</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> B <span class="op">=</span> C <span class="op">?</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">1</span>) <span class="op">:</span> <span class="fu">flip</span>(<span class="op">.</span><span class="dv">4</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(A <span class="op">==</span> Aval)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> {</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">B</span><span class="op">:</span> B</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BcondA</span>(<span class="kw">true</span>))</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">viz</span>(<span class="fu">BcondA</span>(<span class="kw">false</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Situations like this are extremely common. In the medical example above, <code>cough</code> and <code>fever</code> are not causally dependent but they are statistically dependent, because they both depend on <code>cold</code>; likewise for <code>chestPain</code> and <code>shortnessOfBreath</code> which both depend on <code>lungDisease</code>. Here we can read off these facts from the program definitions, but more generally all of these relations can be diagnosed by reasoning using <code>Infer</code>.</p>
 <p>Successful learning and reasoning with causal models typically depends on exploiting the close coupling between causation and correlation. Causal relations are typically unobservable, while correlations are observable from data. Noticing patterns of correlation is thus often the beginning of causal learning, or discovering what causes what. On the other hand, with a causal model already in place, reasoning about the statistical dependencies implied by the model allows us to predict many aspects of the world not directly observed from those aspects we do observe.</p>
 </section>
 <section id="graphical-notations-for-dependence" class="level2">
 <h2 class="anchored" data-anchor-id="graphical-notations-for-dependence">4.3 Graphical Notations for Dependence</h2>
-<p><em>Graphical models</em> are an extremely important idea in modern machine learning: a graphical diagram is used to represent the direct dependence structure between random choices in a probabilistic model. A special case are <em>Bayesian networks</em>, in which there is a node for each random variable (an expression in our terms) and a link between two nodes if there is a direct conditional dependence between them (a direct causal dependence in our terms). The sets of nodes and links define a <em>directed acyclic graph</em> (hence the term graphical model), a data structure over which many efficient algorithms can be defined. Each node has a <em>conditional probability table</em> (CPT), which represents the probability distribution of that node, given values of its parents. The joint probability distribution over random variables is given by the product of the conditional distributions for each variable in the graph.</p>
-<p>The figure below defines a Bayesian network for the medical diagnosis example. The graph contains a node for each <code>var</code> statement in our WebPPL program, with links to that node from each variable that appears in the assignment expression. There is a probability table (“CPT”) for each node, with a column for each value of the variable, and a row for each combination of values for its parents in the graph.</p>
+<p><em>Graphical models</em> are an extremely important idea in modern machine learning: a graphical diagram is used to represent the direct dependence structure between random choices in a probabilistic model.</p>
+<p>A special case are <strong>Bayesian Networks</strong> or <strong>Bayes Nets</strong>, in which there is a node for each random variable (an expression in our terms) and a link between two nodes if there is a direct conditional dependence between them (a direct causal dependence in our terms).</p>
+<p>The sets of nodes and links define a <em>directed acyclic graph</em> (hence the term graphical model), a data structure over which many efficient algorithms can be defined.</p>
+<p>Each node has a <em>conditional probability table</em> (CPT), which represents the probability distribution of that node, given values of its parents.</p>
+<p>The joint probability distribution over random variables is given by the product of the conditional distributions for each variable in the graph.</p>
+<p>The figure below defines a Bayesian network for the medical diagnosis example. The graph contains a node for each <code>var</code> statement in our WebPPL program, with links to that node from each variable that appears in the assignment expression. There is a probability table (“CPT”) for each node, with a column for each value of the variable, and a row for each combination of values for its parents in the graph:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/img/Med-diag-bnet1.jpg" class="img-fluid figure-img"></p>
 <figcaption>A Bayes net for the medical diagnosis example.</figcaption>
 </figure>
 </div>
-<p>Simple generative models will have a corresponding graphical model that captures all of the dependencies (and <em>in</em>dependencies) of the model, without capturing the precise <em>form</em> of these functions. For example, while the graphical model shown above faithfully represents the probability distribution encoded by the WebPPL program, it captures the <em>noisy-OR</em> form of the causal dependencies only implicitly. As a result, the CPTs provide a less compact representation of the conditional probabilities than the WebPPL model. For instance, the CPT for <code>cough</code> specifies 4 parameters – one for each pair of values of <code>lungDisease</code> and <code>cold</code> (the second entry in each row is determined by the constraint that the conditional distribution of <code>cough</code> must sum to 1). In contrast, the <code>var</code> statement for <code>cough</code> in WebPPL specifies only 3 parameters: the base rate of <code>cough</code>, and the strength with which <code>lungDisease</code> and <code>cold</code> cause <code>cough</code>. This difference becomes more pronounced for noisy-OR relations with many causes – the size of the CPT for a node will be exponential in the number of parents, while the number of terms in the noisy-OR expression in WebPPL for that node will be linear in the number of causal dependencies (why?). As we will see, this has important implications for the ability to learn the values of the parameters from data.</p>
-<p>More complicated generative models, which can be expressed as probabilistic programs, often don’t have such a graphical model (or rather they have many approximations, none of which captures all independencies). Recursive models generally give rise to such ambiguous (or loopy) Bayes nets.</p>
-<p>Test your knowledge: <a href="{{site.baseurl}}/exercises/dependence.html">Exercises</a></p>
-<p>Reading &amp; Discussion: <a href="{{site.baseurl}}/readings/dependence.html">Readings</a></p>
+<p>Simple generative models will have a corresponding graphical model that captures all of the dependencies (and <em>in</em>dependencies) of the model, without capturing the precise <em>form</em> of these functions.</p>
+<p>For example, while the graphical model shown above faithfully represents the probability distribution encoded by the WebPPL program, it captures the <em>noisy-OR</em> form of the causal dependencies only implicitly. As a result, the CPTs provide a less compact representation of the conditional probabilities than the WebPPL model.</p>
+<p>For instance, the CPT for <code>cough</code> specifies 4 parameters – one for each pair of values of <code>lungDisease</code> and <code>cold</code> (the second entry in each row is determined by the constraint that the conditional distribution of <code>cough</code> must sum to 1). In contrast, the <code>var</code> statement for <code>cough</code> in WebPPL specifies only 3 parameters: the base rate of <code>cough</code>, and the strength with which <code>lungDisease</code> and <code>cold</code> cause <code>cough</code>.</p>
+<p>This difference becomes more pronounced for noisy-OR relations with many causes – the size of the CPT for a node will be exponential in the number of parents, while the number of terms in the noisy-OR expression in WebPPL for that node will be linear in the number of causal dependencies (Why?). As we will see, this has important implications for the ability to learn the values of the parameters from data.</p>
+<p>More complicated generative models, which can be expressed as probabilistic programs, often don’t have such a graphical model (or rather they have many approximations, none of which captures all independencies). Recursive models generally give rise to such ambiguous (or loopy) Bayes Nets.</p>
+</section>
+<section id="readings-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="readings-and-discussion">4.4 Readings and Discussion</h2>
+<section id="models-of-causal-reasoning" class="level3">
+<h3 class="anchored" data-anchor-id="models-of-causal-reasoning">4.4.1 Models of Causal Reasoning</h3>
+<p>In the chapter, we discussed how to reason about causation using generative models. There is a separate question as to how humans actually <em>do</em> reason about causality, and what they mean when they say <span class="math inline">\(A\)</span> <em>caused</em> <span class="math inline">\(B\)</span>. Read <span class="citation" data-cites="gerstenberg_how_2015">Gerstenberg et al. (<a href="#ref-gerstenberg_how_2015" role="doc-biblioref">2015</a>)</span>.</p>
+<p><strong>Reading Questions:</strong></p>
+<ol type="a">
+<li>According to Gerstenberg and colleagues, how do human notions of causality match the notion of causal dependence discussed in the chapter? How do they differ?</li>
+<li>Gerstenberg and colleagues rely on a notion of counterfactual simulation. In what ways is this similar to embodiment or other classic simulation-based theories?</li>
+</ol>
+</section>
+<section id="extras" class="level3">
+<h3 class="anchored" data-anchor-id="extras">4.4.2 Extras</h3>
+<ul>
+<li><strong><em>Embodiment.</em></strong> For an overview of psychological theories based on embodied simulation, read <span class="citation" data-cites="glenberg_embodiment_2010">Glenberg (<a href="#ref-glenberg_embodiment_2010" role="doc-biblioref">2010</a>)</span>.</li>
+<li><strong><em>Learning with causal models.</em></strong> For more discussion of how the kinds of models discussed here can inform psychological theory, read <span class="citation" data-cites="gopnik_mechanisms_2004">Gopnik and Schulz (<a href="#ref-gopnik_mechanisms_2004" role="doc-biblioref">2004</a>)</span>.</li>
+</ul>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-gerstenberg_how_2015" class="csl-entry" role="listitem">
+Gerstenberg, Tobias, Noah D. Goodman, David A. Lagnado, and Joshua B. Tenenbaum. 2015. <span>“How, Whether, Why: <span>Causal</span> Judgments as Counterfactual Contrasts.”</span>
+</div>
+<div id="ref-glenberg_embodiment_2010" class="csl-entry" role="listitem">
+Glenberg, Arthur M. 2010. <span>“<a href="https://doi.org/10.1002/wcs.55">Embodiment as a Unifying Perspective for Psychology</a>.”</span> <em>WIREs Cognitive Science</em> 1 (4): 586–96.
+</div>
+<div id="ref-gopnik_mechanisms_2004" class="csl-entry" role="listitem">
+Gopnik, Alison, and Laura Schulz. 2004. <span>“<a href="https://doi.org/10.1016/j.tics.2004.06.005">Mechanisms of Theory Formation in Young Children</a>.”</span> <em>Trends in Cognitive Sciences</em> 8 (8): 371–77.
+</div>
+<div id="ref-pearl_causality_2000" class="csl-entry" role="listitem">
+Pearl, Judea. 2000. <em><a href="https://www.dropbox.com/scl/fi/4kfpro4gpx7tg55fwd7qt/Judea-Pearl-Causality_-Models-Reasoning-and-Inference.pdf?rlkey=f0abw0cgmsyiegx6xapq5z7j2&amp;dl=1">Causality: <span>Models</span>, <span>Reasoning</span>, and <span>Inference</span></a></em>. Cambridge University Press.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>More precisely, expression <code>A</code> depends on expression <code>B</code> if it is ever necessary to evaluate <code>B</code> in order to evaluate <code>A</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This notion of causal dependence is related to the notion of <a href="http://en.wikipedia.org/wiki/Dependence_analysis">flow dependence</a> in the programming language literature.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>However, note that if a specific evaluation of <code>A</code> depends on a specific evaluation of <code>B</code>, then any other specific evaluation of <code>A</code> will depend on <em>some</em> specific evaluation of <code>B</code>. Why?<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

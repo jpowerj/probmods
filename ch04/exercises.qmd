@@ -10,90 +10,114 @@ include-after-body:
     </script>
 ---
 
-## Exercise 4.1: Causal and statistical dependency.
+## Exercise 4.1: Causal and Statistical Dependency
 
 For each of the following programs:
 
-* Draw the dependency diagram (Bayes net). If you don't have software on your computer for doing this, Google Docs has a decent interface for creating drawings.
+* Draw the dependency diagram as a Bayes Net. If you don't have software on your computer for doing this, Google Docs has a decent interface for creating drawings.
+* Use informal evaluation order reasoning and the intervention method to determine causal dependency between `A` and `B`.
+* Use conditioning to determine whether `A` and `B` are statistically dependent.
 
-* Use informal evaluation order reasoning and the intervention method to determine causal dependency between A and B.
+### Question 4.1.1
 
-* Use conditioning to determine whether A and B are statistically dependent.
+```{.js}
+var A = flip()
+var B = flip()
+var C = flip(A && B ? .8 : .5)
+```
 
-### a)
+### Question 4.1.2
 
-~~~~ 
-var a = flip();
-var b = flip();
-var c = flip(a && b ? .8 : .5);
-~~~~
+```{.js}
+var A = flip()
+var B = flip(A ? .9 : .2)
+var C = flip(B ? .7 : .1)
+```
 
-### b)
+### Question 4.1.3
 
-~~~~ 
-var a = flip();
-var b = flip(a ? .9 : .2);
-var c = flip(b ? .7 : .1);
-~~~~
+```{.js}
+var a = flip()
+var b = flip(a ? .9 : .2)
+var c = flip(a ? .7 : .1)
+```
 
-### c)
+### Question 4.1.4
 
-~~~~ 
-var a = flip();
-var b = flip(a ? .9 : .2);
-var c = flip(a ? .7 : .1);
-~~~~
+```{.js}
+var A = flip(.6);
+var C = flip(.1);
+var Z = flip() ? A : C;
+var B = Z ? 'foo' : 'bar';
+```
 
-### d)
+### Question 4.1.5
 
-~~~~ 
-var a = flip(.6);
-var c = flip(.1);
-var z = flip() ? a : c;
-var b = z ? 'foo' : 'bar';
-~~~~
-
-### e)
-
-~~~~ 
-var examFairPrior = Bernoulli({p: .8});
-var doesHomeworkPrior = Bernoulli({p: .8});
-var examFair = mem(function(exam) { return sample(examFairPrior) });
-var doesHomework = mem(function(student) { return sample(doesHomeworkPrior) });
+```{.js}
+var examFairPrior = Bernoulli({p: .8})
+var doesHomeworkPrior = Bernoulli({p: .8})
+var examFair = mem(
+  function(exam) {
+    return sample(examFairPrior)
+  }
+)
+var doesHomework = mem(
+  function(student) {
+    return sample(doesHomeworkPrior)
+  }
+)
 
 var pass = function(student, exam) {
-  return flip(examFair(exam) ?
-              (doesHomework(student) ? .9 : .5) :
-              (doesHomework(student) ? .2 : .1));
+  return flip(
+    examFair(exam)
+      ? (doesHomework(student) ? .9 : .5)
+      : (doesHomework(student) ? .2 : .1)
+  )
 }
-var a = pass('alice', 'historyExam');
-var b = pass('bob', 'historyExam');
-~~~~
+var A = pass('alice', 'historyExam');
+var B = pass('bob', 'historyExam');
+```
 
-## Exercise 2: Probabilistic programs without corresponding graphical models
+## Exercise 4.2: Probabilistic Programs Without Corresponding Graphical Models
 
 As the end of the chapter mentions, some probabilistic programs do not have corresponding graphical models. This includes programs with recursion. The example below is an example of a recursive probabilistic program:
 
-~~~~
-// compute the total rainfall over the course of a storm
+```{.js}
+// Compute total rainfall over the
+// course of a storm
 var totalRain = function() {
-  // amount of rainfall today
-  var dailyRainfall = sample(Gaussian({mu: 5, sigma: 1}))
-  // if it rained a lot today, the storm is likely to continue
-  if (dailyRainfall > 6 && flip(0.8) || flip(0.3)) {
+  // Amount of rainfall today
+  var dailyRainfall = sample(
+    Gaussian({
+      mu: 5,
+      sigma: 1
+    })
+  )
+  // If it rained a lot today,
+  // the storm is likely to continue
+  if (
+    (dailyRainfall > 6 && flip(0.8))
+    || flip(0.3)
+  ) {
     return dailyRainfall + totalRain()
   } else {
     return dailyRainfall
   }
 }
 
-viz(Infer({"model": totalRain, "method": "forward"}))
-~~~~
+viz(
+  Infer({
+    model: totalRain,
+    method: "forward"
+  })
+)
+```
 
-### a)
+### Question 4.2.1
 
 Write another recursive probabilistic program to model some real-world phenomenon below:
 
-~~~~
+```{.js}
+// Your code here
 
-~~~~
+```

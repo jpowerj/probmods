@@ -82,7 +82,18 @@ format:
       dark: [darkly, "./dsan-globals/jjquarto.scss"]
     respect-user-color-scheme: true
     include-in-header:
-      text: "<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous' referrerpolicy='no-referrer'></script><link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css'><script src='/sidebar.js'></script><link rel='stylesheet' href='/assets/css/webppl-editor.css'><link rel='stylesheet' href='/assets/css/webppl-viz.css'><script src='/assets/js/webppl.min.js'></script><script src='/assets/js/webppl-viz.min.js'></script><script src='/assets/js/webppl-editor.min.js' defer></script><script src='/assets/js/paper-full.js'></script>"
+      text: |
+        <link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css'>
+        <script src='/sidebar.js'></script>
+        <link rel='preconnect' href='https://googleapis.com'>
+        <link rel='preconnect' href='https://gstatic.com' crossorigin>
+        <link href='https://googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet'>
+        <link rel='stylesheet' href='/assets/css/webppl-editor.css'>
+        <link rel='stylesheet' href='/assets/css/webppl-viz.css'>
+        <script src='/assets/js/webppl.min.js'></script>
+        <script src='/assets/js/webppl-viz.min.js'></script>
+        <script src='/assets/js/webppl-editor.min.js' defer></script>
+        <script src='/assets/js/paper-full.js'></script>
   pdf:
     documentclass: scrreprt
 

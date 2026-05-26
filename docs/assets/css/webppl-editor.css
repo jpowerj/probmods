@@ -1,8 +1,8 @@
 /* main */
 
 .wpedit {
-    font-family: Menlo, Courier, monospace;
-    font-size: 90%;
+    font-family: "Roboto Mono", Menlo, Courier, monospace;
+    font-size: 85%;
 }
 
 .wpedit .hide {
@@ -67,6 +67,7 @@
     overflow-x: scroll;
     position: relative;
     max-height: 600px;
+    padding-top: 6px;
     /* todo: figure out why a percentage doesn't work here */
 }
 
@@ -180,7 +181,7 @@
 /* buttons */
 .wpedit button {
     border: 1px solid gray;
-    font-family: Menlo;
+    font-family: "Roboto Mono", Menlo, Courier, monospace;
     background-color: #e0e0e0;
     margin: 0.5em 0 0.5em 0;
     padding: 0.5em 1em;
@@ -227,7 +228,7 @@
 
 .CodeMirror {
     /* Set height, width, borders, and global font properties here */
-    font-family: monospace;
+    font-family: "Roboto Mono", monospace;
     height: 300px;
     color: black;
     direction: ltr;
@@ -258,8 +259,6 @@
     background-color: #f7f7f7;
     white-space: nowrap;
 }
-
-.CodeMirror-linenumbers {}
 
 .CodeMirror-linenumber {
     padding: 0 3px 0 5px;

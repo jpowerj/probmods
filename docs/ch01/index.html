@@ -23,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -47,9 +67,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-8d28ae19919d5c67af76f2443fb22f33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-673013eccb68dcbc51a5ea20eb627120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3400fdbd8bae38ba2006f86cab23685c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1054cd89737ebdcc34c3ce3d6863620d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,7 +97,17 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><script src="../sidebar.js"></script><link rel="stylesheet" href="../assets/css/webppl-editor.css"><link rel="stylesheet" href="../assets/css/webppl-viz.css"><script src="../assets/js/webppl.min.js"></script><script src="../assets/js/webppl-viz.min.js"></script><script src="../assets/js/webppl-editor.min.js" defer=""></script><script src="../assets/js/paper-full.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<script src="../sidebar.js"></script>
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin="">
+<link href="https://googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap&quot; rel=&quot;stylesheet">
+<link rel="stylesheet" href="../assets/css/webppl-editor.css">
+<link rel="stylesheet" href="../assets/css/webppl-viz.css">
+<script src="../assets/js/webppl.min.js"></script>
+<script src="../assets/js/webppl-viz.min.js"></script>
+<script src="../assets/js/webppl-editor.min.js" defer=""></script>
+<script src="../assets/js/paper-full.js"></script>
 
 
 </head>
@@ -483,7 +513,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#what-is-thought" id="toc-what-is-thought" class="nav-link active" data-scroll-target="#what-is-thought">1.1 What is Thought?</a></li>
   <li><a href="#but-what-kind-of-program" id="toc-but-what-kind-of-program" class="nav-link" data-scroll-target="#but-what-kind-of-program">1.2 But What Kind of Program?</a></li>
-  <li><a href="#reading-and-discussion" id="toc-reading-and-discussion" class="nav-link" data-scroll-target="#reading-and-discussion">1.3 Reading and Discussion</a></li>
+  <li><a href="#readings-and-discussion" id="toc-readings-and-discussion" class="nav-link" data-scroll-target="#readings-and-discussion">1.3 Readings and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#the-nature-and-scope-of-computational-models" id="toc-the-nature-and-scope-of-computational-models" class="nav-link" data-scroll-target="#the-nature-and-scope-of-computational-models">1.3.1 The Nature and Scope of Computational Models</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch01/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -517,18 +550,38 @@ ul.task-list li input[type="checkbox"] {
 <section id="but-what-kind-of-program" class="level2">
 <h2 class="anchored" data-anchor-id="but-what-kind-of-program">1.2 But What Kind of Program?</h2>
 <p>A natural assumption is that these programs take the inputs – percepts from the senses, facts from memory, etc – and compute the outputs – the intelligent behaviors. Thus the mental representations that lead to thinking are functions from inputs to outputs. However, this input-output view suffers from a combinatorial explosion: we must posit an input-output program for each task in which humans draw intelligent inferences.</p>
-<p>A different approach is to assume that mental representations are more like theories in science: pieces of knowledge that can support many inferences in many different situations. For instance, Newton’s theory of motion makes predictions about infinitely many different configurations of objects and can be used to reason both forward in time and backward, from final state of a physical system to the initial state. The <em>generative</em> approach to cognition posits that some mental representations are more like theories in this way: they capture general descriptions of how the world <em>works</em>. A generative model describes a process, usually one by which observable data is generated, that represents knowledge about the causal structure of the world. These generative processes are simplified “working models” of a domain. Other mental computations operate over these generative models to draw inferences: many different questions can be answered by interrogating the mental model. This contrasts to a more procedural or mechanistic approach in which knowledge represents the input-output mapping for a particular question directly.</p>
-<p>It is possible to use deterministic generative models to describe possible ways a process could unfold, but due to sparsity of observations or actual randomness there will often be many ways that our observations could have been generated. How can we choose amongst them? Probability theory provides a system for reasoning under exactly this kind of uncertainty. Probabilistic generative models describe processes which unfold with some amount of randomness, and probabilistic inference describes ways to ask questions of such processes. This book is concerned with the knowledge that can be represented by probabilistic generative models and the inferences that can be drawn from them.</p>
-<p>In order to make the idea of generative models precise we want a formal language that is designed to express the kinds of knowledge individuals have about the world. This language should be universal in the sense that it should be able to express any (computable) process. We build on the representational power of programming languages because they describe computational processes and capture the idea that what is important is causal dependence—in particular programs do not focus on the sequence of time, but rather on which events influence which other events (the “flow of data”). We introduce randomness into this language to construct a <em>probabilistic</em> programming language (PPL), and describe conditional inferences in this language. By using a PPL we are able to parsimoniously describe rich generative model structures and explore the inference patterns that emerge from the interaction of model and data.</p>
+<p>A different approach is to assume that mental representations are more like theories in science: pieces of knowledge that can support many inferences in many different situations. For instance, Newton’s theory of motion makes predictions about infinitely many different configurations of objects and can be used to reason both forward in time and backward, from final state of a physical system to the initial state.</p>
+<p>The <em>generative</em> approach to cognition posits that some mental representations are more like theories in this way: they capture general descriptions of how the world <em>works</em>.</p>
+<p>A generative model describes a process, usually one by which observable data is generated, that represents knowledge about the causal structure of the world. These generative processes are simplified “working models” of a domain.</p>
+<p>Other mental computations operate over these generative models to draw inferences: many different questions can be answered by interrogating the mental model. This contrasts to a more procedural or mechanistic approach in which knowledge represents the input-output mapping for a particular question directly.</p>
+<p>It is possible to use deterministic generative models to describe possible ways a process could unfold, but due to sparsity of observations or actual randomness there will often be many ways that our observations could have been generated.</p>
+<p>How can we choose amongst them? Probability theory provides a system for reasoning under exactly this kind of uncertainty. Probabilistic generative models describe processes which unfold with some amount of randomness, and probabilistic inference describes ways to ask questions of such processes.</p>
+<p>This book is concerned with the knowledge that can be represented by probabilistic generative models and the inferences that can be drawn from them.</p>
+<p>In order to make the idea of generative models precise we want a formal language that is designed to express the kinds of knowledge individuals have about the world. This language should be universal in the sense that it should be able to express any (computable) process.</p>
+<p>We build on the representational power of programming languages because they describe computational processes and capture the idea that what is important is causal dependence—in particular programs do not focus on the sequence of time, but rather on which events influence which other events (the “flow of data”).</p>
+<p>We introduce randomness into this language to construct a <em>probabilistic</em> programming language (PPL), and describe conditional inferences in this language. By using a PPL we are able to parsimoniously describe rich generative model structures and explore the inference patterns that emerge from the interaction of model and data.</p>
 </section>
-<section id="reading-and-discussion" class="level2">
-<h2 class="anchored" data-anchor-id="reading-and-discussion">1.3 Reading and Discussion</h2>
-<p>Reading &amp; Discussion: <a href="{{site.baseurl}}/readings/introduction.html">Readings</a></p>
+<section id="readings-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="readings-and-discussion">1.3 Readings and Discussion</h2>
+<section id="the-nature-and-scope-of-computational-models" class="level3">
+<h3 class="anchored" data-anchor-id="the-nature-and-scope-of-computational-models">1.3.1 The Nature and Scope of Computational Models</h3>
+<p>Read Sec. 1.2 of Marr’s classic book <em>Vision</em> <span class="citation" data-cites="marr_vision_1982">(<a href="#ref-marr_vision_1982" role="doc-biblioref">Marr 1982</a>)</span>. Marr points out that when we ask a question about the mind (e.g., “How does language work?”), there are at least three different interrelated levels we can answer that question. Marr’s three levels of analysis have become one of the key insights in the meta-science of the mind (that is, the science of conducting cognitive science), and we will be returning to them throughout the course.</p>
+<p><strong>Reading Questions:</strong></p>
+<ol type="a">
+<li><p>Many neuroscientists argue that learning involves changing the structure of the synapses of neurons. Randy Gallistel has argued that other mechanisms may be involved as well. At which of Marr’s levels is this discussion happening?</p></li>
+<li><p>Psychologists and artificial intelligence researchers both study the nature of intelligence. At which of Marr’s levels are their interests most likely to interact?</p></li>
+</ol>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-marr_vision_1982" class="csl-entry" role="listitem">
+Marr, David. 1982. <em><a href="https://www.dropbox.com/scl/fi/pyy2de8c8nyjmxiakclmi/David-Marr-Vision_-A-Computational-Investigation.pdf?rlkey=o42tpwng7c6rr22lkp3asgbiu&amp;dl=1">Vision: <span>A Computational Investigation</span> into the <span>Human Representation</span> and <span>Processing</span> of <span>Visual Information</span></a></em>. MIT Press.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

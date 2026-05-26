@@ -12,146 +12,158 @@ include-after-body:
     </script>
 ---
 
-
 ## Exercise 3.1: Fair Coins and Biased Coins
 
-### a)
+### Question 3.1.1
 
 I flip a fair coin. What is the probability that it lands heads?
 
-~~~~
+```{.js}
 var model = function() {
   // Your code here
 }
 
-var logProb = Infer({method:'enumerate'}, model).score('H');
-Math.exp(logProb);
-~~~~
+var logProb = Infer(
+  {method:'enumerate'},
+  model
+).score('H')
+Math.exp(logProb)
+```
 
+### Question 3.1.2
 
-### b)
-
-I also have a biased coin, with $$P(\text{heads})=0.9$$.
-I hand you one of the coins (either biased or fair) chosen uniformly randomly without telling you which.
-You flip it three times.
+I also have a biased coin, with $\Pr(\textsf{Heads}) = 0.9$. I hand you one of the coins (either biased or fair) chosen uniformly randomly without telling you which. You flip it three times.
 
 Given that first two coin flips landed on heads, what is the posterior distribution for the next flip?
 
-~~~~
+```{.js}
 var model = function() {
   // Your code here
 }
 
-viz.table(Infer({method:'enumerate'}, model));
-~~~~
+viz.table(
+  Infer({method:'enumerate'}, model)
+)
+```
 
-
-### c)
+### Question 3.1.3
 
 Given that all three flips landed on heads, what is the probability that the coin was biased?
 
-~~~~
+```{.js}
 var model = function() {
   // Your code here
 }
 
-viz.table(Infer({method:'enumerate'}, model));
-~~~~
+viz.table(
+  Infer({method:'enumerate'}, model)
+)
+```
 
-### d)
+### Question 3.1.4
 
 Given that the first two flips were different, what is the probability that the third flip will be heads?
 
-~~~~
+```{.js}
 var model = function() {
   // Your code here
 }
 
-viz.table(Infer({method:'enumerate'}, model));
-~~~~
+viz.table(
+  Infer({method:'enumerate'}, model)
+)
+```
 
+## Exercise 3.2: Conditioning and Intervention
 
-## Exercise 2: Conditioning and Intervention
+In the earlier [Medical Diagnosis](./index.qmd#example-causal-inference-in-medical-diagnosis) section we suggested understanding the patterns of symptoms for a particular disease by changing the prior probability of the disease such that it is always true (also called the **$\textsf{do}()$* operator**):
 
-In the earlier [Medical Diagnosis]({{site.baseurl}}/chapters/02-generative-models.html#example-causal-models-in-medical-diagnosis) section we suggested understanding the patterns of symptoms for a particular disease by changing the prior probability of the disease such that it is always true (also called the *do* operator).
-
-~~~~
+```{.js}
 var lungCancer = flip(0.01);
 var cold = flip(0.2);
 var cough = (
-  (cold && flip(0.5)) ||
-  (lungCancer && flip(0.3))
-);
-cough;
-~~~~
+  (cold && flip(0.5))
+  || (lungCancer && flip(0.3))
+)
+cough
+```
 
-
-### a)
+### Question 3.2.1
 
 Show that *intervening* (setting) on `lungCancer` has the same effect as *conditioning* on `lungCancer` has the same effect on `cough` in this example.
-Create a table showing the marginal probabilities.
-What must be true about the causal structure for this to be the case?
 
-~~~~
-~~~~
+Create a table showing the marginal probabilities. What must be true about the causal structure for this to be the case?
 
+```{.js}
+// Your code here
 
-### b) 
+```
 
-This time, modify the program so that intervening and conditioning produce different results.
-Create a table showing the marginal probabilities.
-Under what circumstances does intervening produce different results from conditioning?
+### Question 3.2.2
+
+This time, modify the program so that intervening and conditioning produce different results. Create a table showing the marginal probabilities. Under what circumstances does intervening produce different results from conditioning?
 
 *Hint:* you do not need to introduce any new variables. Think about what other questions you can ask in this example.
 
-~~~~
-~~~~
+```{.js}
+// Your code here
 
+```
 
-## Exercise 3: Computing marginals
+## Exercise 3.3: Computing Marginals
 
 Find the marginal distribution of the return values from these programs mathematically (by hand).
 
+### Question 3.3.1
 
-### a)
+```{.js}
+viz.table(
+  Infer(
+    {method: "enumerate"},
+    function() {
+      var a = flip()
+      var b = flip()
+      condition(a || b)
+      return a
+    }
+  )
+)
+```
 
-~~~~
-viz.table(Infer({method: "enumerate"}, function() {
-  var a = flip();
-  var b = flip();
-  condition(a || b);
-  return a;
-}));
-~~~~
+### Question 3.3.2
 
-
-### b)
-
-~~~~
+```{.js}
 var smilesModel = function() {
-  var nice = mem(function(person) { flip(.7) });
+  var nice = mem(
+    function(person) { flip(.7) }
+  )
   
   var smiles = function(person) {
-    return nice(person) ? flip(.8) : flip(.5);
+    return nice(person)
+      ? flip(.8)
+      : flip(.5)
   }
   
-  condition(smiles('alice') && smiles('bob') && smiles('alice'));
-  
-  return nice('alice');
+  condition(
+    smiles('alice') 
+    && smiles('bob')
+    && smiles('alice')
+  )
+  return nice('alice')
 }
 
-viz.table(Infer({method: "enumerate"}, smilesModel));
-~~~~
+viz.table(
+  Infer({method: "enumerate"}, smilesModel)
+)
+```
 
+## Exercise 3.4: Extending the Smiles Model
 
-## Exercise 4: Extending the smiles model
+### Question 3.4.1
 
-### a)
+Describe (using ordinary English) the `smilesModel` program in Question 3.3.2
 
-Describe (using ordinary English) the `smilesModel` program in Exercise 3b.
-
-
-### b)
+### Question 3.4.2
 
 Extend `smilesModel` to create a version of the model considers two additional factors:
 
@@ -162,45 +174,51 @@ Don't forget that nice people also smile more often!
 
 *Hint:* Which variables change at different times for the same person? Which values *depend* on other values?
 
-~~~~
+```{.js}
 var extendedSmilesModel = function() {
-  var nice = mem(function(person) { flip(.7) });
-  
+  var nice = mem(
+    function(person) { flip(.7) }
+  )
   var smiles = function(person, wants) {
-    return nice(person) ? flip(.8) : flip(.5);
+    return nice(person)
+      ? flip(.8)
+      : flip(.5)
   }
-
-  return smiles('alice');
+  return smiles('alice')
 }
 
-Infer({method: "enumerate"}, extendedSmilesModel)
-~~~~
+Infer(
+  {method: "enumerate"},
+  extendedSmilesModel
+)
+```
 
-
-### c)
+### Question 3.4.3
 
 Suppose you've seen Bob five times this week and each time, he was not smiling. But today, you see Bob and he *is* smiling. Use this `extendedSmilesModel` model to compute the posterior belief that Bob wants something from you today.
 
 *Hint:* How will you represent the same person (Bob) smiling *multiple times*? What features of Bob will stay the same each time he smiles (or doesn't) and what features will change?
 
-~~~~
+```{.js}
 var extendedSmilesModel = function() {
   // copy your code frome above
 
   // make the appropriate observations
 
   // return the appropriate query
-  return ...;
-}
+  return ...
 
+viz.table(
+  Infer(
+    {method: "enumerate"},
+    extendedSmilesModel
+  )
+)
+```
 
-viz.table(Infer({method: "enumerate"}, extendedSmilesModel));
-~~~~
+## Exercise 3.5: Sprinklers and Rain
 
-
-## Exercise 5: Sprinklers and Rain
-
-### a)
+### Question 3.5.1
 
 I have a particularly bad model of the sprinkler in my garden.
 It is supposed to water my grass every morning, but is turns on only half the time (at random, as far as I can tell).
@@ -208,122 +226,140 @@ Fortunately, I live in a city where it also rains 30% of days.
 
 One day I check my lawn and see that it is wet, meaning that either it rained that morning or my sprinkler turned on (or both).
 
-Answer the following questions, either using the Rules of Probability or by writing your own sprinkler model in webppl.
+Answer the following questions, either using the Rules of Probability or by writing your own sprinkler model in WebPPL.
 
 * What is the probability that it rained?
 * What is the probability that my sprinkler turned on?
 
-~~~~
+``` {.js}
 
-~~~~
-
-
-### b)
-
-My neighbour Kelsey, who has the same kind of sprinkler, tells me that her lawn was also wet that same morning.
-What is the new posterior probability that it rained?
-
-~~~~
-
-~~~~
+```
 
 
-### c)
+### Question 3.5.2
+
+My neighbour Kelsey, who has the same kind of sprinkler, tells me that her lawn was also wet that same morning. What is the new posterior probability that it rained?
+
+```{.js}
+
+```
+
+### Question 3.5.3
 
 To investigate further we poll a selection of our friends who live nearby, and ask if their grass was wet this morning.
+
 Kevin and Manu and Josh, each with the same sprinkler, all agree that their lawns were wet too.
-Write a model to reason about all 5 people (including me and Kelsey), and then use it to find the probability that it rained.
 
-~~~~
+Write a model to reason about all 5 people (including me and Kelsey), and then use it to find the probability that it rained:
 
-~~~~
+``` {.js}
+// Your code here
 
+```
 
-## Exercise 6: Casino game
+## Exercise 3.6: Casino Game
 
-Consider the following game.
-A machine randomly gives Bob a letter of the word "game" with different probabilities and Bob has a different probability of winning depending on which letter he got:
+Consider the following game. A machine randomly gives Bob a letter $L$ from the word "game" with different probabilities and Bob has a different probability of winning depending on which letter he got:
 
-| $$h$$ | $$p(h)$$ | $$p(\text{win}\mid h)$$ | $$p(h \mid \text{win})$$ |
-| ----- | -------- | ----------------------- |------------------------- |
-| g     | 0.05     | 1                       |                          |
-| a     | 0.45     | 1/4                     |                          |
-| m     | 0.05     | 1/9                     |                          |
-| e     | 0.45     | 1/16                    |                          |
+| $\ell$ | $\Pr(L = \ell)$ | $\Pr(\text{Win} \mid L = \ell)$ | $\Pr(L = \ell \mid \text{Win})$ |
+|:-----:|:--------:|:----:|:---------:|
+| `g`     | 0.05     | 1              | |
+| `a`     | 0.45     | 1/4  | |
+| `m`     | 0.05     | 1/9   |            |
+| `e`     | 0.45     | 1/16         |         |
 
-Suppose that we observe Bob winning, but we don't know what letter he got.
-How can we use the observation that he won to update our beliefs about which letter he got?
-Let's express this formally.
-Before we begin, a bit of terminology: the set of letters that Bob could have gotten, $$\{g, a, m, e\}$$, is called the *hypothesis space* -- it's our set of hypotheses about the letter.
+Suppose that we observe Bob winning, but we don't know what letter he got. How can we use the observation that he won to update our beliefs about which letter he got?
 
-### a)
+Let's express this formally. Before we begin, a bit of terminology: the set of letters that Bob could have gotten, $\{\texttt{g}, \texttt{a}, \texttt{m}, \texttt{e}\}$, is called the **hypothesis space** -- it's our set of hypotheses about the letter.
 
-In English, what does the posterior probability $$p(h \mid \text{win})$$ represent? What does it mean for a letter to have the highest posterior?
+### Question 3.6.1
 
+In English, what does the posterior probability $\Pr(L = \ell \mid \text{Win})$ represent? What does it mean for a letter to have the highest posterior?
 
-### b)
+### Question 3.6.2
 
-Manually calculate $$p(h \mid \text{win})$$ for each hypothesis in the table above.
-Remember to normalize --- make sure that summing all your $$p(h \mid \text{win})$$ values gives you 1.
+Manually calculate $\Pr(L = \ell \mid \text{Win})$ for each hypothesis in the table above.
 
+Remember to normalize! Make sure that summing all of your $\Pr(L = \ell \mid \text{Win})$ values gives you 1.
 
-### c)
+### Question 3.6.3
 
-Now, let's write this model in WebPPL using `Infer`.
-Fill in the `...`'s in the code below to compute $$p(h \mid \text{win})$$.
-Include a screenshot of the resulting graph.
+Now let's write this model in WebPPL using `Infer`.
+
+Fill in the `...`'s in the code below to compute $\Pr(L = \ell \mid \text{Win})$, and visualize the resulting distribution.
 
 It might be helpful to comment out the `condition` statement so you can compare visually the prior (no `condition` statement) to the posterior (with `condition`).
 
 Make sure that your WebPPL answers and hand-computed answers agree -- note that this demonstrates the equivalence between the program view of conditional probability and the distributional view.
 
-~~~~
-// define some variables and utility functions
-var checkVowel = function(letter) { _.includes(['a', 'e', 'i', 'o', 'u'], letter) };
+``` {.js}
+// Define some variables and utility functions
+var checkVowel = function(letter) {
+  _.includes(['a', 'e', 'i', 'o', 'u'], letter)
+}
 var letterVals = ['g', 'a', 'm', 'e'];
-var letterProbs = map(function(letter) { checkVowel(letter) ? 0.45 : 0.05 }, letterVals);
-var letters = Categorical({vs: letterVals, ps: letterProbs});
+var letterProbs = map(
+  function(letter) {
+    checkVowel(letter) ? 0.45 : 0.05
+  },
+  letterVals
+)
+var letters = Categorical({
+  vs: letterVals,
+  ps: letterProbs
+})
 
-// Compute p(h | win)
-var distribution = Infer({method: 'enumerate'}, function() {
-  var letter = sample(letters);
-  var position = letterVals.indexOf(letter) + 1; 
-  var winProb = 1 / Math.pow(position, 2);
-  condition(...);
-  return ...;
-});
+// Compute Pr(L = l | Win)
+var distribution = Infer(
+  {method: 'enumerate'},
+  function() {
+    var letter = sample(letters)
+    var position = letterVals.indexOf(letter) + 1
+    var winProb = 1 / Math.pow(position, 2)
+    condition(...)
+    return ...
+  }
+)
 
 viz.table(distribution);
-~~~~
+```
 
+### Question 3.6.4
 
-### d)
+Which is higher, $\Pr(\text{Vowel} \mid \text{Win})$ or $\Pr(\text{Consonant} \mid \text{Win})$? Answer this using the WebPPL code you wrote *Hint:* use the `checkVowel` function.
 
-Which is higher, $$p(\text{vowel} \mid \text{win})$$ or $$p(\text{consonant} \mid \text{win})$$?
-Answer this using the WebPPL code you wrote *Hint:* use the `checkVowel` function.
+```{.js}
+// Define some variables and utility functions
+var checkVowel = function(letter) {
+  _.includes(['a', 'e', 'i', 'o', 'u'], letter)
+}
+var letterVals = ['g', 'a', 'm', 'e']
+var letterProbs = map(
+  function(letter) {
+    checkVowel(letter) ? 0.45 : 0.05
+  },
+  letterVals
+)
+var letters = Categorical({
+  vs: letterVals,
+  ps: letterProbs
+})
 
-~~~~
-// define some variables and utility functions
-var checkVowel = function(letter) { _.includes(['a', 'e', 'i', 'o', 'u'], letter) };
-var letterVals = ['g', 'a', 'm', 'e'];
-var letterProbs = map(function(letter) { checkVowel(letter) ? 0.45 : 0.05 }, letterVals);
-var letters = Categorical({vs: letterVals, ps: letterProbs});
+// Compute Pr(L = l | win)
+var distribution = Infer(
+  {method: 'enumerate'},
+  function() {
+    var letter = sample(letters)
+    var position = letterVals.indexOf(letter) + 1
+    var winProb = 1 / Math.pow(position, 2)
+    condition(...)
+    return ...
+  }
+)
 
-// Compute p(h | win)
-var distribution = Infer({method: 'enumerate'}, function() {
-  var letter = sample(letters);
-  var position = letterVals.indexOf(letter) + 1; 
-  var winProb = 1 / Math.pow(position, 2);
-  condition(...);
-  return ...;
-});
+viz.table(distribution)
+```
 
-viz.table(distribution);
-~~~~
+### Question 3.6.5
 
-
-### e)
-
-What difference do you see between your code and the mathematical notation?
-What are the advantages and disadvantages of each?
-Which do you prefer?
+What difference do you see between your code and the mathematical notation? What are the advantages and disadvantages of each? Which do you prefer?
