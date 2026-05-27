@@ -593,7 +593,11 @@ window.Quarto = {
   <li><a href="#communicating-with-words" id="toc-communicating-with-words" class="nav-link" data-scroll-target="#communicating-with-words">6.4.2 Communicating with Words</a></li>
   <li><a href="#example-scalar-implicature" id="toc-example-scalar-implicature" class="nav-link" data-scroll-target="#example-scalar-implicature">6.4.3 Example: Scalar Implicature</a></li>
   </ul></li>
-  <li><a href="#readings-and-discussion" id="toc-readings-and-discussion" class="nav-link" data-scroll-target="#readings-and-discussion">6.5 Readings and Discussion</a></li>
+  <li><a href="#readings-and-discussion" id="toc-readings-and-discussion" class="nav-link" data-scroll-target="#readings-and-discussion">6.5 Readings and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#natural-pedagogy" id="toc-natural-pedagogy" class="nav-link" data-scroll-target="#natural-pedagogy">6.5.1 Natural Pedagogy</a></li>
+  <li><a href="#extras" id="toc-extras" class="nav-link" data-scroll-target="#extras">6.5.2 Extras</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch06/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -1149,7 +1153,7 @@ This is equivalent to choosing an action proportionally to it's utility: $P(a|s)
 <p>Now imagine a vending machine that has only one button, but it can be pressed many times. We don’t know what the machine will do in response to a given button sequence. We do know that pressing more buttons is less a priori likely.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> actionPrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">'a'</span><span class="op">,</span> <span class="st">'aa'</span><span class="op">,</span> <span class="st">'aaa'</span>]<span class="op">,</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span>[<span class="fl">0.7</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.1</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="fl">0.7</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.1</span>]</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">///fold:</span></span>
@@ -1209,122 +1213,211 @@ This is equivalent to choosing an action proportionally to it's utility: $P(a|s)
 <section id="joint-inference-about-knowledge-and-goals" class="level3">
 <h3 class="anchored" data-anchor-id="joint-inference-about-knowledge-and-goals">6.2.4 Joint Inference About Knowledge and Goals</h3>
 <p>In social cognition, we often make joint inferences about two kinds of mental states: agents’ beliefs about the world and their desires, goals or preferences. We can see an example of such a joint inference in the vending machine scenario. Suppose we condition on two observations: that Sally presses the button twice, and that this results in a cookie. Then, assuming that she knows how the machine works, we jointly infer that she wanted a cookie, that pressing the button twice is likely to give a cookie, and that pressing the button once is unlikely to give a cookie.</p>
-<pre><code>var actionPrior = Categorical({vs: ['a', 'aa', 'aaa'], ps:[0.7, 0.2, 0.1] })
-
-///fold:
-var chooseAction = function(goalState, transition, state) {
-  var state = (state==undefined)?'start':state
-  return Infer(function() {
-    var action = sample(actionPrior)
-    condition(goalState == transition(state, action))
-    return action
-  })
-}
-///
-
-var goalPosterior = Infer({method: 'rejection', samples: 5000}, function() {
-  var buttonsToBagelProbs = {'a': uniform(0,1), 'aa': uniform(0,1), 'aaa': uniform(0,1)}
-  var vendingMachine = function(state, action) {
-    return categorical({vs: ['bagel', 'cookie'], 
-                        ps: [buttonsToBagelProbs[action], 1-buttonsToBagelProbs[action]]})
-  }
-
-  var goal = categorical({vs: ['bagel', 'cookie'], ps: [.5, .5]})
-
-  observe(chooseAction(goal, vendingMachine), 'aa')
-  condition(vendingMachine('state', 'aa') == 'cookie')
-
-  return {goal: goal,
-          onePressResult: vendingMachine('state', 'a'),
-          twoPressResult: vendingMachine('state', 'aa'),
-          onePressCookieProb: 1-buttonsToBagelProbs['a']
-         }
-})
-
-viz.marginals(goalPosterior)</code></pre>
-<p>Here we have also returned the posterior belief about how likely one press is to yield a cookie. Notice the U-shaped distribution. Without any direct evidence about what happens when the button is pressed just once we can infer that it probably won’t give a cookie—because her goal is likely to have been a cookie but she didn’t press the button just once—but there is a small chance that her goal was actually not to get a cookie, in which case pressing the button once could result in a cookie. This very complex (and hard to describe!) inference comes naturally from joint inference of goals and knowledge.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> actionPrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">'a'</span><span class="op">,</span> <span class="st">'aa'</span><span class="op">,</span> <span class="st">'aaa'</span>]<span class="op">,</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span>[<span class="fl">0.7</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.1</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">///fold:</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> chooseAction <span class="op">=</span> <span class="kw">function</span>(goalState<span class="op">,</span> transition<span class="op">,</span> state) {</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> state <span class="op">=</span> (state <span class="op">==</span> <span class="kw">undefined</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span><span class="st">'start'</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> state</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> action <span class="op">=</span> <span class="fu">sample</span>(actionPrior)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(goalState <span class="op">==</span> <span class="fu">transition</span>(state<span class="op">,</span> action))</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> action</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">///</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> goalPosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'rejection'</span><span class="op">,</span> <span class="dt">samples</span><span class="op">:</span> <span class="dv">5000</span>}<span class="op">,</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> buttonsToBagelProbs <span class="op">=</span> {</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">'a'</span><span class="op">:</span> <span class="fu">uniform</span>(<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">'aa'</span><span class="op">:</span> <span class="fu">uniform</span>(<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">'aaa'</span><span class="op">:</span> <span class="fu">uniform</span>(<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> vendingMachine <span class="op">=</span> <span class="kw">function</span>(state<span class="op">,</span> action) {</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">categorical</span>({</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span>]<span class="op">,</span> </span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ps</span><span class="op">:</span> [</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>          buttonsToBagelProbs[action]<span class="op">,</span> <span class="dv">1</span><span class="op">-</span>buttonsToBagelProbs[action]</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> goal <span class="op">=</span> <span class="fu">categorical</span>({</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>      <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span>]<span class="op">,</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ps</span><span class="op">:</span> [<span class="op">.</span><span class="dv">5</span><span class="op">,</span> <span class="op">.</span><span class="dv">5</span>]</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">observe</span>(</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">chooseAction</span>(goal<span class="op">,</span> vendingMachine)<span class="op">,</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>      <span class="st">'aa'</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">vendingMachine</span>(<span class="st">'state'</span><span class="op">,</span> <span class="st">'aa'</span>) <span class="op">==</span> <span class="st">'cookie'</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>      <span class="dt">goal</span><span class="op">:</span> goal<span class="op">,</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>      <span class="dt">onePressResult</span><span class="op">:</span> <span class="fu">vendingMachine</span>(<span class="st">'state'</span><span class="op">,</span> <span class="st">'a'</span>)<span class="op">,</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>      <span class="dt">twoPressResult</span><span class="op">:</span> <span class="fu">vendingMachine</span>(<span class="st">'state'</span><span class="op">,</span> <span class="st">'aa'</span>)<span class="op">,</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>      <span class="dt">onePressCookieProb</span><span class="op">:</span> <span class="dv">1</span><span class="op">-</span>buttonsToBagelProbs[<span class="st">'a'</span>]</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(goalPosterior)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here we have also returned the posterior belief about how likely one press is to yield a cookie. Notice the U-shaped distribution: without any direct evidence about what happens when the button is pressed just once, we can infer that it probably won’t give a cookie—because her goal is likely to have been a cookie but she didn’t press the button just once—but there is a small chance that her goal was actually not to get a cookie, in which case pressing the button once could result in a cookie. This very complex (and hard to describe!) inference comes naturally from joint inference of goals and knowledge.</p>
 </section>
 <section id="inferring-whether-they-know" class="level3">
 <h3 class="anchored" data-anchor-id="inferring-whether-they-know">6.2.5 Inferring Whether They Know</h3>
-<p>Let’s imagine that we (the observer) know that the vending machine actually tends to return a bagel for button a and a cookie for button b. But we don’t know if Sally knows this! Instead we see Sally announce that she wants a cookie, but pushes button a. How can we determine, from her actions, whether Sally is knowledgeable or ignorant? We hypothesize that if she is ignorant, Sally chooses according to a random vending machine. We can then infer her knowledge state:</p>
-<pre><code>///fold:
-var actionPrior = Categorical({vs: ['a', 'b'], ps: [.5, .5]})
-
-var chooseAction = function(goalState, transition, state) {
-  var state = (state==undefined)?'start':state
-  return Infer(function() {
-    var action = sample(actionPrior)
-    condition(goalState == transition(state, action))
-    return action
-  })
-}
-///
-
-var buttonsToBagelProbs = {'a': 0.9, 'b': 0.1}
-var trueVendingMachine = function(state, action) {
-  return categorical({vs: ['bagel', 'cookie'], 
-                      ps: [buttonsToBagelProbs[action], 1-buttonsToBagelProbs[action]]})
-}
-var randomMachine = function(state, action) {
-  return categorical({vs: ['bagel', 'cookie'], 
-                      ps: [0.5, 0.5]})
-}
-
-var p = Infer(function() {
-  var knows = flip()
-
-  var goal = 'cookie'
-  observe(chooseAction(goal, knows?trueVendingMachine:randomMachine), 'a')
-  condition(trueVendingMachine('start', 'a') == 'bagel')
-
-  return {knowledge: knows}
-})
-
-viz.marginals(p)</code></pre>
+<p>Let’s imagine that we (the observer) know that the vending machine actually tends to return a bagel for button a and a cookie for button b. But we don’t know if Sally knows this! Instead we see Sally announce that she wants a cookie, but pushes button a. How can we determine, from her actions, whether Sally is knowledgeable or ignorant?</p>
+<p>We hypothesize that if she is ignorant, Sally chooses according to a random vending machine. We can then infer her knowledge state:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">///fold:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> actionPrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">'a'</span><span class="op">,</span> <span class="st">'b'</span>]<span class="op">,</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="op">.</span><span class="dv">5</span><span class="op">,</span> <span class="op">.</span><span class="dv">5</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> chooseAction <span class="op">=</span> <span class="kw">function</span>(goalState<span class="op">,</span> transition<span class="op">,</span> state) {</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> state <span class="op">=</span> (state <span class="op">==</span> <span class="kw">undefined</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> <span class="st">'start'</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> state</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> action <span class="op">=</span> <span class="fu">sample</span>(actionPrior)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(goalState <span class="op">==</span> <span class="fu">transition</span>(state<span class="op">,</span> action))</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> action</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">///</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> buttonsToBagelProbs <span class="op">=</span> {</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">'a'</span><span class="op">:</span> <span class="fl">0.9</span><span class="op">,</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">'b'</span><span class="op">:</span> <span class="fl">0.1</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trueVendingMachine <span class="op">=</span> <span class="kw">function</span>(state<span class="op">,</span> action) {</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">categorical</span>({</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span>]<span class="op">,</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ps</span><span class="op">:</span> [</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>      buttonsToBagelProbs[action]<span class="op">,</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span> <span class="op">-</span> buttonsToBagelProbs[action]</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> randomMachine <span class="op">=</span> <span class="kw">function</span>(state<span class="op">,</span> action) {</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">categorical</span>({</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span>]<span class="op">,</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ps</span><span class="op">:</span> [<span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.5</span>]</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> P <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> knows <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> goal <span class="op">=</span> <span class="st">'cookie'</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">observe</span>(</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">chooseAction</span>(</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>        goal<span class="op">,</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>        knows</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> trueVendingMachine</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> randomMachine</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>      )<span class="op">,</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>      <span class="st">'a'</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>      <span class="fu">trueVendingMachine</span>(<span class="st">'start'</span><span class="op">,</span> <span class="st">'a'</span>) <span class="op">==</span> <span class="st">'bagel'</span></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>      <span class="dt">knowledge</span><span class="op">:</span> knows</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(P)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is a very simple example, but it illustrates how we can represent a difference in knowledge between the observer and the observed agent by simply using different world models (the vending machines) for explaining the action (in <code>chooseAction</code>) and for explaining the outcome (in the <code>condition</code>).</p>
 </section>
 <section id="inferring-what-they-believe" class="level3">
 <h3 class="anchored" data-anchor-id="inferring-what-they-believe">6.2.6 Inferring What They Believe</h3>
-<p>Above we assumed that if Sally is ignorant, she chooses based on a random machine. This is both not flexible enough and too strong an assumption. Indeed, Sally may have all kinds of specific (and potentially false) beliefs about vending machines. To capture this, we can represent Sally’s beliefs as a separate randomly chosen vending machine: by passing this into Sally’s <code>chooseAction</code> we indicate these are <em>Sally’s</em> beliefs, by putting this inside the outer <code>Infer</code> we represent the observer reasoning about Sally’s beliefs:</p>
-<pre><code>///fold:
-var actionPrior = Categorical({vs: ['a', 'b'], ps: [.5, .5]})
-
-var chooseAction = function(goalState, transition, state) {
-  var state = (state==undefined)?'start':state
-  return Infer(function() {
-    var action = sample(actionPrior)
-    condition(goalState == transition(state, action))
-    return action
-  })
-}
-///
-
-var buttonsToBagelProbs = {'a': 0.9, 'b': 0.1}
-var trueVendingMachine = function(state, action) {
-  return categorical({vs: ['bagel', 'cookie'], 
-                      ps: [buttonsToBagelProbs[action], 1-buttonsToBagelProbs[action]]})
-}
-
-var p = Infer(function() {
-  var SallyBelief = {'a': uniform(0,1), 'b': uniform(0,1)}
-  var SallyMachine = function(state, action) {
-    return categorical({vs: ['bagel', 'cookie'], 
-                        ps: [SallyBelief[action], 1-SallyBelief[action]]})}
-  
-  var goal = 'cookie'
-  observe(chooseAction(goal, SallyMachine), 'a')
-  condition(trueVendingMachine('start', 'a') == 'bagel')
-  
-  return {SallyBeliefButtonA: SallyMachine('start','a')}
-})
-
-viz.marginals(p)</code></pre>
+<p>Above we assumed that if Sally is ignorant, she chooses based on a random machine. This is both not flexible enough and too strong an assumption.</p>
+<p>Indeed, Sally may have all kinds of specific (and potentially false) beliefs about vending machines. To capture this, we can represent Sally’s beliefs as a separate randomly chosen vending machine:</p>
+<ul>
+<li>By passing this into Sally’s <code>chooseAction</code> we indicate these are <em>Sally’s</em> beliefs, and</li>
+<li>By putting this inside the outer <code>Infer</code> we represent the observer reasoning about Sally’s beliefs:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">///fold:</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> actionPrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">'a'</span><span class="op">,</span> <span class="st">'b'</span>]<span class="op">,</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="op">.</span><span class="dv">5</span><span class="op">,</span> <span class="op">.</span><span class="dv">5</span>]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> chooseAction <span class="op">=</span> <span class="kw">function</span>(goalState<span class="op">,</span> transition<span class="op">,</span> state) {</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> state <span class="op">=</span> (state <span class="op">==</span> <span class="kw">undefined</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> <span class="st">'start'</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> state</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> action <span class="op">=</span> <span class="fu">sample</span>(actionPrior)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(goalState <span class="op">==</span> <span class="fu">transition</span>(state<span class="op">,</span> action))</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> action</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">///</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> buttonsToBagelProbs <span class="op">=</span> {</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">'a'</span><span class="op">:</span> <span class="fl">0.9</span><span class="op">,</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">'b'</span><span class="op">:</span> <span class="fl">0.1</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trueVendingMachine <span class="op">=</span> <span class="kw">function</span>(state<span class="op">,</span> action) {</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">categorical</span>({</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span>]<span class="op">,</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ps</span><span class="op">:</span> [</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>      buttonsToBagelProbs[action]<span class="op">,</span> </span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span> <span class="op">-</span> buttonsToBagelProbs[action]</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> P <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'MCMC'</span>}<span class="op">,</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> sallyBelief <span class="op">=</span> {</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>      <span class="st">'a'</span><span class="op">:</span> <span class="fu">uniform</span>(<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>      <span class="st">'b'</span><span class="op">:</span> <span class="fu">uniform</span>(<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> sallyMachine <span class="op">=</span> <span class="kw">function</span>(state<span class="op">,</span> action) {</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">categorical</span>({</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>        <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span>]<span class="op">,</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ps</span><span class="op">:</span> [</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>          sallyBelief[action]<span class="op">,</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>          <span class="dv">1</span> <span class="op">-</span> sallyBelief[action]</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> goal <span class="op">=</span> <span class="st">'cookie'</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">observe</span>(</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">chooseAction</span>(goal<span class="op">,</span> sallyMachine)<span class="op">,</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>      <span class="st">'a'</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>      <span class="fu">trueVendingMachine</span>(<span class="st">'start'</span><span class="op">,</span> <span class="st">'a'</span>) <span class="op">==</span> <span class="st">'bagel'</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sallyBeliefButtonA</span><span class="op">:</span> <span class="fu">sallyMachine</span>(<span class="st">'start'</span><span class="op">,</span><span class="st">'a'</span>)</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">marginals</span>(P)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the developmental psychology literature, the ability to represent and reason about other people’s <em>false beliefs</em> has been extensively investigated as a hallmark of human Theory of Mind.</p>
 </section>
 </section>
 <section id="emotion-and-other-mental-states" class="level2">
 <h2 class="anchored" data-anchor-id="emotion-and-other-mental-states">6.3 Emotion and Other Mental States</h2>
-<p>So far we have explored reasoning about others’ goals, preferences, knowledge, and beliefs. It is commonplace to discuss other’s actions in terms of many other mental states as well! We might explain an unexpected slip in terms of wandering <em>attention</em>, a short-sighted choice in terms of <em>temptation</em>, a violent reaction in terms of <em>anger</em>, a purposeless embellishment in terms of <em>joy</em>. Each of these has a potential role to play in an elaborated scientific theory of how humans represent other’s minds.</p>
+<p>So far we have explored reasoning about others’ goals, preferences, knowledge, and beliefs. It is commonplace to discuss others’ actions in terms of many other mental states as well!</p>
+<p>We might explain an unexpected slip in terms of wandering <em>attention</em>, a short-sighted choice in terms of <em>temptation</em>, a violent reaction in terms of <em>anger</em>, a purposeless embellishment in terms of <em>joy</em>, and so on. Each of these has a potential role to play in an elaborated scientific theory of how humans represent others’ minds.</p>
 <!-- todo describe Ong et al a bit as an example -->
 </section>
 <section id="communication-and-language" class="level2">
@@ -1332,40 +1425,55 @@ viz.marginals(p)</code></pre>
 <section id="a-communication-game" class="level3">
 <h3 class="anchored" data-anchor-id="a-communication-game">6.4.1 A Communication Game</h3>
 <p>Imagine playing the following two-player game. On each round the “teacher” pulls a die from a bag of weighted dice, and has to communicate to the “learner” which die it is (both players are familiar with the dice and their weights). However, the teacher may only communicate by giving the learner examples: showing them faces of the die.</p>
-<p>We can formalize the inference of the teacher in choosing the examples to give by assuming that the goal of the teacher is to successfully teach the hypothesis – that is, to choose examples such that the learner will infer the intended hypothesis (throughout this section we simplify the code by specializing to the situation at hand, rather than using the more general <code>chooseAction</code> function introduced above):</p>
-<pre class="norun"><code>var teacher = function(die) {
-  return Infer(..., function() {
-    var side = sample(sidePrior);
-    condition(learner(side) == die)
-    return side;
-  })
-}</code></pre>
+<p>We can formalize the inference of the teacher in choosing the examples to give by assuming that the <strong>goal</strong> of the teacher is to successfully teach the hypothesis – that is, to choose examples such that the learner will infer the intended hypothesis (throughout this section we simplify the code by specializing to the situation at hand, rather than using the more general <code>chooseAction</code> function introduced above):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode js default code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> teacher <span class="op">=</span> <span class="kw">function</span>(die) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...,</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> side <span class="op">=</span> <span class="fu">sample</span>(sidePrior)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(<span class="fu">learner</span>(side) <span class="op">==</span> die)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> side</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The goal of the learner is to infer the correct hypothesis, given that the teacher chose to give these examples:</p>
-<pre class="norun"><code>var learner = function(side) {
-  return Infer(..., function() {
-    var die = sample(diePrior);
-    condition(teacher(die) == side)
-    return die;
-  })
-}</code></pre>
-<p>This pair of mutually recursive functions represents a teacher choosing examples or a learner inferring a hypothesis, each thinking about the other. However, notice that this recursion will never halt—it will be an unending chain of “I think that you think that I think that…”. To avoid this infinite recursion, say that eventually the learner will just assume that the teacher rolled the die and showed the side that came up (rather than reasoning about the teacher choosing a side):</p>
-<pre class="norun"><code>var teacher = function(die, depth) {
-  return Infer(..., function() {
-    var side = sample(sidePrior);
-    condition(learner(side, depth) == die)
-    return side
-  })
-}
-
-var learner = function(side, depth) {
-  return Infer(..., function() {
-    var die = sample(diePrior);
-    condition(depth == 0 ?
-              side == roll(die) :
-              side == teacher(die, depth - 1))
-    return die
-  })
-}</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode js default code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> learner <span class="op">=</span> <span class="kw">function</span>(side) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...,</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> die <span class="op">=</span> <span class="fu">sample</span>(diePrior)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(<span class="fu">teacher</span>(die) <span class="op">==</span> side)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> die</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This pair of mutually recursive functions represents a teacher choosing examples or a learner inferring a hypothesis, each thinking about the other. However, notice that this recursion will never halt—it will be an unending chain of “I think that you think that I think that…”.</p>
+<p>To avoid this infinite recursion, say that eventually the learner will just assume that the teacher rolled the die and showed the side that came up (rather than reasoning about the teacher choosing a side):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode js default code-with-copy"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> teacher <span class="op">=</span> <span class="kw">function</span>(die<span class="op">,</span> depth) {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...,</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> side <span class="op">=</span> <span class="fu">sample</span>(sidePrior)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(<span class="fu">learner</span>(side<span class="op">,</span> depth) <span class="op">==</span> die)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> side</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> learner <span class="op">=</span> <span class="kw">function</span>(side<span class="op">,</span> depth) {</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">...,</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> die <span class="op">=</span> <span class="fu">sample</span>(diePrior)<span class="op">;</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        depth <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> side <span class="op">==</span> <span class="fu">roll</span>(die)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> side <span class="op">==</span> <span class="fu">teacher</span>(die<span class="op">,</span> depth <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> die</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To make this concrete, assume that there are two dice, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, which each have three sides (red, green, blue) with weights like so:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1374,106 +1482,169 @@ var learner = function(side, depth) {
 </div>
 <p>Which hypothesis will the learner infer if the teacher shows the green side?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dieToProbs <span class="op">=</span> <span class="kw">function</span>(die) {</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (die <span class="op">==</span> <span class="st">'A'</span> <span class="op">?</span> [<span class="dv">0</span><span class="op">,</span> <span class="op">.</span><span class="dv">2</span><span class="op">,</span> <span class="op">.</span><span class="dv">8</span>] <span class="op">:</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>          die <span class="op">==</span> <span class="st">'B'</span> <span class="op">?</span> [<span class="op">.</span><span class="dv">1</span><span class="op">,</span> <span class="op">.</span><span class="dv">3</span><span class="op">,</span> <span class="op">.</span><span class="dv">6</span>] <span class="op">:</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">'uhoh'</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sidePrior <span class="op">=</span> <span class="fu">Categorical</span>({<span class="dt">vs</span><span class="op">:</span> [<span class="st">'red'</span><span class="op">,</span> <span class="st">'green'</span><span class="op">,</span> <span class="st">'blue'</span>]<span class="op">,</span> <span class="dt">ps</span><span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>]})</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> diePrior <span class="op">=</span> <span class="fu">Categorical</span>({<span class="dt">vs</span><span class="op">:</span> [<span class="st">'A'</span><span class="op">,</span> <span class="st">'B'</span>]<span class="op">,</span> <span class="dt">ps</span><span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>]})</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> roll <span class="op">=</span> <span class="kw">function</span>(die) {<span class="cf">return</span> <span class="fu">categorical</span>({<span class="dt">vs</span><span class="op">:</span> [<span class="st">'red'</span><span class="op">,</span> <span class="st">'green'</span><span class="op">,</span> <span class="st">'blue'</span>]<span class="op">,</span> <span class="dt">ps</span><span class="op">:</span> <span class="fu">dieToProbs</span>(die)})}</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> teacher <span class="op">=</span> <span class="kw">function</span>(die<span class="op">,</span> depth) {</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>({<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span> <span class="kw">function</span>() {</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> side <span class="op">=</span> <span class="fu">sample</span>(sidePrior)<span class="op">;</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(<span class="fu">sample</span>(<span class="fu">learner</span>(side<span class="op">,</span> depth)) <span class="op">==</span> die)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> side</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> learner <span class="op">=</span> <span class="kw">function</span>(side<span class="op">,</span> depth) {</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>({<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span> <span class="kw">function</span>() {</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> die <span class="op">=</span> <span class="fu">sample</span>(diePrior)<span class="op">;</span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(depth <span class="op">==</span> <span class="dv">0</span> <span class="op">?</span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>              side <span class="op">==</span> <span class="fu">roll</span>(die) <span class="op">:</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>              side <span class="op">==</span> <span class="fu">sample</span>(<span class="fu">teacher</span>(die<span class="op">,</span> depth <span class="op">-</span> <span class="dv">1</span>)))</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> die</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(<span class="fu">learner</span>(<span class="st">'green'</span><span class="op">,</span> <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we run this with recursion depth 0—that is a learner that does probabilistic inference without thinking about the teacher thinking—we find the learner infers hypothesis B most of the time (about 60% of the time). This is the same as using the “strong sampling” assumption: the learner infers B because B is more likely to have landed on side 2. However, if we increase the recursion depth we find this reverses: the learner infers B only about 40% of the time. Now die A becomes the better inference, because “if the teacher had meant to communicate B, they would have shown the red side because that can never come from A.”</p>
-<p>This model, has been proposed by <span class="citation" data-cites="Shafto:2012by">(<a href="#ref-Shafto:2012by" role="doc-biblioref"><strong>Shafto:2012by?</strong></a>)</span> as a model of natural pedagogy. They describe several experimental tests of this model in the setting of simple “teaching games,” showing that people make inferences as above when they think the examples come from a helpful teacher, but not otherwise.</p>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> die <span class="op">==</span> <span class="st">'A'</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> [<span class="dv">0</span><span class="op">,</span> <span class="op">.</span><span class="dv">2</span><span class="op">,</span> <span class="op">.</span><span class="dv">8</span>]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> die <span class="op">==</span> <span class="st">'B'</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> [<span class="op">.</span><span class="dv">1</span><span class="op">,</span> <span class="op">.</span><span class="dv">3</span><span class="op">,</span> <span class="op">.</span><span class="dv">6</span>]</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="st">'uhoh'</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> sidePrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">'red'</span><span class="op">,</span> <span class="st">'green'</span><span class="op">,</span> <span class="st">'blue'</span>]<span class="op">,</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>]</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> diePrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">'A'</span><span class="op">,</span> <span class="st">'B'</span>]<span class="op">,</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>]</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> roll <span class="op">=</span> <span class="kw">function</span>(die) {</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">categorical</span>({</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">vs</span><span class="op">:</span> [<span class="st">'red'</span><span class="op">,</span> <span class="st">'green'</span><span class="op">,</span> <span class="st">'blue'</span>]<span class="op">,</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ps</span><span class="op">:</span> <span class="fu">dieToProbs</span>(die)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> teacher <span class="op">=</span> <span class="kw">function</span>(die<span class="op">,</span> depth) {</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> side <span class="op">=</span> <span class="fu">sample</span>(sidePrior)</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(<span class="fu">sample</span>(<span class="fu">learner</span>(side<span class="op">,</span> depth)) <span class="op">==</span> die)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> side</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> learner <span class="op">=</span> <span class="kw">function</span>(side<span class="op">,</span> depth) {</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> die <span class="op">=</span> <span class="fu">sample</span>(diePrior)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>        depth <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> side <span class="op">==</span> <span class="fu">roll</span>(die)</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> side <span class="op">==</span> <span class="fu">sample</span>(</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>          <span class="fu">teacher</span>(die<span class="op">,</span> depth <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> die</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(<span class="fu">learner</span>(<span class="st">'green'</span><span class="op">,</span> <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If we run this with recursion depth 0—that is, a learner that does probabilistic inference without thinking about the teacher thinking—we find the learner infers hypothesis <span class="math inline">\(B\)</span> most of the time (about 60% of the time). This is the same as using the “strong sampling” assumption: the learner infers <span class="math inline">\(B\)</span> because <span class="math inline">\(B\)</span> is more likely to have landed on side 2.</p>
+<p>However, if we increase the recursion depth we find this reverses: the learner infers <span class="math inline">\(B\)</span> only about 40% of the time. Now die <span class="math inline">\(A\)</span> becomes the better inference, because <em>“if the teacher had meant to communicate <span class="math inline">\(B\)</span>, they would have shown the red side because that can never come from <span class="math inline">\(A\)</span>.”</em></p>
+<p>This model, has been proposed by <span class="citation" data-cites="shafto_learning_2012">Shafto, Goodman, and Frank (<a href="#ref-shafto_learning_2012" role="doc-biblioref">2012</a>)</span> as a model of natural pedagogy. They describe several experimental tests of this model in the setting of simple “teaching games”, showing that people make inferences as above when they think the examples come from a helpful teacher, but not otherwise.</p>
 </section>
 <section id="communicating-with-words" class="level3">
 <h3 class="anchored" data-anchor-id="communicating-with-words">6.4.2 Communicating with Words</h3>
-<p>Unlike the situation above, in which concrete examples were given from teacher to student, words in natural language denote more abstract concepts. However, we can use almost the same setup to reason about speakers and listeners communicating with words, if we assume that sentences have <em>literal meanings</em>, which anchor sentences to possible worlds. We assume for simplicity that the meaning of sentences are truth-functional: that each sentence corresponds to a function from states of the world to true/false.</p>
-<p>As above, the speaker chooses what to say in order to lead the listener to infer the correct state:</p>
-<pre class="norun"><code>var speaker = function(state) {
-  return Infer(..., function() {
-    var words = sample(sentencePrior);
-    condition(state == listener(words));
-    return words;
-  });
-};</code></pre>
+<p>Unlike the situation above, in which concrete examples were given from teacher to student, <strong>words</strong> in natural language denote more abstract concepts.</p>
+<p>However, we can use almost the same setup to reason about speakers and listeners communicating with words, if we assume that sentences have <em>literal meanings</em>, which anchor sentences to possible worlds.</p>
+<p>We assume for simplicity that the meaning of sentences are truth-functional: that each sentence corresponds to a function from states of the world to true/false. As above, the speaker chooses what to say in order to lead the listener to infer the correct state:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode js default code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> speaker <span class="op">=</span> <span class="kw">function</span>(state) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...,</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> words <span class="op">=</span> <span class="fu">sample</span>(sentencePrior)<span class="op">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(state <span class="op">==</span> <span class="fu">listener</span>(words))<span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> words<span class="op">;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The listener does an inference of the state of the world given that the speaker chose to say what they did:</p>
-<pre class="norun"><code>var listener = function(words) {
-  return Infer(..., function() {
-    var state = sample(statePrior);
-    condition(words == speaker(state));
-    return state;
-  });
-};</code></pre>
-<p>However this suffers from two flaws: the recursion never halts, and the literal meaning has not been used. We slightly modify the listener function such that the listener either assumes that the literal meaning of the sentence is true, or figures out what the speaker must have meant given that they chose to say what they said:</p>
-<pre class="norun"><code>var listener = function(words) {
-  return Infer(..., function() {
-    var state = sample(statePrior);
-    condition(flip(literalProb) ?
-              words(state) :
-              words == speaker(state))
-    return state;
-  });
-};</code></pre>
-<p>Here the probability <code>literalProb</code> controls the expected depth of recursion. Another ways to bound the depth of recursion is with an explicit depth argument (which is decremented on each recursion).</p>
-<p>We have used a standard, truth-functional, formulation for the meaning of a sentence: each sentence specifies a (deterministic) predicate on world states. Thus the literal meaning of a sentence specifies the worlds in which the sentence is satisfied. That is the literal meaning of a sentence is the sort of thing one can condition on, transforming a prior over worlds into a posterior. Here’s another way of motivating this view: meanings are belief update operations, and since the right way to update beliefs coded as distributions is conditioning, meanings are conditioning statements. Of course, the deterministic predicates can be immediately (without changing any other code) relaxed to probabilistic truth functions, that assign a probability to each world. This might be useful if we want to allow exceptions.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode js default code-with-copy"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> listener <span class="op">=</span> <span class="kw">function</span>(words) {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...,</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> state <span class="op">=</span> <span class="fu">sample</span>(statePrior)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(words <span class="op">==</span> <span class="fu">speaker</span>(state))</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> state</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>However, this approach suffers from two flaws: the recursion never halts, and the literal meaning has not been used.</p>
+<p>Thus, here we slightly modify the listener function such that the listener either assumes that the literal meaning of the sentence is true, or figures out what the speaker must have meant given that they chose to say what they said:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode js default code-with-copy"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> listener <span class="op">=</span> <span class="kw">function</span>(words) {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...,</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> state <span class="op">=</span> <span class="fu">sample</span>(statePrior)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">flip</span>(literalProb)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="fu">words</span>(state)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> words <span class="op">==</span> <span class="fu">speaker</span>(state)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> state<span class="op">;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here the probability <code>literalProb</code> controls the expected depth of recursion. Another way to bound the depth of recursion is with an explicit depth argument (which is decremented on each recursion).</p>
+<p>We have used a standard, truth-functional, formulation for the meaning of a sentence: each sentence specifies a (deterministic) predicate on world states. Thus the literal meaning of a sentence specifies the worlds in which the sentence is satisfied. That is, the literal meaning of a sentence is the sort of thing one can condition on, transforming a prior over worlds into a posterior.</p>
+<p>Here’s another way of motivating this view: meanings are belief update operations, and since the right way to update beliefs coded as distributions is conditioning, meanings are conditioning statements. Of course, the deterministic predicates can be immediately (without changing any other code) relaxed to probabilistic truth functions, that assign a probability to each world. This might be useful if we want to allow exceptions.</p>
 </section>
 <section id="example-scalar-implicature" class="level3">
 <h3 class="anchored" data-anchor-id="example-scalar-implicature">6.4.3 Example: Scalar Implicature</h3>
-<p>Let us imagine a situation in which there are three plants which may or may not have sprouted. We imagine that there are three sentences that the speaker could say, “All of the plants have sprouted”, “Some of the plants have sprouted”, or “None of the plants have sprouted”. For simplicity we represent the worlds by the number of sprouted plants (0, 1, 2, or 3) and take a uniform prior over worlds. Using the above representation for communicating with words (with an explicit depth argument):</p>
-<pre><code>var allSprouted = function(state) {return state == 3}
-var someSprouted = function(state) {return state &gt; 0}
-var noneSprouted = function(state) {return state == 0}
-var meaning = function(words) {
-  return (words == 'all' ? allSprouted :
-          words == 'some' ? someSprouted :
-          words == 'none' ? noneSprouted :
-          console.error("unknown words"))
-}
-
-var statePrior = Categorical({vs: [0,1,2,3],
-                              ps: [1/4, 1/4, 1/4, 1/4]})
-var sentencePrior = Categorical({vs: ["all", "some", "none"],
-                                 ps: [1/3, 1/3, 1/3]})
-
-var speaker = function(state, depth) {
-  return Infer({method: 'enumerate'}, function() {
-    var words = sample(sentencePrior)
-    condition(state == sample(listener(words, depth)))
-    return words
-  })
-};
-
-var listener = function(words, depth) {
-  return Infer({method: 'enumerate'}, function() {
-    var state = sample(statePrior);
-    var wordsMeaning = meaning(words)
-    condition(depth == 0 ? wordsMeaning(state) :
-              _.isEqual(words, sample(speaker(state, depth - 1))))
-    return state;
-  })
-};
-
-viz.auto(listener("some", 1))</code></pre>
+<p>Let us imagine a situation in which there are <strong>three plants</strong> which may or may not have sprouted. We imagine that there are <strong>three sentences</strong> that the speaker could say:</p>
+<ul>
+<li><em>“All of the plants have sprouted”</em>,</li>
+<li><em>“Some of the plants have sprouted”</em>, or</li>
+<li><em>“None of the plants have sprouted”</em>.</li>
+</ul>
+<p>For simplicity we represent the worlds by the number of sprouted plants (0, 1, 2, or 3) and take a uniform prior over worlds.</p>
+<p>Using the above representation for communicating with words (with an explicit depth argument), we implement the model as follows:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> allSprouted <span class="op">=</span> <span class="kw">function</span>(state) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> state <span class="op">==</span> <span class="dv">3</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> someSprouted <span class="op">=</span> <span class="kw">function</span>(state) {</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> state <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> noneSprouted <span class="op">=</span> <span class="kw">function</span>(state) {</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> state <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> meaning <span class="op">=</span> <span class="kw">function</span>(words) {</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (words <span class="op">==</span> <span class="st">'all'</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> allSprouted</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> words <span class="op">==</span> <span class="st">'some'</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> someSprouted</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> words <span class="op">==</span> <span class="st">'none'</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> noneSprouted</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">"unknown words"</span>)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> statePrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">4</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">4</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">4</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>]</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sentencePrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">"all"</span><span class="op">,</span> <span class="st">"some"</span><span class="op">,</span> <span class="st">"none"</span>]<span class="op">,</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>]</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> speaker <span class="op">=</span> <span class="kw">function</span>(state<span class="op">,</span> depth) {</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> words <span class="op">=</span> <span class="fu">sample</span>(sentencePrior)</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(state <span class="op">==</span> <span class="fu">sample</span>(<span class="fu">listener</span>(words<span class="op">,</span> depth)))</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> words</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> listener <span class="op">=</span> <span class="kw">function</span>(words<span class="op">,</span> depth) {</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> state <span class="op">=</span> <span class="fu">sample</span>(statePrior)</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> wordsMeaning <span class="op">=</span> <span class="fu">meaning</span>(words)</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>        depth <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="fu">wordsMeaning</span>(state)</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> _<span class="op">.</span><span class="fu">isEqual</span>(</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>            words<span class="op">,</span></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sample</span>(<span class="fu">speaker</span>(state<span class="op">,</span> depth <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> state</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(<span class="fu">listener</span>(<span class="st">"some"</span><span class="op">,</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We see that if the listener hears “some” the probability of three out of three is low, even though the basic meaning of “some” is equally consistent with 3/3, 1/3, and 2/3. This is called the “some but not all” implicature.</p>
 <!--
 ### Compositional Meanings
@@ -1599,18 +1770,40 @@ Gergely and Csibra principle of efficiency and equifinality come from Bayes Occa
 </section>
 </section>
 <section id="readings-and-discussion" class="level2">
-
+<h2 class="anchored" data-anchor-id="readings-and-discussion">6.5 Readings and Discussion</h2>
+<section id="natural-pedagogy" class="level3">
+<h3 class="anchored" data-anchor-id="natural-pedagogy">6.5.1 Natural Pedagogy</h3>
+<p>Read <span class="citation" data-cites="shafto_learning_2012">Shafto, Goodman, and Frank (<a href="#ref-shafto_learning_2012" role="doc-biblioref">2012</a>)</span>.</p>
+<p><strong>Reading Question:</strong></p>
+<p>The model in the reading invokes a theory of mind (learners are reasoning about teachers’ mental states), but a relatively simple theory of mind (the kinds of mental states ascribed are not complex).</p>
+<ul>
+<li>Would this be sufficient for learning more complex ideas (like mathematics, or how to tune a bicycle)?</li>
+<li>If not, what might you want to add to the learner’s theory of mind?</li>
+</ul>
+</section>
+<section id="extras" class="level3">
+<h3 class="anchored" data-anchor-id="extras">6.5.2 Extras</h3>
+<ul>
+<li><strong><em>Theory of Mind.</em></strong> For more on Theory of Mind, see <span class="citation" data-cites="carlson_theory_2013">Carlson, Koenig, and Harms (<a href="#ref-carlson_theory_2013" role="doc-biblioref">2013</a>)</span>.</li>
+</ul>
 
 
 
 </section>
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">6.5 Readings and Discussion</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-carlson_theory_2013" class="csl-entry" role="listitem">
+Carlson, Stephanie M., Melissa A. Koenig, and Madeline B. Harms. 2013. <span>“<a href="https://doi.org/10.1002/wcs.1232">Theory of Mind</a>.”</span> <em>WIREs Cognitive Science</em> 4 (4): 391–402.
+</div>
 <div id="ref-goodman_cause_2009" class="csl-entry" role="listitem">
 Goodman, Noah D, Chris L Baker, and Joshua B Tenenbaum. 2009. <span>“Cause and <span>Intent</span>: <span>Social Reasoning</span> in <span>Causal Learning</span>.”</span> <em>Stanford CoCoLab</em>.
 </div>
 <div id="ref-kushnir_young_2010" class="csl-entry" role="listitem">
 Kushnir, Tamar, Fei Xu, and Henry M. Wellman. 2010. <span>“<a href="https://doi.org/10.1177/0956797610376652">Young <span>Children Use Statistical Sampling</span> to <span>Infer</span> the <span>Preferences</span> of <span>Other People</span></a>.”</span> <em>Psychological Science</em> 21 (8): 1134–40.
+</div>
+<div id="ref-shafto_learning_2012" class="csl-entry" role="listitem">
+Shafto, Patrick, Noah D. Goodman, and Michael C. Frank. 2012. <span>“<a href="https://doi.org/10.1177/1745691612448481">Learning <span>From Others</span>: <span>The Consequences</span> of <span>Psychological Reasoning</span> for <span>Human Learning</span></a>.”</span> <em>Perspectives on Psychological Science: A Journal of the Association for Psychological Science</em> 7 (4): 341–51.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

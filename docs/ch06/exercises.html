@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -90,6 +125,35 @@ ul.task-list li input[type="checkbox"] {
 <script src="../assets/js/webppl-editor.min.js" defer=""></script>
 <script src="../assets/js/paper-full.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -495,16 +559,16 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#exercise-6.1-tricky-agents" id="toc-exercise-6.1-tricky-agents" class="nav-link active" data-scroll-target="#exercise-6.1-tricky-agents">Exercise 6.1: Tricky Agents</a>
   <ul class="collapse">
   <li><a href="#exercise-6.1.1" id="toc-exercise-6.1.1" class="nav-link" data-scroll-target="#exercise-6.1.1">Exercise 6.1.1</a></li>
-  <li><a href="#exercise-1.2" id="toc-exercise-1.2" class="nav-link" data-scroll-target="#exercise-1.2">Exercise 1.2</a></li>
+  <li><a href="#exercise-6.1.2" id="toc-exercise-6.1.2" class="nav-link" data-scroll-target="#exercise-6.1.2">Exercise 6.1.2</a></li>
   </ul></li>
-  <li><a href="#exercise-2-monty-hall." id="toc-exercise-2-monty-hall." class="nav-link" data-scroll-target="#exercise-2-monty-hall.">Exercise 2: Monty Hall.</a>
+  <li><a href="#exercise-6.2-monty-hall" id="toc-exercise-6.2-monty-hall" class="nav-link" data-scroll-target="#exercise-6.2-monty-hall">Exercise 6.2: Monty Hall</a>
   <ul class="collapse">
-  <li><a href="#exercise-2.1" id="toc-exercise-2.1" class="nav-link" data-scroll-target="#exercise-2.1">Exercise 2.1</a></li>
-  <li><a href="#exercise-2.2" id="toc-exercise-2.2" class="nav-link" data-scroll-target="#exercise-2.2">Exercise 2.2</a></li>
-  <li><a href="#exercise-2.3" id="toc-exercise-2.3" class="nav-link" data-scroll-target="#exercise-2.3">Exercise 2.3</a></li>
-  <li><a href="#exercise-2.4" id="toc-exercise-2.4" class="nav-link" data-scroll-target="#exercise-2.4">Exercise 2.4</a></li>
-  <li><a href="#exercise-2.5" id="toc-exercise-2.5" class="nav-link" data-scroll-target="#exercise-2.5">Exercise 2.5</a></li>
-  <li><a href="#exercise-2.6" id="toc-exercise-2.6" class="nav-link" data-scroll-target="#exercise-2.6">Exercise 2.6</a></li>
+  <li><a href="#exercise-6.2.1" id="toc-exercise-6.2.1" class="nav-link" data-scroll-target="#exercise-6.2.1">Exercise 6.2.1</a></li>
+  <li><a href="#exercise-6.2.2" id="toc-exercise-6.2.2" class="nav-link" data-scroll-target="#exercise-6.2.2">Exercise 6.2.2</a></li>
+  <li><a href="#exercise-6.2.3" id="toc-exercise-6.2.3" class="nav-link" data-scroll-target="#exercise-6.2.3">Exercise 6.2.3</a></li>
+  <li><a href="#exercise-6.2.4" id="toc-exercise-6.2.4" class="nav-link" data-scroll-target="#exercise-6.2.4">Exercise 6.2.4</a></li>
+  <li><a href="#exercise-6.2.5" id="toc-exercise-6.2.5" class="nav-link" data-scroll-target="#exercise-6.2.5">Exercise 6.2.5</a></li>
+  <li><a href="#exercise-6.2.6" id="toc-exercise-6.2.6" class="nav-link" data-scroll-target="#exercise-6.2.6">Exercise 6.2.6</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jpowerj/dsan5650/blob/main/ch06/exercises.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="exercises.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -538,227 +602,357 @@ ul.task-list li input[type="checkbox"] {
 <section id="exercise-6.1.1" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6.1.1">Exercise 6.1.1</h3>
 <p>Complete the code below so that <code>chooseAction</code> chooses a misdirection if Sally is deceptive. Then describe and show what happens if you knew Sally was deceptive and chose action “b”.</p>
-<pre><code>var actionPrior = Categorical({vs: ['a', 'b', 'c'], ps: [1/3, 1/3, 1/3]});
-var foodPrior = Categorical({vs: ['bagel', 'cookie', 'doughnut'], ps: [1/3, 1/3, 1/3]});
-
-var vendingMachine = function(state, action) {
-  return (action == 'a' ? categorical({vs: ['bagel', 'cookie', 'doughnut'], ps: [.8, .1, .1]}) :
-          action == 'b' ? categorical({vs: ['bagel', 'cookie', 'doughnut'], ps: [.1, .8, .1]}) :
-      action == 'c' ? categorical({vs: ['bagel', 'cookie', 'doughnut'], ps: [.1, .1, .8]}) :
-      'nothing');
-}
-
-var chooseAction = function(goal, transition, state, deceive) {
-  return Infer({method: 'enumerate'}, function() {
-    var action = sample(actionPrior);
-    condition(...)
-    return action;
-  })
-};
-
-var goalPosterior = Infer({method: 'enumerate'}, function() {
-  var deceive = flip();
-  var goalFood = sample(foodPrior);
-  var goal = function(outcome) {return outcome == goalFood};
-  var sallyActionDist = chooseAction(goal, vendingMachine, 'state', deceive);
-  condition(...)
-  return goalFood;
-});
-
-viz.auto(goalPosterior);</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> actionPrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">'a'</span><span class="op">,</span> <span class="st">'b'</span><span class="op">,</span> <span class="st">'c'</span>]<span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> foodPrior <span class="op">=</span> <span class="fu">Categorical</span>({</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span><span class="op">,</span> <span class="st">'doughnut'</span>]<span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ps</span><span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vendingMachine <span class="op">=</span> <span class="kw">function</span>(state<span class="op">,</span> action) {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    action <span class="op">==</span> <span class="st">'a'</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> <span class="fu">categorical</span>({</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span><span class="op">,</span> <span class="st">'doughnut'</span>]<span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ps</span><span class="op">:</span> [<span class="op">.</span><span class="dv">8</span><span class="op">,</span> <span class="op">.</span><span class="dv">1</span><span class="op">,</span> <span class="op">.</span><span class="dv">1</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> action <span class="op">==</span> <span class="st">'b'</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="fu">categorical</span>({</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>          <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span><span class="op">,</span> <span class="st">'doughnut'</span>]<span class="op">,</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>          <span class="dt">ps</span><span class="op">:</span> [<span class="op">.</span><span class="dv">1</span><span class="op">,</span> <span class="op">.</span><span class="dv">8</span><span class="op">,</span> <span class="op">.</span><span class="dv">1</span>]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> action <span class="op">==</span> <span class="st">'c'</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="fu">categorical</span>({</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            <span class="dt">vs</span><span class="op">:</span> [<span class="st">'bagel'</span><span class="op">,</span> <span class="st">'cookie'</span><span class="op">,</span> <span class="st">'doughnut'</span>]<span class="op">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="dt">ps</span><span class="op">:</span> [<span class="op">.</span><span class="dv">1</span><span class="op">,</span> <span class="op">.</span><span class="dv">1</span><span class="op">,</span> <span class="op">.</span><span class="dv">8</span>]</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>          })</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> <span class="st">'nothing'</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> chooseAction <span class="op">=</span> <span class="kw">function</span>(goal<span class="op">,</span> transition<span class="op">,</span> state<span class="op">,</span> deceive) {</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> action <span class="op">=</span> <span class="fu">sample</span>(actionPrior)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">condition</span>(<span class="op">...</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> action</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> goalPosterior <span class="op">=</span> <span class="fu">Infer</span>(</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span>() {</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> deceive <span class="op">=</span> <span class="fu">flip</span>()</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> goalFood <span class="op">=</span> <span class="fu">sample</span>(foodPrior)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> goal <span class="op">=</span> <span class="kw">function</span>(outcome) {</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> outcome <span class="op">==</span> goalFood</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> sallyActionDist <span class="op">=</span> <span class="fu">chooseAction</span>(</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>      goal<span class="op">,</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>      vendingMachine<span class="op">,</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>      <span class="st">'state'</span><span class="op">,</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      deceive</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condition</span>(<span class="op">...</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> goalFood</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(goalPosterior)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="exercise-1.2" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1.2">Exercise 1.2</h3>
-<p>You observe that Sally chooses <code>a</code>, and then <code>b</code>. How likely is it that she is deceptive? What if you instead observed that she chose <code>b</code> and then <code>b</code> again? Explain how deceptiveness and preferences interact to produce her actions. *Hint: Try conditioning on (not) deceive and visualize the possible action-pairs Sally might take.</p>
-<pre><code></code></pre>
+<section id="exercise-6.1.2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6.1.2">Exercise 6.1.2</h3>
+<p>You observe that Sally chooses <code>a</code>, and then <code>b</code>. How likely is it that she is deceptive?</p>
+<p>What if you instead observed that she chose <code>b</code> and then <code>b</code> again?</p>
+<p>Explain how deceptiveness and preferences interact to produce her actions.</p>
+<p><em>Hint:</em> Try conditioning on (not) deceive and visualize the possible action-pairs Sally might take.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="exercise-2-monty-hall." class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-monty-hall.">Exercise 2: Monty Hall.</h2>
+<section id="exercise-6.2-monty-hall" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6.2-monty-hall">Exercise 6.2: Monty Hall</h2>
 <p>Here, we will use the tools of Bayesian inference to explore a classic statistical puzzle – the Monty Hall problem. Here is one statement of the problem:</p>
 <blockquote class="blockquote">
-<p>Alice is on a game show, and she’s given the choice of three doors. Behind one door is a car; behind the others, goats. She picks door 1. The host, Monty, knows what’s behind the doors and opens another door, say No.&nbsp;3, revealing a goat. He then asks Alice if she wants to switch doors. Should she switch?</p>
+<p>Alice is on a game show, and she’s given the choice of three doors.</p>
+<p>Behind one door is a car; behind the others, goats.</p>
+<p>She picks door 1.</p>
+<p>The host, Monty, knows what’s behind the doors and opens another door, say No.&nbsp;3, revealing a goat.</p>
+<p>He then asks Alice if she wants to switch doors.</p>
+<p>Should she switch?</p>
 </blockquote>
 <p>Intuitively, it may seem like switching doesn’t matter. However, the canonical solution is that you <em>should</em> switch doors. We will explore why this is the case.</p>
-<p>For this problem, we will assume (condition) that we observe Monty opening the door that is neither Alice’s door nor the prize door.</p>
-<section id="exercise-2.1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2.1">Exercise 2.1</h3>
-<p>The decision to switch depends crucially on how you believe Monty chooses doors to pick. First, write the model such that the host <em>randomly</em> picks doors (for this, fill in <code>montyRandom</code>). In this setting, should Alice switch, or does it not matter?</p>
-<pre><code>///fold: 
-var removeBadItems = function(l, badItems) {
-  return reduce(function(badItem, remainingL) {
-    return remove(badItem, remainingL)
-  }, l, badItems);
-}
-
-var doors = [1, 2, 3];
-///
-
-var montyRandom = function(aliceDoor, prizeDoor) {
-  return Infer({method: 'enumerate'}, function() {
-    return ...
-  })
-};
-
-var model = function(switch_cond) {
-  var aliceDoor = ...
-  var prizeDoor = ...
-  var montyDoor = ...
-  
-  condition(montyDoor != prizeDoor);
-  condition(montyDoor != aliceDoor);
-  
-  return ...
-}
-
-display("P(win) if Alice doesn't switch");
-viz.auto(Infer({method: 'enumerate'}, function() {model(false)}));
-display("P(win) if Alice does switch");
-viz.auto(Infer({method: 'enumerate'}, function() {model(true)}));</code></pre>
+<p>For this problem, we will assume (condition on) the fact that we observe Monty opening the door that is neither Alice’s door nor the prize door.</p>
+<section id="exercise-6.2.1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6.2.1">Exercise 6.2.1</h3>
+<p>The decision to switch depends crucially on how you believe Monty chooses doors to pick.</p>
+<p>First, write the model such that the host <em>randomly</em> picks doors (for this, fill in <code>montyRandom</code>).</p>
+<p>In this setting, should Alice switch, or does it not matter?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">///fold: </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> removeBadItems <span class="op">=</span> <span class="kw">function</span>(l<span class="op">,</span> badItems) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">reduce</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>(badItem<span class="op">,</span> remainingL) {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">remove</span>(badItem<span class="op">,</span> remainingL)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    l<span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    badItems</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> doors <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">///</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> montyRandom <span class="op">=</span> <span class="kw">function</span>(aliceDoor<span class="op">,</span> prizeDoor) {</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="op">...</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>(switch_cond) {</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> aliceDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> prizeDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> montyDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(montyDoor <span class="op">!=</span> prizeDoor)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(montyDoor <span class="op">!=</span> aliceDoor)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">...</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"P(win) if Alice doesn't switch:"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">model</span>(<span class="kw">false</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"P(win) if Alice does switch:"</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">model</span>(<span class="kw">true</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="exercise-2.2" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2.2">Exercise 2.2</h3>
-<p>This time, fill in the code so that Monty behaves according to the original Monty Hall problem, i.e.&nbsp;picking the door that is neither the prize door nor Alice’s door. For both-avoiding Monty, you’ll find that Alice <em>should</em> switch.</p>
-<pre><code>///fold: 
-var removeBadItems = function(l, badItems) {
-  return reduce(function(badItem, remainingL) {
-    return remove(badItem, remainingL)
-  }, l, badItems);
-}
-
-var doors = [1, 2, 3];
-///
-
-var montyAvoidBoth = function(aliceDoor, prizeDoor) {
-  return Infer({method: 'enumerate'}, function() {
-    return ...
-  })
-};
-
-var model = function(switch_cond) {
-  var aliceDoor = ...
-  var prizeDoor = ...
-  var montyDoor = ...
-  
-  condition(montyDoor != prizeDoor);
-  condition(montyDoor != aliceDoor);
-  
-  return ...
-}
-
-display("P(win) if Alice doesn't switch");
-viz.auto(Infer({method: 'enumerate'}, function() {model(false)}));
-display("P(win) if Alice does switch");
-viz.auto(Infer({method: 'enumerate'}, function() {model(true)}));</code></pre>
+<section id="exercise-6.2.2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6.2.2">Exercise 6.2.2</h3>
+<p>This time, fill in the code so that Monty behaves according to the original Monty Hall problem, i.e., picks the door that is neither the prize door nor Alice’s door.</p>
+<p>For both-avoiding Monty, you’ll find that Alice <em>should</em> switch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">///fold: </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> removeBadItems <span class="op">=</span> <span class="kw">function</span>(l<span class="op">,</span> badItems) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">reduce</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>(badItem<span class="op">,</span> remainingL) {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">remove</span>(badItem<span class="op">,</span> remainingL)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    l<span class="op">,</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    badItems</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> doors <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">///</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> montyAvoidBoth <span class="op">=</span> <span class="kw">function</span>(aliceDoor<span class="op">,</span> prizeDoor) {</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="op">...</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>(switch_cond) {</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> aliceDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> prizeDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> montyDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(montyDoor <span class="op">!=</span> prizeDoor)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(montyDoor <span class="op">!=</span> aliceDoor)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">...</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"P(win) if Alice doesn't switch:"</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">model</span>(<span class="kw">false</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"P(win) if Alice does switch:"</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">model</span>(<span class="kw">true</span>)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="exercise-2.3" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2.3">Exercise 2.3</h3>
-<p>This is unintuitive – we know that Monty picked door 3, so why should the process he used to arrive at this choice matter? By hand, complete the probability table for P(Alice, Prize, Monty) under both <code>montyRandom</code> and <code>montyAvoidBoth</code>. Your tables should look like:</p>
+<section id="exercise-6.2.3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6.2.3">Exercise 6.2.3</h3>
+<p>This is unintuitive – we know that Monty picked door 3, so why should the process he used to arrive at this choice matter?</p>
+<p>By hand, complete the probability table for <span class="math inline">\(\Pr(\text{AliceDoor}, \text{PrizeDoor}, \text{MontyDoor})\)</span> under both <code>montyRandom</code> and <code>montyAvoidBoth</code>.</p>
+<p>Your tables should look like the following:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Alice’s door</th>
-<th>Prize door</th>
-<th>Monty’s Door</th>
-<th>P(Alice, Prize, Monty)</th>
+<th style="text-align: center;">Alice’s Door</th>
+<th style="text-align: center;">Prize Door</th>
+<th style="text-align: center;">Monty’s Door</th>
+<th style="text-align: center;"><span class="math inline">\(\Pr(\text{AliceDoor}, \text{PrizeDoor}, \text{MontyDoor})\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>…</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>…</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
 </tr>
 <tr class="odd">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td style="text-align: center;"><span class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\ddots\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Using these tables, explain why Alice should switch for both-avoiding Monty but why switching doesn’t matter for random Monty. Hint: you will want to compare particular <em>rows</em> of these tables.</p>
+<p>Using these tables, explain why Alice should switch for both-avoiding Monty but why switching doesn’t matter for random Monty.</p>
+<p><em>Hint:</em> you will want to compare particular <em>rows</em> of these tables.</p>
 </section>
-<section id="exercise-2.4" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2.4">Exercise 2.4</h3>
+<section id="exercise-6.2.4" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6.2.4">Exercise 6.2.4</h3>
 <p>This time, fill in the code so that Monty randomly chooses between the two doors that aren’t Alice’s door. What should Alice do now?</p>
-<pre><code>///fold: 
-var removeBadItems = function(l, badItems) {
-  return reduce(function(badItem, remainingL) {
-    return remove(badItem, remainingL)
-  }, l, badItems);
-}
-
-var doors = [1, 2, 3];
-///
-
-var montyAvoidAlice = function(aliceDoor, prizeDoor) {
-  return Infer({method: 'enumerate'}, function() {
-    return ...
-  })
-};
-
-var model = function(switch_cond) {
-  var aliceDoor = ...
-  var prizeDoor = ...
-  var montyDoor = ...
-  
-  condition(montyDoor != prizeDoor);
-  condition(montyDoor != aliceDoor);
-  
-  return ...
-}
-
-display("P(win) if Alice doesn't switch");
-viz.auto(Infer({method: 'enumerate'}, function() {model(false)}));
-display("P(win) if Alice does switch");
-viz.auto(Infer({method: 'enumerate'}, function() {model(true)}));</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">///fold: </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> removeBadItems <span class="op">=</span> <span class="kw">function</span>(l<span class="op">,</span> badItems) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">reduce</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>(badItem<span class="op">,</span> remainingL) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">remove</span>(badItem<span class="op">,</span> remainingL)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    l<span class="op">,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    badItems</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> doors <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">///</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> montyAvoidAlice <span class="op">=</span> <span class="kw">function</span>(aliceDoor<span class="op">,</span> prizeDoor) {</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="op">...</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>(switch_cond) {</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> aliceDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> prizeDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> montyDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(montyDoor <span class="op">!=</span> prizeDoor)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(montyDoor <span class="op">!=</span> aliceDoor)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">...</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"P(win) if Alice doesn't switch:"</span>)<span class="op">;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">model</span>(<span class="kw">false</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"P(win) if Alice does switch:"</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">model</span>(<span class="kw">true</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="exercise-2.5" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2.5">Exercise 2.5</h3>
+<section id="exercise-6.2.5" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6.2.5">Exercise 6.2.5</h3>
 <p>This time, fill in the code so that Monty randomly chooses between the two doors that aren’t the prize door. What should Alice do now?</p>
-<pre><code>///fold: 
-var removeBadItems = function(l, badItems) {
-  return reduce(function(badItem, remainingL) {
-    return remove(badItem, remainingL)
-  }, l, badItems);
-}
-
-var doors = [1, 2, 3];
-///
-
-var montyAvoidPrize = function(aliceDoor, prizeDoor) {
-  return Infer({method: 'enumerate'}, function() {
-    return ...
-  })
-};
-
-var model = function(switch_cond) {
-  var aliceDoor = ...
-  var prizeDoor = ...
-  var montyDoor = ...
-  
-  condition(montyDoor != prizeDoor);
-  condition(montyDoor != aliceDoor);
-  
-  return ...
-}
-
-display("P(win) if Alice doesn't switch");
-viz.auto(Infer({method: 'enumerate'}, function() {model(false)}));
-display("P(win) if Alice does switch");
-viz.auto(Infer({method: 'enumerate'}, function() {model(true)}));</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">///fold: </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> removeBadItems <span class="op">=</span> <span class="kw">function</span>(l<span class="op">,</span> badItems) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">reduce</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>(badItem<span class="op">,</span> remainingL) {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">remove</span>(badItem<span class="op">,</span> remainingL)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    l<span class="op">,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    badItems</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> doors <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">///</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> montyAvoidPrize <span class="op">=</span> <span class="kw">function</span>(aliceDoor<span class="op">,</span> prizeDoor) {</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">Infer</span>(</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="op">...</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> <span class="kw">function</span>(switch_cond) {</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> aliceDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> prizeDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> montyDoor <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(montyDoor <span class="op">!=</span> prizeDoor)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">condition</span>(montyDoor <span class="op">!=</span> aliceDoor)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">...</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"P(win) if Alice doesn't switch:"</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">model</span>(<span class="kw">false</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(<span class="st">"P(win) if Alice does switch:"</span>)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>viz<span class="op">.</span><span class="fu">auto</span>(</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Infer</span>(</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">method</span><span class="op">:</span> <span class="st">'enumerate'</span>}<span class="op">,</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>() {</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">model</span>(<span class="kw">true</span>)</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="exercise-2.6" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2.6">Exercise 2.6</h3>
-<p>The psychological question is why do people have the initial intuition that switching shouldn’t matter? Given your explorations, propose a hypothesis. Can you think of an experiment that would test this hypothesis?</p>
+<section id="exercise-6.2.6" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6.2.6">Exercise 6.2.6</h3>
+<p>The psychological [meta-]question is, why do people have the initial intuition that switching shouldn’t matter? Given your explorations, propose a hypothesis. Can you think of an experiment that would <strong>test</strong> this hypothesis?</p>
 
 
 </section>
