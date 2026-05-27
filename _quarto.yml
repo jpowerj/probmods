@@ -95,8 +95,7 @@ format:
         <script src='/assets/js/webppl-viz.min.js'></script>
         <script src='/assets/js/webppl-editor.min.js' defer></script>
         <script src='/assets/js/paper-full.js'></script>
-  pdf:
-    documentclass: scrreprt
+  pdf: default
 
 
 

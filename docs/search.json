@@ -268,7 +268,7 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Home\nThis is a “port” of Goodman et al’s book Probabilistic Models of Cognition into Quarto, with a few changes to help us integrate the material better with DSAN 5650: Causal Inference for Computational Social Science (e.g., allowing us to cross-reference code and figures, include PDFs of the readings, and auto-grade the end-of-chapter exercises!)\nUse the sidebar to the left or the link at the bottom of this page to get started!",
+    "text": "Home\nThis is a “port” of Goodman et al’s book Probabilistic Models of Cognition into Quarto, with a few changes to help us integrate the material better with DSAN 5650: Causal Inference for Computational Social Science (e.g., allowing us to cross-reference code and figures, include PDFs of the readings, and auto-grade the end-of-chapter exercises!)\nUse the sidebar to the left or the link at the bottom of this page to get started!\n\n\n\n\n\n\nNoteBrowser Persistence\n\n\n\nNote that this textbook is highly interactive, and, while Jeff did the best he could to implement browser persistence for the changes you make in each code cell, things like clearing cookies (or using a different browser, or a different computer) will result in your code being lost!\nThis means that, when working on the exercises, you shouldn’t depend entirely on this persistence! Save backups of your work (for example, in local .js files on your computer) as much as possible!",
     "crumbs": [
       "Home"
     ]

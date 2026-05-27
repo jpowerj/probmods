@@ -3,3 +3,11 @@
 This is a **"port"** of Goodman et al's book [***Probabilistic Models of Cognition***](https://probmods.org/) into Quarto, with a few changes to help us integrate the material better with [**DSAN 5650: Causal Inference for Computational Social Science**](https://jjacobs.me/dsan5650) (e.g., allowing us to cross-reference code and figures, include PDFs of the readings, and auto-grade the end-of-chapter exercises!)
 
 Use the sidebar to the left or the link at the bottom of this page to get started!
+
+::: {.callout-note title="Browser Persistence"}
+
+Note that this textbook is highly interactive, and, while Jeff did the best he could to implement **browser persistence** for the changes you make in each code cell, things like clearing cookies (or using a different browser, or a different computer) will result in your code being lost!
+
+This means that, when working on the exercises, you shouldn't depend entirely on this persistence! Save backups of your work (for example, in local `.js` files on your computer) as much as possible!
+
+:::
