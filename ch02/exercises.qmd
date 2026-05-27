@@ -9,7 +9,7 @@ format:
         <script src='../assets/js/physics.js'></script>
         <script>
         document.addEventListener("DOMContentLoaded", () => {
-          const chKey = 'ch02'
+          const chKey = 'ch02e'
           let jsBlocks = Array.from(
             document.querySelectorAll('pre')
           )

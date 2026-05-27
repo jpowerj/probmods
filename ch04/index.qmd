@@ -1,13 +1,73 @@
 ---
 title: "Chapter 4: Causal and Statistical Dependence"
 chapter_num: 4
-include-after-body:
-  text: |
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll('pre').forEach((elt) => editor.setup(elt, {language:'webppl'}))
-    });
-    </script>
+format:
+  html:
+    include-after-body:
+      text: |
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const chKey = 'ch04'
+          let jsBlocks = Array.from(
+            document.querySelectorAll('pre')
+          )
+          jsBlocks
+            .filter((elt) => !elt.classList.contains('default'))
+            .forEach((elt, i) => {
+              // Update cell content if in localStorage
+              const lsKey = `${chKey}-cell-${i}`
+              // Store the original (pre-localStorage) content
+              const lsKeyOrig = `${chKey}-cell-${i}-orig`
+              const origContent = elt.innerText
+              localStorage.setItem(lsKeyOrig, origContent)
+              const savedContent = localStorage.getItem(lsKey) || ''
+              if (savedContent != '') {
+                console.log(`Updating content to: ${savedContent}`)
+                elt.innerHTML = `<pre>${savedContent}</pre>`
+              }
+              const result = editor.setup(elt, {
+                language: 'webppl',
+                lineNumbers: true,
+              })
+              // Listen for changes
+              result.refs.editor.codeMirror.doc.on(
+                "change",
+                function(cm, changeObj) {
+                  console.log(`Content changed in cell ${i}`)
+                  const newVal = cm.getValue()
+                  localStorage.setItem(lsKey, newVal)
+                }
+              )
+            })
+          // And... a "reset to original" button
+          const codeBlocks = document.querySelectorAll('div[id^=cb]')
+          codeBlocks.forEach((elt, i) => {
+            console.log(elt.id)
+            // Add a "restore previous content" popup
+            const restoreContainer = document.createElement('div')
+            restoreContainer.setAttribute('style','display: flex;')
+            const restoreButton = document.createElement('button')
+            restoreContainer.append(restoreButton)
+            restoreButton.textContent = "Restore Original"
+            restoreButton.setAttribute('style','margin-left: auto; font-size: 80%;')
+            elt.style.marginTop = 0
+            restoreButton.onclick = function() {
+              console.log(`restoring ${i}`)
+              const cmObj = elt.firstChild.firstChild.firstChild.children[1].CodeMirror
+              console.log(cmObj)
+              // Use setValue to update the content
+              const origValKey = `${chKey}-cell-${i}-orig`
+              const origVal = localStorage.getItem(origValKey)
+              cmObj.setValue(origVal)
+            }
+            // Add it before the current one
+            elt.before(restoreContainer)
+            const eltButtons = elt.querySelectorAll('button')
+            console.log(eltButtons)
+          })
+        })
+        </script>
+  pdf: default
 ---
 
 ## 4.1 Causal Dependence
